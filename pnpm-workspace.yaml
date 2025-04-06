@@ -1,0 +1,6 @@
+packages:
+  - play
+  - docs
+  - packages/**
+onlyBuiltDependencies:
+  - esbuild

@@ -11,6 +11,9 @@ importers:
       '@bottle-ui/components':
         specifier: workspace:*
         version: link:packages/components
+      '@bottle-ui/hooks':
+        specifier: workspace:*
+        version: link:packages/hooks
       '@bottle-ui/theme-chalk':
         specifier: workspace:*
         version: link:packages/theme-chalk
@@ -27,6 +30,8 @@ importers:
   docs: {}
 
   packages/components: {}
+
+  packages/hooks: {}
 
   packages/theme-chalk: {}
 

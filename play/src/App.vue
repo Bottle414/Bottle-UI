@@ -1,10 +1,13 @@
 <template>
-  <div class='app'>
-    <BIcon color="red" size="4"/>
-  </div>
+    <BIcon>
+        <AlipaySquareFilled/>
+    </BIcon>
 </template>
 
 <script lang='ts' setup>
+import BIcon from '@bottle-ui/components/icon';
+import { AlipaySquareFilled } from '@vicons/antd'
+
 
 </script>
 

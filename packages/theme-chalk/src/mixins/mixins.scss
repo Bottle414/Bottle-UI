@@ -1,0 +1,38 @@
+@use 'config' as *;/* 默认私有变量不会被引入 */
+@forward 'config';/* 导出config */
+
+/* b-button */
+@mixin b($block) {/* mixin是一段复用的代码，名字叫b；通过@include调用mixin */
+    $B: $namespace + $common-separator + $block;
+  
+    .#{$B} {
+      @content;/* 占位符，调用@mixin的代码会被填入这里 */
+    }
+}
+
+/* b-button--primary */
+@mixin m($element) {
+    @at-root {
+        #{&+$element-separator+$element} {
+            @content;
+        }
+    }
+}
+
+/* b-button__header */
+@mixin m($modifier) {
+    @at-root {
+        #{&+$modifier-separator+$modifier} {
+            @content;
+        }
+    }
+}
+
+/* is-disable */
+@mixin when($state) {
+    @at-root {/* 表示跳出当前嵌套的作用域，直接在根生成 */
+        &.#{$state-prefix + $state} {/* &：代表当前选择器。由于 @at-root 跳出当前作用域，因此 & 会被替换成 空字符串，在 @at-root 中实际就会变成根选择器 */
+            @content;
+        }
+    }
+}

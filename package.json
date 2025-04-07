@@ -13,9 +13,10 @@
   "packageManager": "pnpm@10.7.1",
   "dependencies": {
     "@bottle-ui/components": "workspace:*",
+    "@bottle-ui/hooks": "workspace:*",
     "@bottle-ui/theme-chalk": "workspace:*",
     "@bottle-ui/utils": "workspace:*",
-    "@bottle-ui/hooks": "workspace:*",
+    "sass": "^1.86.3",
     "typescript": "^5.8.3",
     "vue": "^3.5.13"
   },

@@ -3,7 +3,6 @@ const statePrefix = 'is'
 
 // 生成bem风格名称
 function _bem(prefixName: string, blockSuffix: string, element: string, modifier: string){
-    prefixName = '-' + prefixName
     if (blockSuffix){
         prefixName += `-${ blockSuffix }`
     }

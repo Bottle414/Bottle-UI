@@ -1,8 +1,8 @@
 // 进行整合组件，最终实现导出
 import Icon from './src/icon.vue'
+import { withInstall } from '@bottle-ui/utils/withInstall'
 
-Icon.install = function(){// 增加挂载方法
-
-}
+export const BIcon = withInstall(Icon)
+export default BIcon
 
 export * from './src/icon'// 导出所有类型

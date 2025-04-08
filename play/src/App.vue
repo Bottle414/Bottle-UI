@@ -4,12 +4,14 @@
     </BIcon>
     <BIcon>
       <AndroidOutlined/>
-  </BIcon>
+    </BIcon>
+    <BTree/>
 </template>
 
 <script lang='ts' setup>
 import BIcon from '@bottle-ui/components/icon';
 import { AndroidOutlined } from '@vicons/antd'
+import BTree from '@bottle-ui/components/tree'
 
 
 </script>

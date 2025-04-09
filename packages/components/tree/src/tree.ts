@@ -12,6 +12,7 @@ export interface TreeOption {
 export interface TreeNode extends Required<TreeOption> {// 使得treeoption必填
     level: number,
     raw: TreeOption,    // 原数据
+    isLeaf: boolean
 }
 
 export const treeProps = {
@@ -19,15 +20,15 @@ export const treeProps = {
         type: Array as PropType<TreeOption[]>,
         default: () => []// 不传返回空
     },
-    labelField: {// 绑定label字段
+    label: {// 绑定label字段
         type: String,
         default: 'label'// 不传就叫label
     },
-    keyField: {
+    key: {
         type: String,
         default: 'key'
     },
-    childrenFiled: {
+    children: {
         type: String,
         default: 'children'
     }

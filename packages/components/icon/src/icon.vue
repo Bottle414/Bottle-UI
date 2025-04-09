@@ -17,7 +17,7 @@
 
     // 计算样式
     const style = computed(() => {
-        const { color, depth, size} = props
+        const { color, depth, size } = props
 
         if (!color && !depth && !size) return
         return {

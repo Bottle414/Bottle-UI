@@ -5,13 +5,19 @@
     <BIcon>
       <AndroidOutlined/>
     </BIcon> -->
-    <BTree :data="data" :checked="[1]"/>
+    <!-- <BTree :data="data" :checked="[1]"/> -->
+    <BButton color="#eef" size="12" :loading="true">
+      <template #icon>
+        <AndroidOutlined/>
+      </template>
+    </BButton>
 </template>
 
 <script lang='ts' setup>
 // import BIcon from '@bottle-ui/components/icon';
-// import { AndroidOutlined } from '@vicons/antd'
+import { AndroidOutlined } from '@vicons/antd'
 import BTree from '@bottle-ui/components/tree'
+import BButton from '@bottle-ui/components/button'
 
 const data = [
     {

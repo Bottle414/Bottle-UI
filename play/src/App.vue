@@ -5,7 +5,7 @@
     <BIcon>
       <AndroidOutlined/>
     </BIcon> -->
-    <BTree :data="data"/>
+    <BTree :data="data" :checked="[1]"/>
 </template>
 
 <script lang='ts' setup>

@@ -1,10 +1,8 @@
 <template>
+    <!-- 模板有优化，如果需要较强的自定义再使用tsx -->
     <div :class="ns.b()">
-        <template v-for="node in tree" :key="node.id">
-            <div class="node">{{ node.text }}</div>
-        </template>
+        <BNode v-for="node in tree" :key="node.id" :node="node" />
     </div>
-    <!-- parent会导致序列化的时候循环引用而报错 -->
 </template>
 
 <script lang='ts' setup>
@@ -12,6 +10,7 @@
     import { treeProps } from './tree'
     import { Node, TreeOption } from './tree'
     import useNamespace from '@bottle-ui/hooks/useNamespace'
+    import BNode from './tree-node.vue'
 
     const ns = useNamespace('tree')
 

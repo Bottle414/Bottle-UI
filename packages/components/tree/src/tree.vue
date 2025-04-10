@@ -1,68 +1,66 @@
 <template>
-    <p v-for="node in tree">{{ node }}</p>
+    <div :class="ns.b()">
+        <template v-for="node in tree" :key="node.id">
+            <div class="node">{{ node.text }}</div>
+        </template>
+    </div>
+    <!-- parent会导致序列化的时候循环引用而报错 -->
 </template>
 
 <script lang='ts' setup>
     import { ref, watch, computed } from 'vue';
     import { treeProps } from './tree'
-    import type { TreeNode, TreeOption } from './tree'
+    import { Node, TreeOption } from './tree'
+    import useNamespace from '@bottle-ui/hooks/useNamespace'
+
+    const ns = useNamespace('tree')
 
     const props = defineProps(treeProps)
-    const { label, key } = props// 解构出对应字段
+    const { label, key, checked } = props// 解构出对应字段
     // 收到数据进行格式化
-    const tree = ref<TreeNode[]>([])// 数据源 never 无法推导
+    const tree = ref<Node[]>([])// 拍平的树
+    const expandedset = ref(new Set(checked))
 
-    function formateNode(data: TreeOption[], parent: TreeNode | null) {
+    // 数据格式化
+    const formatTree = (data: TreeOption[], parent: Node | null): Node[] => {
         return data.map(node => {
-            const newNode: TreeNode = {
-                label: node[label] as string,
-                key: node[key] as number,
-                children: [],
-                raw: node,
-                level: parent ? parent.level + 1 : 0,
-                isLeaf: true
-            }
+            const newNode = new Node(node)
 
-            if (node.children?.length){
-                newNode.isLeaf = false
-                newNode.children = formateNode(node.children, newNode)
+            newNode.parent = parent
+            newNode.level = parent ? parent.level + 1 : 0
+            newNode.text = node[label] as string
+
+            const children = node.children
+
+            if (children?.length){
+                newNode.children = formatTree(children, newNode)
+            }else {
+                newNode.isLeaf = true
             }
             return newNode
         })
     }
 
-    function formateTree(data: TreeOption[]): TreeNode[]{
-        return formateNode(data, null)
-    }
+    const flattenTree = (root: Node): Node[] => {
+        // 采用BFS拍平树
+        let flatNodes: Node[] = []
+        let queue: Node[] = [root]// 一边拍平一边格式化
 
-    const expandeedTreeSet = ref(new Set(props.checked))
-
-    const flattenTree = computed(() => {
-        let flatTree: TreeNode[] = []// 被拍平的节点们
-        const nodes = tree.value || []// 格式化后的结果
-        const stack: TreeNode[] = []// 用于遍历的栈
-
-        for (let i = nodes.length - 1; i >= 0; i--){
-            stack.push(nodes[i])
-        }
-
-        while(stack.length){
-            const node = stack.pop()
-            if (!node) continue// 栈空
-            flattenTree.value.push(node)
-            if (expandeedTreeSet.value.has(node.key)){// 要是这个节点需要展开
-                const children = node.children
-                for (let i = node.children.length - 1; i >= 0; --i){
-                    stack.push(node.children[i])
-                }
+        while (queue.length) {
+            let node = queue.shift()
+            if (!node) continue
+            flatNodes.push(node)
+            if (node.children) {
+                queue.push(...node.children)
             }
         }
 
-        return flatTree
-    })
+        return flatNodes
+    }
 
     watch(() => props.data, (data: TreeOption[]) => {// 监视数据传入, 格式化数据
-        tree.value = formateTree(data)
+        const formatNodes = formatTree(data, null)
+        tree.value = formatNodes.flatMap(node => flattenTree(node))// 考虑多个根节点
         console.log(tree.value);
     },{ immediate: true })
 

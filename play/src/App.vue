@@ -5,10 +5,10 @@
     <BIcon>
       <AndroidOutlined/>
     </BIcon> -->
-    <!-- <BTree :data="data" :checked="[1]"/> -->
-    <BButton color="#eef" size="12" :loading="true" @click="handler">
+    <BTree :data="data" :checked="[1]"/>
+    <!-- <BButton color="#eef" size="12" :loading="true" @click="handler">
         Click here to send message
-    </BButton>
+    </BButton> -->
 </template>
 
 <script lang='ts' setup>

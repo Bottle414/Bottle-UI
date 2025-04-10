@@ -1,5 +1,6 @@
 <template>
     <button :class="bem" :style="style">
+        <slot></slot>
         <template v-if="loading">
             <BIcon>
                 <ReloadOutlined/>

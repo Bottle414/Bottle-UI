@@ -6,10 +6,8 @@
       <AndroidOutlined/>
     </BIcon> -->
     <!-- <BTree :data="data" :checked="[1]"/> -->
-    <BButton color="#eef" size="12" :loading="true">
-      <template #icon>
-        <AndroidOutlined/>
-      </template>
+    <BButton color="#eef" size="12" :loading="true" @click="handler">
+        Click here to send message
     </BButton>
 </template>
 
@@ -18,6 +16,10 @@
 import { AndroidOutlined } from '@vicons/antd'
 import BTree from '@bottle-ui/components/tree'
 import BButton from '@bottle-ui/components/button'
+
+function handler(){
+    console.log('kkkk');
+}
 
 const data = [
     {

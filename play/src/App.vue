@@ -9,12 +9,14 @@
     <!-- <BButton color="#eef" size="12" :loading="true" @click="handler">
         Click here to send message
     </BButton> -->
+    <BCheckbox label="12" indeterminate value="20" color="red"/>
 </template>
 
 <script lang='ts' setup>
 // import BIcon from '@bottle-ui/components/icon';
 import { AndroidOutlined } from '@vicons/antd'
 import BTree from '@bottle-ui/components/tree'
+import BCheckbox from '@bottle-ui/components/checkbox'
 import BButton from '@bottle-ui/components/button'
 
 function handler(){

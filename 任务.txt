@@ -1,0 +1,7 @@
+1. 核心概念 → 组件基础 checked!
+2. 组件基础 → 组件 props / 事件 / 插槽
+3. 组合式 API → setup / ref / reactive / computed / watch
+4. 组合式 API 进阶 → 生命周期、provide/inject、teleport
+5. 深入组件 → v-model / 透传 attrs / 动态组件
+6. 工具函数 → defineProps / defineEmits / defineModel / defineExpose checked!
+7. 最后：可选的 SSR、性能优化、指令、插件

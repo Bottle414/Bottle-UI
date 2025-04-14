@@ -24,11 +24,13 @@ export class Node {// 树的节点结构
     text: string
     data: TreeOptions[]
     level: number
+    loaded: boolean
 
     full: boolean
     indeterminate: boolean
     expanded: boolean
     isLeaf: boolean
+    isLoading: boolean
 
     parent: Node | null
     children: Node[]
@@ -38,15 +40,18 @@ export class Node {// 树的节点结构
         this.text = ''
         this.data = []
         this.level = 0
+        this.loaded = false
 
         this.full = false
         this.indeterminate = false
         this.expanded = false
         this.isLeaf = false
+        this.isLoading = false
 
         this.parent = null
         this.children = []
 
+        // @ts-ignore 忽略编译器警告，因为 options 是动态结构
         for (const option in options){
             if (hasOwn(options, option)){
                 this[option] = options[option]
@@ -80,7 +85,7 @@ export const treeProps = {
         type: Number,
         default: 16
     },
-    load: Function as PropType<(node: TreeOption[]) => Promise<TreeOption>>
+    onLoad: Function as PropType<(node: Node) => Promise<TreeOption[]>>
 } as const// 这个对象的属性是只读的，并且推断出最精确的字面量类型
 
 export type TreeProps = Partial<ExtractPropTypes<typeof treeProps>>// 表示字段可以不传

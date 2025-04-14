@@ -2,6 +2,7 @@
     <div :class="ns.b()">
         <div :class="ns.e('content')">
             <BCheckbox color="blue" @change="handlerExpand"></BCheckbox>
+            <span v-if="props.node.isLoading">*</span>
             <span>{{ props.node?.text }}</span>
         </div>
     </div>

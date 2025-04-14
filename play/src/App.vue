@@ -11,6 +11,9 @@
     </BButton> -->
     <BCheckbox label="12" indeterminate value="20" color="red"/>
     <BSelect/>
+    <BTooltip content="Hello" background="#333">
+        <BButton size="5"/>
+    </BTooltip>
 </template>
 
 <script lang='ts' setup>
@@ -20,6 +23,7 @@ import BTree from '@bottle-ui/components/tree'
 import BCheckbox from '@bottle-ui/components/checkbox'
 import BButton from '@bottle-ui/components/button'
 import BSelect from '@bottle-ui/components/select'
+import BTooltip from '@bottle-ui/components/tooltip'
 
 function handler(){
     console.log('kkkk');

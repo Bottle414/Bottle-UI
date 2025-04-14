@@ -26,7 +26,7 @@ export class Node {// 树的节点结构
     level: number
 
     full: boolean
-    half: boolean
+    indeterminate: boolean
     expanded: boolean
     isLeaf: boolean
 
@@ -40,7 +40,7 @@ export class Node {// 树的节点结构
         this.level = 0
 
         this.full = false
-        this.half = false
+        this.indeterminate = false
         this.expanded = false
         this.isLeaf = false
 
@@ -79,7 +79,8 @@ export const treeProps = {
     indent: {
         type: Number,
         default: 16
-    }
+    },
+    load: Function as PropType<(node: TreeOption[]) => Promise<TreeOption>>
 } as const// 这个对象的属性是只读的，并且推断出最精确的字面量类型
 
 export type TreeProps = Partial<ExtractPropTypes<typeof treeProps>>// 表示字段可以不传

@@ -16,7 +16,7 @@ const props = defineProps(treeProps)
 const ns = useNamespace('tree')
 
 const formatNodes = ref<Node[]>([]) // 嵌套结构
-const tree = computed(() => {
+const tree = computed<Node[]>(() => {// Node发生修改时触发更新
     return formatNodes.value.flatMap(node => flattenTree(node))
 })
 
@@ -77,6 +77,16 @@ const flattenTree = (root: Node): Node[] => {
     }
 
     return result
+}
+
+const handlerLoad = (node: TreeOption[]) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve({
+                // 异步加载
+            })
+        }, 1000)
+    })
 }
 
 // 监听 props.data 的变化 → 更新格式化树

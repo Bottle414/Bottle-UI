@@ -1,8 +1,6 @@
 <template>
     <div :class="ns.b()">
-        <slot>
-            Tooltip
-        </slot>
+        <slot></slot>
         <div class="b-tooltip-content">
             {{ content }}
         </div>
@@ -21,17 +19,21 @@
     const style = computed(() => {
         return {
             color,
-            opacity: depth ? depth * 0.25 : 0.75,
+            opacity: depth ? depth * 0.25 : 1,
             width: size + 'px',
         }
+    })
+
+    defineOptions({
+        name: 'BTooltip'
     })
 
 </script>
 
 <style scoped lang="scss">
     .b-tooltip {
-        width: 100px;
         position: relative;
+        display: inline-block;
     }
 
     .b-tooltip:hover {/* 设置三角方向 */

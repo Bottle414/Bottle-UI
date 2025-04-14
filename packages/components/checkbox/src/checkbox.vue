@@ -9,6 +9,7 @@
         <span class="b-custom-checkbox"></span>
         <span v-if="label" :class="ns.b('label')">{{ label }}</span>
     </label>
+    <!-- 此处label包裹input，点击label时: custom-checkbox会触发一次click, label会促使input触发click(即使input已经none), 所以事件会触发两次, 需要改成@change -->
 </template>
 
 <script lang='ts' setup>

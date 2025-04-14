@@ -3,11 +3,13 @@
     <div :class="ns.b()">
         <BNode
             v-for="node in visibleTree"
-            :key="node.id"
+            :key="node.key"
             :node="node"
             @toggleExpand="toggleExpand"
+            @check="onCheck"
             :style="{paddingLeft: node.level * props.indent + 'px'}
         "/>
+        <!-- 不需要也不推荐在这里做事件委托, 这是纯DOM的, Vue已经做了优化, 委托反而破化了组件的封装性 -->
     </div>
 </template>
   
@@ -26,15 +28,75 @@
         return formatNodes.value.flatMap(node => flattenTree(node))
     })
 
+    // 返回展开的数据 保存 UI 状态、缓存、权限、日志分析等场景
+    const getExpandedKeys = computed(() => {
+        return tree.value.filter(node => node.expanded)// .map(node => node.key)
+    })
+
+    // 返回选中的数据
+    const getCheckedKeys = computed(() => {
+        return tree.value.filter(node => node.full)// .map(node => node.key)
+    })
+
+    // 返回拍平的整棵树
+    const getFlattenTree = computed(() => {
+        return tree.value
+    })
+
+    // 返回格式化的树
+    const getFormatTree = computed(() => {
+        return formatNodes.value
+    })
+
+    // 级联勾选
+    const setChildrenCheck = (node: Node) => {
+        if (!props.checkStrictly){
+            node.full = true
+            node.indeterminate = false
+            node.children?.forEach(child => setChildrenCheck(child))
+        }
+    }
+
+    // 同步父节点
+    const updateParent = (node: Node | null) => {
+        if (!node || !node.children.length) return
+
+        const allChecked = node.children.every(child => child.full)
+        const noneChecked = node.children.every(child => !child.full && !child.indeterminate)
+
+        if (allChecked) {
+            node.full = true
+            node.indeterminate = false
+        } else if (noneChecked) {
+            node.full = false
+            node.indeterminate = false
+        } else {
+            node.full = false
+            node.indeterminate = true
+        }
+
+        updateParent(node.parent)
+    }
+
+    // 处理勾选
+    const onCheck = (node: Node) => {
+        node.full = !node.full
+        setChildrenCheck(node)
+        updateParent(node.parent)
+    }
+
+
     // 用于记录展开状态
     const toggleExpand = async(node: Node) => {
         node.expanded = !node.expanded
+        // 父组件级联勾选
+        setChildrenCheck(node)
+        updateParent(node.parent)
         // 只在第一次展开且没加载时触发加载
         if (node.expanded && !node.loaded) {
             node.isLoading = true
             node.loaded = true
             const children = await props.onLoad?.(node) // 外部传入的加载方法
-            console.log('receive: ' + children);
             if (children && children.length) {
                 node.children = formatTree(children, node)
             } else {

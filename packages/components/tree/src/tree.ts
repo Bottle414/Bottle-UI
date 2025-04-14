@@ -21,6 +21,7 @@ let nodeId = 0
 
 export class Node {// 树的节点结构
     id: number
+    key: number// 业务绑定的值 label只是展示给用户看的
     text: string
     data: TreeOptions[]
     level: number
@@ -37,6 +38,7 @@ export class Node {// 树的节点结构
 
     constructor(options: TreeOptions){
         this.id = nodeId ++
+        this.key = 0
         this.text = ''
         this.data = []
         this.level = 0
@@ -84,6 +86,10 @@ export const treeProps = {
     indent: {
         type: Number,
         default: 16
+    },
+    checkStrictly: {
+        type: Boolean,
+        default: false
     },
     onLoad: Function as PropType<(node: Node) => Promise<TreeOption[]>>
 } as const// 这个对象的属性是只读的，并且推断出最精确的字面量类型

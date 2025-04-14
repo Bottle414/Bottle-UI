@@ -5,6 +5,7 @@
             style="display: none"
             :value="value" :checked="checked"
             :indeterminate="indeterminate"
+            :disabled="disabled"
         />
         <span class="b-custom-checkbox"></span>
         <span v-if="label" :class="ns.b('label')">{{ label }}</span>
@@ -19,7 +20,7 @@
 
     const ns = useNamespace('checkbox')
     const props = defineProps(checkboxProps)
-    const { label, color, size, value, checked, indeterminate } = props
+    const { label, color, size, value, checked, indeterminate, disabled } = props
 
     const style = computed(() => {
         return {
@@ -58,6 +59,11 @@
         border-color: var(--checkbox-color);
     }
 
+    input[type='checkbox']:disabled + .b-custom-checkbox {
+        background-color: #ccc;
+        border-color: #bbb;
+    }
+
     input[type='checkbox']:checked+.b-custom-checkbox::after {
         position: absolute;
         left: 50%;
@@ -65,6 +71,16 @@
         transform: translate(-50%, -50%);
         content: '✓';
         color: #fff;
+        font-size:  calc(var(--checkbox-size) * 0.75);/* 这里改成动态计算 */
+    }
+
+    input[type='checkbox']:disabled+.b-custom-checkbox::after {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        content: '✓';
+        color: #eee;
         font-size:  calc(var(--checkbox-size) * 0.75);/* 这里改成动态计算 */
     }
 </style>

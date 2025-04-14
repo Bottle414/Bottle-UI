@@ -4,8 +4,9 @@
             <BCheckbox
                 color="blue"
                 @change="handlerExpand"
-                :checked="node.full">
-            </BCheckbox>
+                :checked="node.full"
+                :disabled="node.disabled"
+            />
             <span v-if="props.node.isLoading">*</span>
             <span>{{ props.node?.text }}</span>
         </div>

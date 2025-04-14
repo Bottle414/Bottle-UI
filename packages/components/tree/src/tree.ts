@@ -30,6 +30,8 @@ export class Node {// 树的节点结构
     full: boolean
     indeterminate: boolean
     expanded: boolean
+    disabled: boolean
+    // 后续还是加个check比较好, full有bug, 而且它不等同于check
     isLeaf: boolean
     isLoading: boolean
 
@@ -43,10 +45,12 @@ export class Node {// 树的节点结构
         this.data = []
         this.level = 0
         this.loaded = false
+        
 
         this.full = false
         this.indeterminate = false
         this.expanded = false
+        this.disabled = false
         this.isLeaf = false
         this.isLoading = false
 
@@ -90,6 +94,10 @@ export const treeProps = {
     checkStrictly: {
         type: Boolean,
         default: false
+    },
+    disabledKeys: {// 批量禁用
+        type: Array as PropType<(string | number)[]>,
+        default: () => []
     },
     onLoad: Function as PropType<(node: Node) => Promise<TreeOption[]>>
 } as const// 这个对象的属性是只读的，并且推断出最精确的字面量类型

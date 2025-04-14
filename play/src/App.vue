@@ -9,7 +9,7 @@
     <!-- <BButton color="#eef" size="12" :loading="true" @click="handler">
         Click here to send message
     </BButton> -->
-    <BCheckbox label="12" indeterminate value="20" color="red"/>
+    <BCheckbox :disabled="true" label="12" indeterminate value="20" color="red"/>
     <BTooltip content="Hello" background="#333">
         <BButton size="5"/>
     </BTooltip>
@@ -35,7 +35,7 @@ const load = async (node: Node) => {// 模拟异步加载
 
   // 返回新的子节点数据（注意是 TreeOption[] 结构）
   return [
-    { key: `${node.key}-1`, label: '异步子节点1', children:[] },
+    { key: `${node.key}-1`, label: '异步子节点1', children:[] , disabled: true},
     { key: `${node.key}-2`, label: '异步子节点2', children: [] }
   ]
 }

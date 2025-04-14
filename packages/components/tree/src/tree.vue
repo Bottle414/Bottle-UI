@@ -23,6 +23,8 @@
     const props = defineProps(treeProps)
     const ns = useNamespace('tree')
 
+    const { disabledKeys } = props
+
     const formatNodes = ref<Node[]>([]) // 嵌套结构
     const tree = computed(() => {// Node发生修改时触发更新
         return formatNodes.value.flatMap(node => flattenTree(node))
@@ -80,6 +82,7 @@
 
     // 处理勾选
     const onCheck = (node: Node) => {
+        if (node.disabled) return
         node.full = !node.full
         setChildrenCheck(node)
         updateParent(node.parent)
@@ -133,7 +136,9 @@
             newNode.parent = parent
             newNode.level = parent ? parent.level + 1 : 0
             newNode.text = item[props.label] as string
-
+            newNode.key = item[props.key] as number
+            if (disabledKeys.length) newNode.disabled = disabledKeys.includes(item.key)// 批量禁用
+            // if (parent) newNode.loaded = true// 获取的子节点默认加载完毕
             if (item.children?.length) {
                 newNode.children = formatTree(item.children, newNode)
             } else {
@@ -168,3 +173,23 @@
 
     defineOptions({ name: 'BTree' })
 </script>
+
+<style>
+    /* 过渡动画 */
+    .tree-expand-enter-active,
+    .tree-expand-leave-active {
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+    .tree-expand-enter-from,
+    .tree-expand-leave-to {
+        height: 0;
+        opacity: 0;
+    }
+    .tree-expand-enter-to,
+    .tree-expand-leave-from {
+        height: auto;
+        opacity: 1;
+    }
+
+</style>

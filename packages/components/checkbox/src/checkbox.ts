@@ -7,7 +7,8 @@ export const checkboxProps = {
     size: [Number, String] as PropType<String | Number>,
     value: [String, Number] as PropType<String | Number>,
     checked: Boolean,
-    indeterminate: Boolean
+    indeterminate: Boolean,
+    disabled: Boolean
 } as const// 变成只读的
 
 // 抽离对象类型，而不是推导出Constructor

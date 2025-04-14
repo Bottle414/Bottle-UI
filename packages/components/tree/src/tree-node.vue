@@ -1,7 +1,7 @@
 <template>
     <div :class="ns.b()">
         <div :class="ns.e('content')">
-            <span :class="[ns.e('expand-icon')]"> X </span>
+            <BCheckbox color="blue" @change="handlerExpand"></BCheckbox>
             <span>{{ props.node?.text }}</span>
         </div>
     </div>
@@ -10,11 +10,18 @@
 
 <script lang='ts' setup>
     import useNamespace from '@bottle-ui/hooks/useNamespace'
-    import { treeNodeProps } from './tree-node'
+    import { treeNodeProps, treeNodeEmits } from './tree-node'
+    import BCheckbox from '@bottle-ui/components/checkbox'
 
     const ns = useNamespace('node')
 
     const props = defineProps(treeNodeProps)
+    const emits = defineEmits(treeNodeEmits)// 拿到父组件传来的事件
+
+    const handlerExpand = () => {
+        // console.log('nodeclick : ');
+        emits('toggleExpand', props.node)
+    }
     defineOptions({
         name: 'BNode'
     })

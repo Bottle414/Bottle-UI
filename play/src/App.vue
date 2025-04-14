@@ -10,6 +10,7 @@
         Click here to send message
     </BButton> -->
     <BCheckbox label="12" indeterminate value="20" color="red"/>
+    <BSelect/>
 </template>
 
 <script lang='ts' setup>
@@ -18,6 +19,7 @@ import { AndroidOutlined } from '@vicons/antd'
 import BTree from '@bottle-ui/components/tree'
 import BCheckbox from '@bottle-ui/components/checkbox'
 import BButton from '@bottle-ui/components/button'
+import BSelect from '@bottle-ui/components/select'
 
 function handler(){
     console.log('kkkk');

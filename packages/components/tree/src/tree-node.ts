@@ -7,3 +7,7 @@ export const treeNodeProps = {
         required: true
     }
 } as const
+
+export const treeNodeEmits = {
+    toggleExpand: (node: Node) => node
+}

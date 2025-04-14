@@ -75,6 +75,10 @@ export const treeProps = {
     checked: {
         type: Array as PropType<number[]>,
         default: () => []
+    },
+    indent: {
+        type: Number,
+        default: 16
     }
 } as const// 这个对象的属性是只读的，并且推断出最精确的字面量类型
 

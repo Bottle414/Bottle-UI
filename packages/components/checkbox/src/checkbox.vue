@@ -1,5 +1,5 @@
 <template>
-    <label :class="ns.b()" :style="style">
+    <label :class="ns.b()" :style="(style as StyleValue)">
         <input
             type="checkbox"
             style="display: none"
@@ -15,7 +15,7 @@
 <script lang='ts' setup>
     import { checkboxProps } from './checkbox'
     import useNamespace from '@bottle-ui/hooks/useNamespace'
-    import { computed } from 'vue';
+    import { StyleValue, computed } from 'vue';
 
     const ns = useNamespace('checkbox')
     const props = defineProps(checkboxProps)

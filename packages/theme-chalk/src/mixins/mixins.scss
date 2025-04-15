@@ -10,8 +10,8 @@
     }
 }
 
-/* b-button--primary */
-@mixin m($element) {
+/* b-button__小孩element */
+@mixin e($element) {
     @at-root {
         #{&+$element-separator+$element} {
             @content;
@@ -19,7 +19,7 @@
     }
 }
 
-/* b-button__header */
+/* b-button--状态修饰符 */
 @mixin m($modifier) {
     @at-root {
         #{&+$modifier-separator+$modifier} {

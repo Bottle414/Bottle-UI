@@ -1,0 +1,25 @@
+@use './mixins/mixins.scss' as *;
+
+@include b(tree){
+    display: inline-block;
+    width: 100%;
+}
+
+@include b(tree-node){
+    padding: 1px 0;
+    font-size: 16px;
+
+    &:hover {
+        background: #eee;
+    }
+
+    @include e(expand-icon){
+        display: inline-block;
+        transform: rotate(0deg);
+        transition: .15s;
+
+        &.expanded {/* 被选中 */
+            transform: rotate(-90deg);
+        }
+    }
+}

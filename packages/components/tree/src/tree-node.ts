@@ -9,6 +9,10 @@ export const treeNodeProps = {
     expanded: {
         type: Boolean,
         required: true
+    },
+    loading: {
+        type: Boolean,
+        required: true
     }
 }
 

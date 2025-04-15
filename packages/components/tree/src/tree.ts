@@ -38,6 +38,9 @@ export const treeProps = {
     defaultExpandedKeys: {
         type: Array as PropType<Key[]>,
         default: () => []
+    },
+    onLoad: {
+        type: Function as PropType<(node: TreeOption) => Promise<TreeOption[]>>
     }
 } as const// 变成只读的
 

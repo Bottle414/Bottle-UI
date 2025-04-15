@@ -16,7 +16,7 @@
     <BSelect>
         <BOption value="3333"></BOption>
     </BSelect>
-    <BTree :data="data" :default-expanded-keys="['1']" :keyField="'key'"/>
+    <BTree :data="data" :keyField="'key'" :on-load="asyncload"/>
 </template>
 
 <script lang='ts' setup>
@@ -27,16 +27,19 @@ import BButton from '@bottle-ui/components/button'
 import BSelect from '@bottle-ui/components/select'
 import BOption from '@bottle-ui/components/select'
 import BTooltip from '@bottle-ui/components/tooltip'
+import type { TreeOption } from '@bottle-ui/components/tree'
 
-const load = async (node: Node) => {// 模拟异步加载
-  console.log('加载节点:', node)
+const asyncload = async (node: TreeOption) => {// 模拟异步加载
   // 模拟异步接口
-  await new Promise(resolve => setTimeout(resolve, 1500))
+  await new Promise(resolve => setTimeout(resolve, 3000))
 
   // 返回新的子节点数据（注意是 TreeOption[] 结构）
   return [
-    { key: '1', label: '异步子节点1', children:[] , disabled: true},
-    { key: '2', label: '异步子节点2', children: [] }
+    { key: '3', label: '异步子节点1', children:[] , disabled: true},
+    { key: '4', label: '异步子节点2', children: [{
+        key: '5',
+        label: 'Hi'
+    }], isLeaf: false }
   ]
 }
 
@@ -52,18 +55,20 @@ const data = [
     {
         label: "Node 1",
         key: "1",
-        children: [
-            {
-                label: "Node 1.1",
-                key: "1.1",
-                children: []
-            },
-            {
-                label: "Node 1.2",
-                key: "1.2",
-                children: []
-            }
-        ]
+        isLeaf: false,
+        children: []
+        // children: [
+        //     {
+        //         label: "Node 1.1",
+        //         key: "1.1",
+        //         children: []
+        //     },
+        //     {
+        //         label: "Node 1.2",
+        //         key: "1.2",
+        //         children: []
+        //     }
+        // ]
     },
     {
         label: "Node 2",

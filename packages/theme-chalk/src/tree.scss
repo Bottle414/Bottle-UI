@@ -22,4 +22,19 @@
             transform: rotate(-90deg);
         }
     }
+
+    @include e(loading-icon){
+        display: inline-block;
+        animation: loading .8s linear infinite;
+    }
 }
+  
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+  

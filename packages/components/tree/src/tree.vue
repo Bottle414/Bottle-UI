@@ -5,6 +5,7 @@
             :node="node"
             :key="node.key"
             :expanded="isExpand(node)"
+            :loading="isLoading(node)"
             @toggle-expand="toggleExpand(node)"
         ></BTreeNode>
     </div>
@@ -23,6 +24,8 @@
 
     // 默认展开的集合
     const expandedKeysSet = ref(new Set(props.defaultExpandedKeys))
+    // 正在加载的集合
+    const loadingKeysSet = ref(new Set())
 
     // 得到格式化字段
     function createOptions(label: string, keyField: string, children: string){
@@ -58,8 +61,8 @@
         })
     }
 
-    const createTree = (data: TreeOption[]):TreeNode[] => {
-        const result: TreeNode[] = traversal(data, null)
+    const createTree = (data: TreeOption[], parent: TreeNode | null):TreeNode[] => {
+        const result: TreeNode[] = traversal(data, parent)
         return result
     }
 
@@ -95,19 +98,40 @@
         return expandedKeysSet.value.has(node.key)
     }
 
+    function isLoading(node: TreeNode): boolean {
+        return loadingKeysSet.value.has(node.key)
+    }
+
+    function triggerLoading(node: TreeNode){
+        // 不是叶子、提供懒加载方法才可以进行懒加载
+        if (props.onLoad && !node.isLeaf ){
+            let loadingKeys = loadingKeysSet.value
+            if (!loadingKeys.has(node.key)){// 不在里面
+                loadingKeys.add(node.key)
+                props.onLoad(node.raw).then(children => {
+                    node.raw.children = children// 更新原数据
+                    node.children = createTree(children, node)// 更新格式化树
+                    loadingKeys.delete(node.key)// 删除
+                })// 调用 注意是原节点
+            }
+        }
+    }
+
     function toggleExpand(node: TreeNode){
+        if (loadingKeysSet.value.has(node.key)) return// 加载中禁用
         // 处理折叠展开
         const expandedKeys = expandedKeysSet.value
         if (expandedKeys.has(node.key)){// 展开的，折叠
             expandedKeys.delete(node.key)
-        }else expandedKeys.add(node.key)
+        }else{// 展开
+            triggerLoading(node)
+            expandedKeys.add(node.key)
+        } 
     }
 
     // 格式化数据
     watch(() => props.data, (data: TreeOption[]) => {
-        tree.value = createTree(data)
-        console.log(tree.value);
-        console.log(flattenTree.value);
+        tree.value = createTree(data, null)// 第一次，父节点为空
     },{ immediate: true })
 
     defineOptions({

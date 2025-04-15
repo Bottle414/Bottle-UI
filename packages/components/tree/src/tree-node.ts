@@ -1,13 +1,17 @@
-import { PropType } from 'vue'
-import { Node } from './tree'
+import { PropType } from "vue"
+import { TreeNode } from "./tree"
 
 export const treeNodeProps = {
     node: {
-        type: Object as PropType<Node>,
+        type: Object as PropType<TreeNode>,
+        required: true
+    },
+    expanded: {
+        type: Boolean,
         required: true
     }
-} as const
+}
 
 export const treeNodeEmits = {
-    toggleExpand: (node: Node) => node
+    toggleExpand: (node: TreeNode) => node
 }

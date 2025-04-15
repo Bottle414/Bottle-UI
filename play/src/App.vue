@@ -16,7 +16,7 @@
     <BSelect>
         <BOption value="3333"></BOption>
     </BSelect>
-    <BTree :data="data" :checked="[1]" :on-load="load"/>
+    <BTree :data="data" :default-expanded-keys="['1']" :keyField="'key'"/>
 </template>
 
 <script lang='ts' setup>
@@ -35,8 +35,8 @@ const load = async (node: Node) => {// 模拟异步加载
 
   // 返回新的子节点数据（注意是 TreeOption[] 结构）
   return [
-    { key: `${node.key}-1`, label: '异步子节点1', children:[] , disabled: true},
-    { key: `${node.key}-2`, label: '异步子节点2', children: [] }
+    { key: '1', label: '异步子节点1', children:[] , disabled: true},
+    { key: '2', label: '异步子节点2', children: [] }
   ]
 }
 
@@ -53,16 +53,16 @@ const data = [
         label: "Node 1",
         key: "1",
         children: [
-            // {
-            //     label: "Node 1.1",
-            //     key: "1.1",
-            //     children: []
-            // },
-            // {
-            //     label: "Node 1.2",
-            //     key: "1.2",
-            //     children: []
-            // }
+            {
+                label: "Node 1.1",
+                key: "1.1",
+                children: []
+            },
+            {
+                label: "Node 1.2",
+                key: "1.2",
+                children: []
+            }
         ]
     },
     {

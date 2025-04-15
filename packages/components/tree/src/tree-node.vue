@@ -1,38 +1,35 @@
 <template>
     <div :class="ns.b()">
-        <div :class="ns.e('content')">
-            <BCheckbox
-                color="blue"
-                @change="handlerExpand"
-                :checked="node.full"
-                :disabled="node.disabled"
-            />
-            <span v-if="props.node.isLoading">*</span>
-            <span>{{ props.node?.text }}</span>
+        <div :class="ns.e('content')" @click.prevent="handlerExpand">
+            <ExpandIcon v-if="!node.isLeaf" :class="[ns.e('expand-icon'), { expanded }]"></ExpandIcon><!-- 三角展开图标, 叶子不展示 -->
+            <BCheckbox :label="(node.label as string)" :style="{paddingLeft: node.level * 20 + 'px'}"></BCheckbox><!-- 后续在这里设置选中 -->
         </div>
+        <!-- 也许以后可以支持自定义图标 -->
     </div>
 </template>
-<!-- parent会导致序列化的时候循环引用而报错 -->
 
 <script lang='ts' setup>
-    import useNamespace from '@bottle-ui/hooks/useNamespace'
     import { treeNodeProps, treeNodeEmits } from './tree-node'
-    import BCheckbox from '@bottle-ui/components/checkbox'
-
-    const ns = useNamespace('node')
-
+    import useNamespace from '@bottle-ui/hooks/useNamespace'
+    import BCheckbox from '@bottle-ui/components/checkbox';
+    import ExpandIcon from './expandIcon'
     const props = defineProps(treeNodeProps)
-    const emits = defineEmits(treeNodeEmits)// 拿到父组件传来的事件
+    const node = props.node!// Vue 的 required: true 是运行时校验，TypeScript 不会自动根据它把类型改成非 undefined, 必须加一定存在的断言，也就是!
+    const ns = useNamespace('tree-node')
 
-    const handlerExpand = () => {
-        // console.log('nodeclick : ');
-        emits('toggleExpand', props.node)
+    const emit = defineEmits(treeNodeEmits)
+
+    function handlerExpand(){
+        console.log('handler');
+        emit('toggleExpand', node)
     }
+
     defineOptions({
-        name: 'BNode'
+        name: 'BTreeNode'
     })
+    
 </script>
 
 <style scoped>
-
+    
 </style>

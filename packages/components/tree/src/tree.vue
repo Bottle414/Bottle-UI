@@ -1,195 +1,120 @@
 <template>
-    <!-- 缩进也可以改成计算属性 -->
     <div :class="ns.b()">
-        <BNode
-            v-for="node in visibleTree"
-            :key="node.key"
+        <BTreeNode
+            v-for="node in flattenTree"
             :node="node"
-            @toggleExpand="toggleExpand"
-            @check="onCheck"
-            :style="{paddingLeft: node.level * props.indent + 'px'}
-        "/>
-        <!-- 不需要也不推荐在这里做事件委托, 这是纯DOM的, Vue已经做了优化, 委托反而破化了组件的封装性 -->
+            :key="node.key"
+            :expanded="isExpand(node)"
+            @toggle-expand="toggleExpand(node)"
+        ></BTreeNode>
     </div>
 </template>
-  
-<script lang="ts" setup>
-    import { ref, watch, computed } from 'vue'
-    import { treeProps } from './tree'
-    import { Node, TreeOption } from './tree'
-    import useNamespace from '@bottle-ui/hooks/useNamespace'
-    import BNode from './tree-node.vue'
 
-    const props = defineProps(treeProps)
+<script lang='ts' setup>
+    import useNamespace from '@bottle-ui/hooks/useNamespace'// 因为已经安装到了根目录，所以可以直接使用包名
+    import { TreeNode, TreeOption, treeProps, TreeProps } from './tree';
+    import { computed, ref, watch } from 'vue'
+    import BTreeNode from './tree-node.vue'
+    
     const ns = useNamespace('tree')
 
-    const { disabledKeys } = props
+    const tree = ref<TreeNode[]>([])
+    const props = defineProps(treeProps)
 
-    const formatNodes = ref<Node[]>([]) // 嵌套结构
-    const tree = computed(() => {// Node发生修改时触发更新
-        return formatNodes.value.flatMap(node => flattenTree(node))
-    })
+    // 默认展开的集合
+    const expandedKeysSet = ref(new Set(props.defaultExpandedKeys))
 
-    // 返回展开的数据 保存 UI 状态、缓存、权限、日志分析等场景
-    const getExpandedKeys = computed(() => {
-        return tree.value.filter(node => node.expanded)// .map(node => node.key)
-    })
-
-    // 返回选中的数据
-    const getCheckedKeys = computed(() => {
-        return tree.value.filter(node => node.full)// .map(node => node.key)
-    })
-
-    // 返回拍平的整棵树
-    const getFlattenTree = computed(() => {
-        return tree.value
-    })
-
-    // 返回格式化的树
-    const getFormatTree = computed(() => {
-        return formatNodes.value
-    })
-
-    // 级联勾选
-    const setChildrenCheck = (node: Node) => {
-        if (!props.checkStrictly){
-            node.full = true
-            node.indeterminate = false
-            node.children?.forEach(child => setChildrenCheck(child))
-        }
-    }
-
-    // 同步父节点
-    const updateParent = (node: Node | null) => {
-        if (!node || !node.children.length) return
-
-        const allChecked = node.children.every(child => child.full)
-        const noneChecked = node.children.every(child => !child.full && !child.indeterminate)
-
-        if (allChecked) {
-            node.full = true
-            node.indeterminate = false
-        } else if (noneChecked) {
-            node.full = false
-            node.indeterminate = false
-        } else {
-            node.full = false
-            node.indeterminate = true
-        }
-
-        updateParent(node.parent)
-    }
-
-    // 处理勾选
-    const onCheck = (node: Node) => {
-        if (node.disabled) return
-        node.full = !node.full
-        setChildrenCheck(node)
-        updateParent(node.parent)
-    }
-
-
-    // 用于记录展开状态
-    const toggleExpand = async(node: Node) => {
-        node.expanded = !node.expanded
-        // 父组件级联勾选
-        setChildrenCheck(node)
-        updateParent(node.parent)
-        // 只在第一次展开且没加载时触发加载
-        if (node.expanded && !node.loaded) {
-            node.isLoading = true
-            node.loaded = true
-            const children = await props.onLoad?.(node) // 外部传入的加载方法
-            if (children && children.length) {
-                node.children = formatTree(children, node)
-            } else {
-                node.isLeaf = true
-            }
-            node.isLoading = false
-            // 更新整个树结构
-            formatNodes.value = [...formatNodes.value]
-        }
-    }
-
-    // 仅渲染可见节点
-    const visibleTree = computed(() => {
-        const result: Node[] = []
-
-        const parentExpanded = (node: Node): boolean => {
-            if (!node.parent) return true
-            return node.parent.expanded && parentExpanded(node.parent)
-        }
-
-        for (const node of tree.value) {
-            if (parentExpanded(node)) {
-                result.push(node)
+    // 得到格式化字段
+    function createOptions(label: string, keyField: string, children: string){
+        return {
+            getKey(node: TreeOption){
+                return node[keyField] as string
+            },
+            getLabel(node: TreeOption){
+                return node[label] as string
+            },
+            getChildren(node: TreeOption){
+                return node[children] as TreeOption[]
             }
         }
+    }
 
-        return result
-    })
+    const treeOptions = createOptions(props.label, props.keyField, props.children)
 
-    // 格式化数据
-    const formatTree = (data: TreeOption[], parent: Node | null): Node[] => {
-        return data.map(item => {
-            const newNode = new Node(item)
-            newNode.parent = parent
-            newNode.level = parent ? parent.level + 1 : 0
-            newNode.text = item[props.label] as string
-            newNode.key = item[props.key] as number
-            if (disabledKeys.length) newNode.disabled = disabledKeys.includes(item.key)// 批量禁用
-            // if (parent) newNode.loaded = true// 获取的子节点默认加载完毕
-            if (item.children?.length) {
-                newNode.children = formatTree(item.children, newNode)
-            } else {
-                newNode.isLeaf = true
+    function traversal(data: TreeOption[], parent: TreeNode | null): TreeNode[]{
+        return data.map(node => {
+            const children = treeOptions.getChildren(node) || []
+            const newNode: TreeNode = {
+                label: treeOptions.getLabel(node),
+                key: treeOptions.getKey(node),
+                children: [],// 默认为空
+                raw: node,
+                level: parent ? parent.level + 1 : 0,
+                isLeaf: node.isLeaf ?? children.length == 0// 判断是否自带isLeaf, 没有就看孩子长度
             }
+            if (children.length) newNode.children = traversal(children, newNode)
 
             return newNode
         })
     }
 
-    // 拍平成数组（BFS）
-    const flattenTree = (root: Node): Node[] => {
-        const result: Node[] = []
-        const queue: Node[] = [root]
-
-        while (queue.length) {
-            const current = queue.shift()
-            if (!current) continue
-            result.push(current)
-            if (current.children) {
-                queue.push(...current.children)
-            }
-        }
-
+    const createTree = (data: TreeOption[]):TreeNode[] => {
+        const result: TreeNode[] = traversal(data, null)
         return result
     }
 
-    // 监听 props.data 的变化 → 更新格式化树
-    watch(() => props.data, (data: TreeOption[]) => {
-        formatNodes.value = formatTree(data, null)
-    }, { immediate: true })
+    // 把树拍平
+    const flattenTree = computed(() => {
+        let expandedKeys = expandedKeysSet.value// 要展开的节点
+        let flattenNodes: TreeNode[] = []// 拍平后的数组
 
-    defineOptions({ name: 'BTree' })
+        const nodes = tree.value || []// 格式化后的节点
+
+        const stack: TreeNode[] = []// 栈
+        for (let i = nodes.length - 1; i >= 0; --i){// 先把第一层存入栈中
+            stack.push(nodes[i])
+        }
+
+        while(stack.length){
+            const node = stack.pop()// 出栈是倒着的，所以入栈的时候倒着遍历，这样出来就是顺的
+            if (!node) continue
+            flattenNodes.push(node)
+            if (expandedKeys.has(node.key)){// 如果要展开
+                const children = node.children
+                if (children){// 把小孩再倒序回去
+                    for (let i = node.children.length - 1; i >= 0; i--){
+                        stack.push(node.children[i])// 一直拿孩子所以最后平了
+                    }
+                }
+            }
+        }
+        return flattenNodes
+    })
+
+    function isExpand(node: TreeNode): boolean {
+        return expandedKeysSet.value.has(node.key)
+    }
+
+    function toggleExpand(node: TreeNode){
+        // 处理折叠展开
+        const expandedKeys = expandedKeysSet.value
+        if (expandedKeys.has(node.key)){// 展开的，折叠
+            expandedKeys.delete(node.key)
+        }else expandedKeys.add(node.key)
+    }
+
+    // 格式化数据
+    watch(() => props.data, (data: TreeOption[]) => {
+        tree.value = createTree(data)
+        console.log(tree.value);
+        console.log(flattenTree.value);
+    },{ immediate: true })
+
+    defineOptions({
+        name: "BTree"
+    })
 </script>
 
-<style>
-    /* 过渡动画 */
-    .tree-expand-enter-active,
-    .tree-expand-leave-active {
-        transition: all 0.3s ease;
-        overflow: hidden;
-    }
-    .tree-expand-enter-from,
-    .tree-expand-leave-to {
-        height: 0;
-        opacity: 0;
-    }
-    .tree-expand-enter-to,
-    .tree-expand-leave-from {
-        height: auto;
-        opacity: 1;
-    }
-
+<style scoped>
+   
 </style>

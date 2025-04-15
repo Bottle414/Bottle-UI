@@ -34,12 +34,12 @@
     .b-tooltip {
         position: relative;
         display: inline-block;
+        pointer-events: none;
     }
 
     .b-tooltip:hover {/* 设置三角方向 */
         .b-tooltip-content {
             opacity: 1;
-            pointer-events: none;
             /* 按理来说，文字颜色应该基于背景动态计算 */
         }
     }

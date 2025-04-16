@@ -1,5 +1,5 @@
 // tree所需要的一些属性与类型
-import { ExtractPropTypes, PropType } from 'vue'// 两个自带的泛型共聚
+import { ExtractPropTypes, PropType, SetupContext, InjectionKey } from 'vue'// 两个自带的泛型共聚
 
 export type Key = number | string
 
@@ -62,4 +62,12 @@ export const treeProps = {
 export const treeEmits = {// 同步响应式数据, 可以直接改为defineModel
     'update:selectedKeys': (keys: Key[]) => keys// 注意时间名，不能使用自定义事件改变外部状态
 }
+
+export interface TreeContext {
+    slots: SetupContext['slots']// 插槽
+    // emit: SetupContext['emit']// 事件
+}
+// 作为提供数据的属性
+export const treeInjectKey: InjectionKey<TreeContext> = Symbol()
+
 export type TreeProps = Partial<ExtractPropTypes<typeof treeProps>>// 表示字段可以不传

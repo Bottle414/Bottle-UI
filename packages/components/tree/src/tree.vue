@@ -15,8 +15,8 @@
 
 <script lang='ts' setup>
     import useNamespace from '@bottle-ui/hooks/useNamespace'// 因为已经安装到了根目录，所以可以直接使用包名
-    import { treeEmits, TreeNode, TreeOption, treeProps, TreeProps, Key } from './tree';
-    import { computed, ref, watch } from 'vue'
+    import { treeEmits, TreeNode, TreeOption, treeProps, treeInjectKey, Key } from './tree';
+    import { computed, provide, ref, useSlots, watch } from 'vue'
     import BTreeNode from './tree-node.vue'
     
     const ns = useNamespace('tree')
@@ -161,6 +161,10 @@
         // 触发外层事件
         emit("update:selectedKeys", selectedKeys)
     }
+
+    provide(treeInjectKey, {// 就是把App传给tree再到tree-node的插槽全部传给tree-node
+        slots: useSlots()
+    })
 
     // 格式化数据
     watch(() => props.data, (data: TreeOption[]) => {

@@ -16,7 +16,12 @@
     <BSelect>
         <BOption value="3333"></BOption>
     </BSelect>
-    <BTree :data="data" :keyField="'key'" :on-load="asyncload"/>
+    <BTree :data="data" :keyField="'key'" v-model:selectedKeys="selected">
+        <template #default="{node}">
+            能不能不要再写错别字了?
+            {{ node.key }}
+        </template>
+    </BTree>
 </template>
 
 <script lang='ts' setup>
@@ -28,6 +33,13 @@ import BSelect from '@bottle-ui/components/select'
 import BOption from '@bottle-ui/components/select'
 import BTooltip from '@bottle-ui/components/tooltip'
 import type { TreeOption } from '@bottle-ui/components/tree'
+import { ref, watch } from 'vue'
+
+const selected = ref([])
+
+watch(selected, () => {
+    console.log('selectedout', selected.value);
+})
 
 const asyncload = async (node: TreeOption) => {// 模拟异步加载
   // 模拟异步接口
@@ -56,19 +68,19 @@ const data = [
         label: "Node 1",
         key: "1",
         isLeaf: false,
-        children: []
-        // children: [
-        //     {
-        //         label: "Node 1.1",
-        //         key: "1.1",
-        //         children: []
-        //     },
-        //     {
-        //         label: "Node 1.2",
-        //         key: "1.2",
-        //         children: []
-        //     }
-        // ]
+        children: [
+            {
+                label: "Node 1.1",
+                key: "1.1",
+                disabled: true,
+                children: []
+            },
+            {
+                label: "Node 1.2",
+                key: "1.2",
+                children: []
+            }
+        ]
     },
     {
         label: "Node 2",

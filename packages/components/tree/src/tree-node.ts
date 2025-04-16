@@ -23,3 +23,10 @@ export const treeNodeEmits = {
     toggleExpand: (node: TreeNode) => node,
     handleSelect: (node: TreeNode) => node
 }
+
+export const treeNodeContentProps = {
+    node: {
+        type: Object as PropType<TreeNode>,
+        required: true
+    }
+}

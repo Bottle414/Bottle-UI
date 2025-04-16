@@ -1,4 +1,5 @@
 <template>
+    <!-- TODO: 传入virtual绑定component， 为true绑定virtual-list不然就是div --->
     <div :class="ns.b()">
         <BTreeNode
             v-for="node in flattenTree"
@@ -57,7 +58,7 @@
                 key: treeOptions.getKey(node),
                 children: [],// 默认为空
                 raw: node,
-                disabled: node.disabled,// 看是否传入
+                disabled: node.disabled || false,// 看是否传入
                 level: parent ? parent.level + 1 : 0,
                 isLeaf: node.isLeaf ?? children.length == 0// 判断是否自带isLeaf, 没有就看孩子长度
             }

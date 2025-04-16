@@ -16,12 +16,14 @@
     <BSelect>
         <BOption value="3333"></BOption>
     </BSelect>
-    <BTree :data="data" :keyField="'key'" v-model:selectedKeys="selected">
-        <template #default="{node}">
-            能不能不要再写错别字了?
-            {{ node.key }}
+    
+    <BTree :data="data" :keyField="'key'" v-model:selectedKeys="selected"></BTree>
+
+    <BVirtualList :items="items">
+        <template #default="{ data }">
+            <p>{{ data }}</p>
         </template>
-    </BTree>
+    </BVirtualList>
 </template>
 
 <script lang='ts' setup>
@@ -32,10 +34,12 @@ import BButton from '@bottle-ui/components/button'
 import BSelect from '@bottle-ui/components/select'
 import BOption from '@bottle-ui/components/select'
 import BTooltip from '@bottle-ui/components/tooltip'
+import BVirtualList from '@bottle-ui/components/virtual-list'
 import type { TreeOption } from '@bottle-ui/components/tree'
 import { ref, watch } from 'vue'
 
 const selected = ref([])
+const items = ref([1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,11,2,1,1,1,1,1,1,11,2,1,1,1,1,1,1,1])// 假数据
 
 watch(selected, () => {
     console.log('selectedout', selected.value);

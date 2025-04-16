@@ -8,7 +8,7 @@ export default defineComponent({
     setup(props){
         const TreeContext = inject(treeInjectKey)
         return () => {
-            return TreeContext?.slots.default ? TreeContext?.slots.default({node: props.node}) : props.node!.label
+            return TreeContext?.slots.default ? TreeContext?.slots.default({node: props.node}) : ''
         }
     }
 })

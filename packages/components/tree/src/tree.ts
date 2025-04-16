@@ -8,7 +8,7 @@ export interface TreeOption {
     key?: Key
     children?: TreeOption[]
     isLeaf?: Boolean,
-    disabled: Boolean,
+    disabled?: Boolean,
     [key: string]: unknown
 }
 
@@ -68,6 +68,6 @@ export interface TreeContext {
     // emit: SetupContext['emit']// 事件
 }
 // 作为提供数据的属性
-export const treeInjectKey: InjectionKey<TreeContext> = Symbol()
+export const treeInjectKey: InjectionKey<TreeContext> = Symbol()// 使用symbol作为键值, 唯一、可靠 InjectionKey是vue3的一个Symbol拓展，可以让inject自动推导类型为TreeContext
 
 export type TreeProps = Partial<ExtractPropTypes<typeof treeProps>>// 表示字段可以不传

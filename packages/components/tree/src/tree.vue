@@ -6,14 +6,16 @@
             :key="node.key"
             :expanded="isExpand(node)"
             :loading="isLoading(node)"
+            :selected="isSelect(node)"
             @toggle-expand="toggleExpand(node)"
+            @handle-select="handleSelect(node)"
         ></BTreeNode>
     </div>
 </template>
 
 <script lang='ts' setup>
     import useNamespace from '@bottle-ui/hooks/useNamespace'// 因为已经安装到了根目录，所以可以直接使用包名
-    import { TreeNode, TreeOption, treeProps, TreeProps } from './tree';
+    import { treeEmits, TreeNode, TreeOption, treeProps, TreeProps, Key } from './tree';
     import { computed, ref, watch } from 'vue'
     import BTreeNode from './tree-node.vue'
     
@@ -21,11 +23,14 @@
 
     const tree = ref<TreeNode[]>([])
     const props = defineProps(treeProps)
+    const emit = defineEmits(treeEmits)
 
     // 默认展开的集合
     const expandedKeysSet = ref(new Set(props.defaultExpandedKeys))
     // 正在加载的集合
     const loadingKeysSet = ref(new Set())
+    // 选中的集合
+    const selectedKeysRef = ref<Key[]>([])
 
     // 得到格式化字段
     function createOptions(label: string, keyField: string, children: string){
@@ -52,6 +57,7 @@
                 key: treeOptions.getKey(node),
                 children: [],// 默认为空
                 raw: node,
+                disabled: node.disabled,// 看是否传入
                 level: parent ? parent.level + 1 : 0,
                 isLeaf: node.isLeaf ?? children.length == 0// 判断是否自带isLeaf, 没有就看孩子长度
             }
@@ -102,6 +108,10 @@
         return loadingKeysSet.value.has(node.key)
     }
 
+    function isSelect(node: TreeNode): boolean {// 只是更新时每个节点都触发了
+        return selectedKeysRef.value.includes(node.key)
+    }
+
     function triggerLoading(node: TreeNode){
         // 不是叶子、提供懒加载方法才可以进行懒加载
         if (props.onLoad && !node.isLeaf ){
@@ -129,10 +139,40 @@
         } 
     }
 
+    // 选中
+    function handleSelect(node: TreeNode){
+        if (node.disabled) return// 禁用
+        let selectedKeys = Array.from(selectedKeysRef.value)
+        if (props.multiple){
+            const index = selectedKeys.findIndex(key => key == node.key)
+            if (index > -1){// 找到了，删掉
+                selectedKeys.splice(index, 1)
+            }else {
+                selectedKeys.push(node.key)
+            }
+        }else {// 单选
+            if (selectedKeys.includes(node.key)){
+                // 直接清空
+                selectedKeys = []
+            }else {
+                selectedKeys = [node.key]// 只分配这一个
+            }
+        }
+        // 触发外层事件
+        emit("update:selectedKeys", selectedKeys)
+    }
+
     // 格式化数据
     watch(() => props.data, (data: TreeOption[]) => {
         tree.value = createTree(data, null)// 第一次，父节点为空
     },{ immediate: true })
+
+    // 触发选中的回调
+    watch(() => props.selectedKeys, value => {
+        if (value){
+            selectedKeysRef.value = value
+        }
+    }, { immediate: true })
 
     defineOptions({
         name: "BTree"

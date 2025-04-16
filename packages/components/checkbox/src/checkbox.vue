@@ -3,7 +3,8 @@
         <input
             type="checkbox"
             style="display: none"
-            :value="value" :checked="checked"
+            :value="value"
+            :checked="checked"
             :indeterminate="indeterminate"
             :disabled="disabled"
         />
@@ -21,7 +22,7 @@
     const ns = useNamespace('checkbox')
     const props = defineProps(checkboxProps)
     const { label, color, size, value, checked, indeterminate, disabled } = props
-
+    
     const style = computed(() => {
         return {
             '--checkbox-color': color || 'red',

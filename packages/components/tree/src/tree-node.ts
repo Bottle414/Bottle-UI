@@ -13,9 +13,13 @@ export const treeNodeProps = {
     loading: {
         type: Boolean,
         required: true
+    },
+    selected: {
+        type: Boolean
     }
 }
 
 export const treeNodeEmits = {
-    toggleExpand: (node: TreeNode) => node
+    toggleExpand: (node: TreeNode) => node,
+    handleSelect: (node: TreeNode) => node
 }

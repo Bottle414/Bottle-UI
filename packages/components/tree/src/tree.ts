@@ -1,13 +1,14 @@
 // tree所需要的一些属性与类型
 import { ExtractPropTypes, PropType } from 'vue'// 两个自带的泛型共聚
 
-type Key = number | string
+export type Key = number | string
 
 export interface TreeOption {
     label?: Key
     key?: Key
     children?: TreeOption[]
-    isLeaf?: Boolean
+    isLeaf?: Boolean,
+    disabled: Boolean,
     [key: string]: unknown
 }
 
@@ -39,11 +40,26 @@ export const treeProps = {
         type: Array as PropType<Key[]>,
         default: () => []
     },
+    selectedKeys: {
+        type: Array as PropType<Key[]>,
+        default: () => []
+    },
     onLoad: {
-        type: Function as PropType<(node: TreeOption) => Promise<TreeOption[]>>
+        type: Function as PropType<(node: TreeOption) => Promise<TreeOption[]>>,
+    },
+    checkbox: {// 带勾选框
+        type: Boolean,
+        default: false
+    },
+    multiple: {// 多选
+        type: Boolean,
+        default: false
     }
 } as const// 变成只读的
 
 // 抽离对象类型，而不是推导出Constructor    可传可不传
 
+export const treeEmits = {// 同步响应式数据, 可以直接改为defineModel
+    'update:selectedKeys': (keys: Key[]) => keys// 注意时间名，不能使用自定义事件改变外部状态
+}
 export type TreeProps = Partial<ExtractPropTypes<typeof treeProps>>// 表示字段可以不传

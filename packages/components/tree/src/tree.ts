@@ -54,6 +54,10 @@ export const treeProps = {
     multiple: {// 多选
         type: Boolean,
         default: false
+    },
+    virtual: {// 虚拟滚动
+        type: Boolean,
+        default: false
     }
 } as const// 变成只读的
 

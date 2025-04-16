@@ -11,4 +11,10 @@
         left: 0;
         width: 100%;
     }
+
+    @include e(item){
+        &:hover {
+            background: #eee;
+        }
+    }
 }

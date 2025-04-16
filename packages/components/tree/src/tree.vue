@@ -1,6 +1,20 @@
 <template>
     <!-- TODO: 传入virtual绑定component， 为true绑定virtual-list不然就是div --->
-    <div :class="ns.b()">
+    <BVirtualList v-if="virtual" :items="flattenTree">
+        <template #default="{ node }">
+            <BTreeNode
+                :node="node"
+                :key="node.key || '1'"
+                :expanded="isExpand(node)"
+                :loading="isLoading(node)"
+                :selected="isSelect(node)"
+                @toggle-expand="toggleExpand(node)"
+                @handle-select="handleSelect(node)"
+            ></BTreeNode>
+        </template>
+    </BVirtualList>
+
+    <div v-else :class="ns.b()">
         <BTreeNode
             v-for="node in flattenTree"
             :node="node"
@@ -19,11 +33,12 @@
     import { treeEmits, TreeNode, TreeOption, treeProps, treeInjectKey, Key } from './tree';
     import { computed, provide, ref, useSlots, watch } from 'vue'
     import BTreeNode from './tree-node.vue'
-    
-    const ns = useNamespace('tree')
+    import BVirtualList from '@bottle-ui/components/virtual-list'
 
     const tree = ref<TreeNode[]>([])
     const props = defineProps(treeProps)
+    const virtual = props.virtual
+    const ns = virtual ? useNamespace('virtual-tree') : useNamespace('tree')
     const emit = defineEmits(treeEmits)
 
     // 默认展开的集合

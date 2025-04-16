@@ -55,6 +55,7 @@
         background-color: v-bind( background );
         opacity: 0;
         transition: opacity .5s;
+        z-index: 1000;
     }
 
     .b-tooltip-content::after {

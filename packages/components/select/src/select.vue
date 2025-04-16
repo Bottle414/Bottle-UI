@@ -1,9 +1,8 @@
 <template>
     <select>
-        <option>A</option>
-        <option>A</option>
-        <option>A</option>
-        <option>A</option>
+        <BTooltip>
+            <slot></slot>
+        </BTooltip>
     </select>
 </template>
 
@@ -11,6 +10,7 @@
     import { ref } from 'vue'
     import useNamespace from '@bottle-ui/hooks/useNamespace'
     import { selectProps } from './select'
+    import BTooltip from '@bottle-ui/components/tooltip'
     const ns = useNamespace('select')
     const props = defineProps(selectProps)
     const { multiple, disabled, placeholder, size } = props

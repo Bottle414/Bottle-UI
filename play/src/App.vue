@@ -9,7 +9,7 @@
     <!-- <BButton color="#eef" size="12" :loading="true" @click="handler">
         Click here to send message
     </BButton> -->
-    <BCheckbox :disabled="true" label="12" indeterminate value="20" color="red"/>
+    <BCheckbox label="12" color="#bebe" v-model="checkvalue" :indeterminate="true">Hi</BCheckbox>
     <BTooltip content="Hello" background="#333">
         <BButton size="5"/>
     </BTooltip>
@@ -40,6 +40,12 @@ import { ref, watch } from 'vue'
 
 const selected = ref([])
 const items = ref([1,2,1,1,1,1,1,1,1,1,2,1,1,1,1,1,1,11,2,1,1,1,1,1,1,11,2,1,1,1,1,1,1,1])// 假数据
+
+const checkvalue = ref(false)
+
+watch(checkvalue, () => {
+    console.log('checkvalue: ' + checkvalue.value);
+})
 
 watch(selected, () => {
     console.log('selectedout', selected.value);

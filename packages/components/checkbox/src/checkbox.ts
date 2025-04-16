@@ -1,15 +1,22 @@
-// checkbox所需要的一些属性与类型
-import { ExtractPropTypes, PropType } from 'vue'// 两个自带的泛型共聚
+import { ExtractPropTypes, PropType } from 'vue'
 
 export const checkboxProps = {
-    label: String,
-    color: String,
-    size: [Number, String] as PropType<String | Number>,
-    value: [String, Number] as PropType<String | Number>,
-    checked: Boolean,
-    indeterminate: Boolean,
-    disabled: Boolean
-} as const// 变成只读的
+  label: String,
+  color: String,
+  size: [Number, String] as PropType<string | number>,
+  modelValue: [String, Number, Boolean] as PropType<string | number | boolean>,
+  checked: Boolean, // 控制非布尔 modelValue 时的显示状态
+  indeterminate: Boolean,
+  disabled: Boolean,
+  trueValue: [String, Number, Boolean] as PropType<string | number | boolean>,
+  falseValue: [String, Number, Boolean] as PropType<string | number | boolean>
+} as const
 
-// 抽离对象类型，而不是推导出Constructor
-export type CheckboxProps = ExtractPropTypes<typeof checkboxProps>
+export type CheckboxProps = Partial<ExtractPropTypes<typeof checkboxProps>>
+
+export const checkboxEmits = {
+  'update:modelValue': (val: string | number | boolean) => val,
+  'Change': (checked: boolean) => checked
+}
+
+export type CheckboxEmits = typeof checkboxEmits

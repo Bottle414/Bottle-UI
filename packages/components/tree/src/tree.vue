@@ -1,15 +1,15 @@
 <template>
     <!-- TODO: 传入virtual绑定component， 为true绑定virtual-list不然就是div --->
     <BVirtualList v-if="virtual" :items="flattenTree">
-        <template #default="{ node }">
+        <template #default="{ data }">
             <BTreeNode
-                :node="node"
-                :key="node.key || '1'"
-                :expanded="isExpand(node)"
-                :loading="isLoading(node)"
-                :selected="isSelect(node)"
-                @toggle-expand="toggleExpand(node)"
-                @handle-select="handleSelect(node)"
+                :node="data"
+                :key="data.key || '1'"
+                :expanded="isExpand(data)"
+                :loading="isLoading(data)"
+                :selected="isSelect(data)"
+                @toggle-expand="toggleExpand(data)"
+                @handle-select="handleSelect(data)"
             ></BTreeNode>
         </template>
     </BVirtualList>

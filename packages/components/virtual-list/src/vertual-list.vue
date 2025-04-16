@@ -59,6 +59,10 @@
         offset.value = state.value.start * itemHeight - itemHeight * prev.value
     }
 
+    defineSlots<{
+        default(props: any): any
+    }>()
+
     defineOptions({
         name: 'BVirtualList'
     })

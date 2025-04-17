@@ -10,7 +10,7 @@
                 :indeterminate="props.indeterminate"
                 :model-value="props.checked"
             ></BCheckbox><!-- 后续在这里设置选中 -->
-            {{ node.label }}{{ checked }}
+            {{ node.label }}
             <BTreeNodeContent :node="node"></BTreeNodeContent>
             <LoadingIcon v-if="loading" :class="[ns.e('loading-icon'), { loading }]"></LoadingIcon>
         </div>
@@ -38,6 +38,7 @@
 
     function handlerSelect(){
         emit('handleSelect', node)
+        emit("handleCheck", node)
     }
 
     defineOptions({

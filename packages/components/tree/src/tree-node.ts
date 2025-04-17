@@ -33,7 +33,8 @@ export const treeNodeProps = {
 
 export const treeNodeEmits = {
     toggleExpand: (node: TreeNode) => node,
-    handleSelect: (node: TreeNode) => node
+    handleSelect: (node: TreeNode) => node,
+    handleCheck: (node: TreeNode) => node
 }
 
 export const treeNodeContentProps = {

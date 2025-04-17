@@ -15,6 +15,7 @@
                 :indeterminate="isIndeterminate(data)"
                 @toggle-expand="toggleExpand(data)"
                 @handle-select="handleSelect(data)"
+                @handle-check="handleCheck(data)"
             ></BTreeNode>
         </template>
     </BVirtualList>
@@ -33,6 +34,7 @@
             :indeterminate="isIndeterminate(node)"
             @toggle-expand="toggleExpand(node)"
             @handle-select="handleSelect(node)"
+            @handle-check="handleCheck(node)"
         ></BTreeNode>
     </div>
 </template>
@@ -40,7 +42,7 @@
 <script lang='ts' setup>
     import useNamespace from '@bottle-ui/hooks/useNamespace'// 因为已经安装到了根目录，所以可以直接使用包名
     import { treeEmits, TreeNode, TreeOption, treeProps, treeInjectKey, Key } from './tree';
-    import { computed, provide, ref, useSlots, watch } from 'vue'
+    import { computed, onMounted, provide, ref, useSlots, watch } from 'vue'
     import BTreeNode from './tree-node.vue'
     import BVirtualList from '@bottle-ui/components/virtual-list'
 
@@ -90,7 +92,8 @@
                 raw: node,
                 disabled: node.disabled || false,// 看是否传入
                 level: parent ? parent.level + 1 : 0,
-                isLeaf: node.isLeaf ?? children.length == 0// 判断是否自带isLeaf, 没有就看孩子长度
+                isLeaf: node.isLeaf ?? children.length == 0,// 判断是否自带isLeaf, 没有就看孩子长度
+                parentKey: parent?.key// 父节点下标
             }
             if (children.length) newNode.children = traversal(children, newNode)
 
@@ -205,8 +208,77 @@
         emit("update:selectedKeys", selectedKeys)
     }
 
+    // 更新选中
+    function updateChecked(checked: boolean, node: TreeNode){
+        const checkedKeys = checkedKeysSet.value
+        if (checked){// 如果老登是true
+            checkedKeys.add(node.key)
+            indeterminateKeysSet.value.delete(node.key)
+        }else {
+            checkedKeys.delete(node.key)
+        }
+    }
+
+    // 更新小孩, 自上而下
+    function updateChildren(node: TreeNode, checked: boolean){
+        if (isDisabled(node) || node.disabled) return
+        // 更新小孩状态
+        if (node.parentKey) updateChecked(checked, node)
+        const children = node.children
+        if (node.children){
+            children.forEach((child) => {
+                updateChildren(child, checked)
+            })
+        }
+    }
+
+    function findNode(nodeKey: Key): TreeNode | undefined {
+        return flattenTree.value.find(node => nodeKey === node.key)// 返回自己
+    }
+
+    // 更新老登, 自下而上
+    function updateParent(node: TreeNode){
+        if (!node.parentKey) return// 无父结点
+        const parent = findNode(node.parentKey) // 老登未找到
+        if (!parent) return
+
+        const allChecked = parent.children.every(child => isChecked(child))// 每个孩子都勾选了
+        const someChecked = parent.children.some(child => isChecked(child) || isIndeterminate(child))// 有孩子被勾选或部分勾选了
+
+        if (allChecked) {
+            checkedKeysSet.value.add(parent.key)
+            indeterminateKeysSet.value.delete(parent.key)
+        }else if (someChecked){
+            checkedKeysSet.value.delete(parent.key)
+            indeterminateKeysSet.value.add(parent.key)
+        }else {
+            checkedKeysSet.value.delete(parent.key)
+            indeterminateKeysSet.value.delete(parent.key)
+        }
+        // 接下来去往父节点
+        updateParent(parent)
+    }
+
+    // 维护key列表
+    function handleCheck(node: TreeNode){
+        if (isDisabled(node) || node.disabled) return
+        const checkedKeys = checkedKeysSet.value
+        checkedKeys[isChecked(node) ? 'delete' : 'add'](node.key)// 老登和小孩是反的
+        updateChildren(node, isChecked(node))// 传入更新后的值，防止默认值导致父子不同步
+        updateParent(node)// 更新老登
+    }
+
     provide(treeInjectKey, {// 就是把App传给tree再到tree-node的插槽全部传给tree-node
         slots: useSlots()
+    })
+
+    onMounted(() => {
+        checkedKeysSet.value.forEach(( key: Key ) => {
+            const curNode = findNode(key)
+            if (curNode){// 要是有当前节点
+                updateParent(curNode)
+            }
+        })
     })
 
     // 格式化数据

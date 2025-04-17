@@ -16,7 +16,8 @@ export interface TreeNode extends Required<TreeOption> {
     level: number
     raw: TreeOption
     children: TreeNode[]
-    isLeaf: Boolean
+    isLeaf: Boolean,
+    parentKey: Key | undefined
 }
 
 export const treeProps = {

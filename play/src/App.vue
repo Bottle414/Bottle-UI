@@ -13,7 +13,6 @@
     <br><br>
     <BTooltip content="Hello" background="#333">
         Hi
-        <BButton size="5" />
     </BTooltip>
     <br><br>
     <BSelect>
@@ -21,7 +20,7 @@
     </BSelect>
     <br><br>
 
-    <BTree
+    <!-- <BTree
         :data="data"
         :keyField="'key'"
         v-model:selectedKeys="selected"
@@ -29,13 +28,17 @@
         checkbox
         :defaultCheckedKeys="checked"
         :indeterminateKeys="['1','2']"
-    ></BTree>
+    ></BTree> -->
     <br><br>
     <!-- <BVirtualList :items="items">
         <template #default="{ data }">
             <p>{{ data }}</p>
         </template>
     </BVirtualList> -->
+
+    <BButton size="large" round @mousedown="handlerClick" disabled>
+        Hi
+    </BButton>
 </template>
 
 <script lang='ts' setup>
@@ -48,6 +51,7 @@ import BOption from '@bottle-ui/components/select'
 import BTooltip from '@bottle-ui/components/tooltip'
 import BVirtualList from '@bottle-ui/components/virtual-list'
 import type { TreeOption } from '@bottle-ui/components/tree'
+import BIcon from '@bottle-ui/components/icon'
 import { ref, watch } from 'vue'
 
 const selected = ref([])
@@ -55,6 +59,10 @@ const checked = ref(['1','3'])// 类型要一致
 const items = ref([1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 11, 2, 1, 1, 1, 1, 1, 1, 11, 2, 1, 1, 1, 1, 1, 1, 1])// 假数据
 
 const checkvalue = ref(false)
+
+function handlerClick(){
+    console.log('hihihi');
+}
 
 watch(checkvalue, () => {
     console.log('checkvalue: ' + checkvalue.value);

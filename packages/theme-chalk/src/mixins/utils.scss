@@ -1,0 +1,11 @@
+@mixin utils-inline-flex-center {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin utils-text-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

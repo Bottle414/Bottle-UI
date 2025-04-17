@@ -34,7 +34,6 @@
     .b-tooltip {
         position: relative;
         display: inline-block;
-        pointer-events: none;
     }
 
     .b-tooltip:hover {/* 设置三角方向 */
@@ -67,5 +66,6 @@
         border: 5px solid transparent;
         border-bottom-color: #333;/* 画到底部，得到箭头方向向上 */
         transition: inherit;/* 使箭头与工具文本同时出现和消失 */
+        pointer-events: none;
     }
 </style>

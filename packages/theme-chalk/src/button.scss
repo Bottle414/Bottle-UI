@@ -1,0 +1,72 @@
+@use './mixins/mixins' as *;
+@use './common/var' as *;
+@use './mixins/button' as *;
+
+$button-colors: (
+    success: $color-success,
+    warning: $color-warning,
+    danger: $color-danger,
+    info: $color-info
+);
+
+@include b(button) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    @include button-variant($color-black, $color-primary, $color-primary-hover);
+    cursor: pointer; /* 不再使用 var */
+
+    &:hover {
+        color: $color-white;
+        background-color: $color-primary-hover;
+    }
+
+    &:active {
+        border-color: $color-primary-hover;
+    }
+
+    // 使用映射简化样式应用
+    @each $type, $color in $button-colors {
+        @include m(#{$type}) {
+            background-color: $color;
+        }
+    }
+
+    @include m(small){
+        padding: 5px 10px;
+    }
+
+    @include m(medium){
+        padding: 10px 15px;
+    }
+
+    @include m(large){
+        padding: 15px 20px;
+    }
+
+    @include when(round){
+        border-radius: 10px;
+    }
+
+    @include when(circle){
+        aspect-ratio: 1 / 1;
+        border-radius: 100%;
+    }
+
+    @include when(loading){
+        @include button-variant($color-black, $color-grey, $color-grey);
+    }
+
+    @include when(disabled){
+
+        @include button-variant($color-black, $color-grey, $color-black);
+
+        &,
+        &:hover,
+        &:focus {
+            cursor: not-allowed;
+        }
+    }
+}

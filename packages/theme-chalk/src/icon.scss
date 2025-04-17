@@ -5,4 +5,17 @@
     height: 1em;
     width: 1em;/* 根据用户给出的font-size自动变大 */
     vertical-align: middle;/* 垂直居中 */
+
+    @include when(loading){
+        animation: loading .8s linear infinite;
+    }
+}
+
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

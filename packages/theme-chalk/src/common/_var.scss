@@ -1,0 +1,11 @@
+@use 'sass:color';
+
+$color-primary: #bebe;
+$color-primary-hover: color.scale($color-primary, $lightness: -20%);
+$color-white: #fff;
+$color-grey: #eee;
+$color-black: #333;
+$color-success: #6bc3e5;
+$color-danger: #f70e0e;
+$color-warning: #fa991b;
+$color-info: #eef;

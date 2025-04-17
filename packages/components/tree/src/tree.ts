@@ -44,6 +44,10 @@ export const treeProps = {
         type: Array as PropType<Key[]>,
         default: () => []
     },
+    defaultCheckedKeys: {
+        type: Array as PropType<Key[]>,
+        default: () => []
+    },
     onLoad: {
         type: Function as PropType<(node: TreeOption) => Promise<TreeOption[]>>,
     },
@@ -58,6 +62,14 @@ export const treeProps = {
     virtual: {// 虚拟滚动
         type: Boolean,
         default: false
+    },
+    disabledKeys: {
+        type: Array as PropType<Key[]>,
+        default: () => []
+    },
+    indeterminateKeys: {
+        type: Array as PropType<Key[]>,
+        default: () => []
     }
 } as const// 变成只读的
 

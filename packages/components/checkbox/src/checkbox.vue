@@ -30,7 +30,7 @@
   
   // 样式变量
   const style = computed(() => ({
-    '--checkbox-color': color || 'red',
+    '--checkbox-color': color || '#bebe',
     '--checkbox-size': size || '12px'
   }))
   

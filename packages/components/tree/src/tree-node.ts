@@ -16,6 +16,18 @@ export const treeNodeProps = {
     },
     selected: {
         type: Boolean
+    },
+    checkbox: {
+        type: Boolean
+    },
+    checked: {// 是否被选中
+        type: Boolean
+    },
+    disabled: {
+        type: Boolean
+    },
+    indeterminate: {
+        type: Boolean
     }
 }
 

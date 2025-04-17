@@ -3,7 +3,8 @@
 @include b(virtual-list){
     overflow-y: scroll;
     position: relative;
-    border: 1px solid #333;
+    border: 1px solid #eef;
+    border-radius: 5px;
 
     @include e(scroll-list){
         position: absolute;
@@ -14,7 +15,7 @@
 
     @include e(item){
         &:hover {
-            background: #eee;
+            background: #eef;
         }
     }
 }

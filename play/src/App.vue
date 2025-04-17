@@ -10,20 +10,32 @@
         Click here to send message
     </BButton> -->
     <BCheckbox label="12" color="#bebe" v-model="checkvalue" :indeterminate="true">Hi</BCheckbox>
+    <br><br>
     <BTooltip content="Hello" background="#333">
+        Hi
         <BButton size="5" />
     </BTooltip>
+    <br><br>
     <BSelect>
         <BOption value="3333"></BOption>
     </BSelect>
+    <br><br>
 
-    <BTree :data="data" :keyField="'key'" v-model:selectedKeys="selected" virtual :onLoad="asyncload"></BTree>
-
-    <BVirtualList :items="items">
+    <BTree
+        :data="data"
+        :keyField="'key'"
+        v-model:selectedKeys="selected"
+        virtual
+        checkbox
+        :defaultCheckedKeys="checked"
+        :indeterminateKeys="['1','2']"
+    ></BTree>
+    <br><br>
+    <!-- <BVirtualList :items="items">
         <template #default="{ data }">
             <p>{{ data }}</p>
         </template>
-    </BVirtualList>
+    </BVirtualList> -->
 </template>
 
 <script lang='ts' setup>
@@ -39,6 +51,7 @@ import type { TreeOption } from '@bottle-ui/components/tree'
 import { ref, watch } from 'vue'
 
 const selected = ref([])
+const checked = ref(['1','3'])// 类型要一致
 const items = ref([1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 11, 2, 1, 1, 1, 1, 1, 1, 11, 2, 1, 1, 1, 1, 1, 1, 1])// 假数据
 
 const checkvalue = ref(false)
@@ -84,7 +97,7 @@ const data = [
             {
                 label: "Node 1.1",
                 key: "1.1",
-                disabled: true,
+                // disabled: true,
                 children: []
             },
             {
@@ -103,7 +116,7 @@ const data = [
         key: '3',
         label: '异步子节点1',
         children: [],
-        disabled: true
+        // disabled: true
     },
     {
         key: '4',
@@ -118,76 +131,7 @@ const data = [
         key: '3',
         label: '异步子节点1',
         children: [],
-        disabled: true
-    },
-    {
-        key: '4',
-        label: '异步子节点2',
-        children: [{
-            key: '5',
-            label: 'Hi'
-        }],
-        isLeaf: false
-    },
-    {
-        key: '3',
-        label: '异步子节点1',
-        children: [],
-        disabled: true
-    },
-    {
-        key: '4',
-        label: '异步子节点2',
-        children: [{
-            key: '5',
-            label: 'Hi'
-        }],
-        isLeaf: false
-    },
-    {
-        key: '3',
-        label: '异步子节点1',
-        children: [],
-        disabled: true
-    },
-    {
-        key: '4',
-        label: '异步子节点2',
-        children: [{
-            key: '5',
-            label: 'Hi'
-        }],
-        isLeaf: false
-    },
-    {
-        key: '3',
-        label: '异步子节点1',
-        children: [],
-        disabled: true
-    },
-    {
-        key: '4',
-        label: '异步子节点2',
-        children: [{
-            key: '5',
-            label: 'Hi'
-        }],
-        isLeaf: false
-    },
-    {
-        key: '3',
-        label: '异步子节点1',
-        children: [],
-        disabled: true
-    },
-    {
-        key: '4',
-        label: '异步子节点2',
-        children: [{
-            key: '5',
-            label: 'Hi'
-        }],
-        isLeaf: false
+        // disabled: true
     }
 ];
 

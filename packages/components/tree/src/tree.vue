@@ -1,19 +1,24 @@
 <template>
     <!-- TODO: 传入virtual绑定component， 为true绑定virtual-list不然就是div --->
+    {{ props.checkbox }}
     <BVirtualList v-if="virtual" :items="flattenTree">
         <template #default="{ data }">
             <BTreeNode
                 :node="data"
-                :key="data.key || '1'"
+                :key="data.key"
                 :expanded="isExpand(data)"
                 :loading="isLoading(data)"
                 :selected="isSelect(data)"
+                :checkbox="props.checkbox"
+                :checked="isChecked(data)"
+                :disabled="isDisabled(data)"
+                :indeterminate="isIndeterminate(data)"
                 @toggle-expand="toggleExpand(data)"
                 @handle-select="handleSelect(data)"
             ></BTreeNode>
         </template>
     </BVirtualList>
-
+    
     <div v-else :class="ns.b()">
         <BTreeNode
             v-for="node in flattenTree"
@@ -22,6 +27,10 @@
             :expanded="isExpand(node)"
             :loading="isLoading(node)"
             :selected="isSelect(node)"
+            :checkbox="props.checkbox"
+            :checked="isChecked(node)"
+            :disabled="isDisabled(node)"
+            :indeterminate="isIndeterminate(node)"
             @toggle-expand="toggleExpand(node)"
             @handle-select="handleSelect(node)"
         ></BTreeNode>
@@ -47,6 +56,12 @@
     const loadingKeysSet = ref(new Set())
     // 选中的集合
     const selectedKeysRef = ref<Key[]>([])
+    // 勾选的集合
+    const checkedKeysSet = ref(new Set(props.defaultCheckedKeys))
+    // 禁用的集合
+    const disabledKeysSet = ref(new Set(props.disabledKeys))
+    // 半选的集合
+    const indeterminateKeysSet = ref (new Set(props.indeterminateKeys))
 
     // 得到格式化字段
     function createOptions(label: string, keyField: string, children: string){
@@ -126,6 +141,18 @@
 
     function isSelect(node: TreeNode): boolean {// 只是更新时每个节点都触发了
         return selectedKeysRef.value.includes(node.key)
+    }
+
+    function isDisabled(node: TreeNode): boolean {
+        return disabledKeysSet.value.has(node.key)
+    }
+
+    function isChecked(node: TreeNode): boolean {
+        return checkedKeysSet.value.has(node.key)
+    }
+
+    function isIndeterminate(node: TreeNode): boolean {
+        return indeterminateKeysSet.value.has(node.key)
     }
 
     function triggerLoading(node: TreeNode){

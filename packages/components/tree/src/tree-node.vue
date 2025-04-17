@@ -2,13 +2,15 @@
     <div :class="ns.b()">
         <div :class="[ns.e('content'), ns.is('selected', selected)]">
             <ExpandIcon v-if="!node.isLeaf" :class="[ns.e('expand-icon'), { expanded }]"  @click.prevent="handlerExpand"></ExpandIcon><!-- 三角展开图标, 叶子不展示 -->
-            <BCheckbox 
+            <BCheckbox v-if="props.checkbox"
                 @change="handlerSelect"
                 :checked="selected"
-                :label="(node.label as string)"
-                :disabled="(node.disabled as boolean)"
+                :disabled="(node.disabled as boolean) || props.disabled"
                 :style="{paddingLeft: node.level * 20 + 'px'}"
+                :indeterminate="props.indeterminate"
+                :model-value="props.checked"
             ></BCheckbox><!-- 后续在这里设置选中 -->
+            {{ node.label }}{{ checked }}
             <BTreeNodeContent :node="node"></BTreeNodeContent>
             <LoadingIcon v-if="loading" :class="[ns.e('loading-icon'), { loading }]"></LoadingIcon>
         </div>

@@ -1,0 +1,38 @@
+@use './mixins/mixins' as *;
+@use './common/var' as *;
+@use './mixins/utils.scss' as *;
+
+@include b(input){
+    @include utils-inline-flex-center;
+    position: relative;
+
+    @include e(prefix){
+        height: 100%;
+        // transform: translateX(100%);
+    }
+
+    @include e(inner){
+        display: inline-flex;
+        padding: 5px 10px;
+        width: 100%;
+        outline: none;
+        appearance: none;/* 直接清除原生样式 */
+        border: 2px solid $color-grey;
+        border-radius: 5px;
+        box-sizing: border-box;
+        transition: focus .5s;/* 直接解决边框颜色从黑色开始渐变 */
+
+        &:focus {
+            border: 2px solid $color-primary;
+        }
+    }
+
+    @include e(suffix){
+        height: 100%;
+    }
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-webkit-textfield-decoration-container {
+    display: none;
+}

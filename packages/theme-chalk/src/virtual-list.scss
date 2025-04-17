@@ -1,19 +1,19 @@
-@use './mixins/mixins.scss' as *;
+@use "./mixins/mixins.scss" as *;
 
-@include b(virtual-list){
+@include b(virtual-list) {
     overflow-y: scroll;
     position: relative;
     border: 1px solid #eef;
     border-radius: 5px;
 
-    @include e(scroll-list){
+    @include e(scroll-list) {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
     }
 
-    @include e(item){
+    @include e(item) {
         &:hover {
             background: #eef;
         }

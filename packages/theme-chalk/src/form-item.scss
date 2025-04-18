@@ -1,0 +1,21 @@
+@use './mixins/mixins' as *;
+@use './common/var' as *;
+@use './mixins/utils.scss' as *;
+
+@include b(form-item) {
+    @include utils-inline-flex-center;
+    padding-right: 12px;
+    height: 32px;
+    line-height: 32px;
+
+    @include e(content){
+        display: flex;
+        flex: 1;
+        flex-wrap: wrap;
+    }
+
+    @include e(error){
+        color: $color-danger;
+        font-size: 12px;
+    }
+}

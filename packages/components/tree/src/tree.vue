@@ -268,10 +268,6 @@
         updateParent(node)// 更新老登
     }
 
-    provide(treeInjectKey, {// 就是把App传给tree再到tree-node的插槽全部传给tree-node
-        slots: useSlots()
-    })
-
     onMounted(() => {
         checkedKeysSet.value.forEach(( key: Key ) => {
             const curNode = findNode(key)
@@ -292,6 +288,10 @@
             selectedKeysRef.value = value
         }
     }, { immediate: true })
+
+    provide(treeInjectKey, {// 就是把App传给tree再到tree-node的插槽全部传给tree-node
+        slots: useSlots()
+    })
 
     defineOptions({
         name: "BTree"

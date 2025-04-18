@@ -14,16 +14,14 @@
         color="#bebe"
         v-model="checkvalue"
         :indeterminate="true"
-        >Hi</BCheckbox
-    >
-    <br /><br />
-    <BTooltip
-        content="Hello"
-        background="#333"
     >
         Hi
-    </BTooltip>
-    <br /><br />
+    </BCheckbox>
+    <br />
+    <br />
+    <BTooltip content="Hello" background="#333">Hi</BTooltip>
+    <br />
+    <br />
     <BSelect>
         <BOption value="3333"></BOption>
     </BSelect>
@@ -45,14 +43,7 @@
         </template>
     </BVirtualList> -->
 
-    <BButton
-        size="large"
-        round
-        @mousedown="handlerClick"
-        disabled
-    >
-        Hi
-    </BButton>
+    <BButton size="large" round @mousedown="handlerClick" disabled>Hi</BButton>
     <br />
     <BInput
         type="password"
@@ -66,49 +57,79 @@
         <template #prefix>
             <BButton>Hi</BButton>
         </template>
-        <template #suffix> Suffix </template>
+        <template #suffix>Suffix</template>
     </BInput>
+    <br />
+    <BFormItem
+        prop="name"
+        label="用户名"
+        :rules="[{
+                required: true,
+                message: '请输入用户名',
+                trigger: 'blur'
+            },{
+                min: 6,
+                max:10,
+                required: true,
+                message: '密码长度为6 - 10',
+                trigger: ['change', 'blur']
+            }]"
+    >
+        <!-- 数组形式校验规则, 两个触发时机 -->
+        <!-- 告诉它校验name -->
+        <BInput
+            v-model="state.name"
+            @blur="handleBlur"
+            @focus="handleFocus"
+        ></BInput>
+    </BFormItem>
 </template>
 
 <script lang="ts" setup>
     // import BIcon from '@bottle-ui/components/icon';
     // import BTree from '@bottle-ui/components/tree'
-    import BCheckbox from "@bottle-ui/components/checkbox"
-    import BButton from "@bottle-ui/components/button"
-    import BSelect from "@bottle-ui/components/select"
-    import BOption from "@bottle-ui/components/select"
-    import BTooltip from "@bottle-ui/components/tooltip"
+    import BCheckbox from '@bottle-ui/components/checkbox'
+    import BButton from '@bottle-ui/components/button'
+    import BSelect from '@bottle-ui/components/select'
+    import BOption from '@bottle-ui/components/select'
+    import BTooltip from '@bottle-ui/components/tooltip'
     // import BVirtualList from '@bottle-ui/components/virtual-list'
     // import type { TreeOption } from '@bottle-ui/components/tree'
     // import BIcon from '@bottle-ui/components/icon'
-    import BInput from "@bottle-ui/components/input"
-    import { ref, watch } from "vue"
+    import BInput from '@bottle-ui/components/input'
+    import { BFormItem } from '@bottle-ui/components/form'
+    import { ref, watch } from 'vue'
 
     const selected = ref([])
+    const state = ref({
+        name: '',
+        password: ''
+    })
+
     // const checked = ref(['1','3'])// 类型要一致
     // const items = ref([1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 11, 2, 1, 1, 1, 1, 1, 1, 11, 2, 1, 1, 1, 1, 1, 1, 1])// 假数据
 
     const checkvalue = ref(false)
-    let inputRef = ref("hi")
+    let inputRef = ref('hi')
 
     function handlerClick() {
-        console.log("hihihi")
+        console.log('hihihi')
     }
 
-    function handleBlur(e: FocusEvent) {
-        console.log("blur")
+    function handleBlur() {
+        console.log('blur')
     }
 
-    function handleFocus(e: FocusEvent) {
-        console.log("focus")
+    function handleFocus() {
+        console.log('focus')
     }
 
     watch(inputRef, () => {
-        console.log("inputRef: " + inputRef.value)
+        console.log('inputRef: ' + inputRef.value)
     })
 
     watch(selected, () => {
-        console.log("selectedout", selected.value)
+        console.log('selectedout', selected.value)
     })
 
     // const asyncload = async (node: TreeOption) => {// 模拟异步加载

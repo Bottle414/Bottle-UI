@@ -35,6 +35,7 @@
     import useNamespace from '@bottle-ui/hooks/useNamespace'
     import BIcon from '@bottle-ui/components/icon'
     import { inputEmits, inputProps } from './input'
+    import { formItemContextKey } from '@bottle-ui/components/form/src/form-item'
     import {
 		computed,
         nextTick,
@@ -42,7 +43,8 @@
         useAttrs,
         useSlots,
         useTemplateRef,
-        watch
+        watch,
+        inject
     } from 'vue'
 
     const ns = useNamespace('input')
@@ -52,6 +54,9 @@
     const slots = useSlots()
     const input = useTemplateRef<HTMLInputElement>('input')
     const passwordVisiable = ref(false)
+
+    // 注入属性
+    const formItemContext = inject(formItemContextKey)
 
     function setNativeValue(value: string | number) {
         const inputEle = input.value
@@ -102,6 +107,8 @@
     }
 
     function handleBlur(e: FocusEvent) {
+        // 触发blur时候的校验
+        formItemContext?.validate('blur')
         emits('blur', e)
     }
 
@@ -116,6 +123,8 @@
     watch(
         () => props.modelValue,
         (value) => {
+            // 触发change校验 触发了form-item的
+            formItemContext?.validate('change')
             setNativeValue(value)
         }
     )

@@ -108,7 +108,9 @@
 
     function handleBlur(e: FocusEvent) {
         // 触发blur时候的校验
-        formItemContext?.validate('blur')
+        formItemContext?.validate('blur').catch((err) => {
+            console.log(err.errors)
+        })
         emits('blur', e)
     }
 
@@ -124,7 +126,9 @@
         () => props.modelValue,
         (value) => {
             // 触发change校验 触发了form-item的
-            formItemContext?.validate('change')
+            formItemContext?.validate('change').catch((err) => {
+                console.log(err)
+            })
             setNativeValue(value)
         }
     )

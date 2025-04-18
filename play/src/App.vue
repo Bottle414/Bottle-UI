@@ -60,29 +60,56 @@
         <template #suffix>Suffix</template>
     </BInput>
     <br />
-    <BFormItem
-        prop="name"
-        label="用户名"
-        :rules="[{
-                required: true,
-                message: '请输入用户名',
-                trigger: 'blur'
-            },{
-                min: 6,
-                max:10,
-                required: true,
-                message: '密码长度为6 - 10',
-                trigger: ['change', 'blur']
-            }]"
-    >
-        <!-- 数组形式校验规则, 两个触发时机 -->
-        <!-- 告诉它校验name -->
-        <BInput
-            v-model="state.name"
-            @blur="handleBlur"
-            @focus="handleFocus"
-        ></BInput>
-    </BFormItem>
+
+    <BForm
+        ref="formRef"
+        :model="state"
+        :rules="{
+            name: {
+                min: 2,
+                max: 3,
+                message: '用户名2 - 3位',
+                trigger: ['blur', 'change']
+            },
+            password: {
+                min: 1,
+                max: 3,
+                message: '密码1 - 3位',
+                trigger: ['blur', 'change']
+            }
+        }">
+        <BFormItem prop="name" label="用户名"
+            :rules="[
+                {
+                    required: true,
+                    message: '请输入用户名',
+                    trigger: 'blur'
+                }
+            ]">
+            <!-- 数组形式校验规则, 两个触发时机 -->
+            <!-- 告诉它校验name -->
+            <BInput
+                v-model="state.name"
+                @blur="handleBlur"
+                @focus="handleFocus"
+            ></BInput>
+        </BFormItem>
+        <BFormItem prop="password" label="用户密码"
+            :rules="[
+                {
+                    required: true,
+                    message: '请输入密码',
+                    trigger: ['blur', 'change']
+                }
+            ]">
+            <BInput
+                v-model="state.password"
+                @blur="handleBlur"
+                @focus="handleFocus"
+            ></BInput>
+        </BFormItem>
+        <BButton @click="formValidate">Test</BButton>
+    </BForm>
 </template>
 
 <script lang="ts" setup>
@@ -97,14 +124,36 @@
     // import type { TreeOption } from '@bottle-ui/components/tree'
     // import BIcon from '@bottle-ui/components/icon'
     import BInput from '@bottle-ui/components/input'
-    import { BFormItem } from '@bottle-ui/components/form'
+    import { BFormItem, BForm } from '@bottle-ui/components/form'
     import { ref, watch } from 'vue'
+    import type { FormInstance } from '@bottle-ui/components/form'
+
+    // 如果设置了 required，当值是空字符串 ""，它仍然算是“存在的”，所以 required 通过了，然后：
+    // 如果值是空字符串，它会 跳过 min/max 校验，认为“你没写值，没必要校验长度”。
+    // 换句话说：空字符串只会触发 required 校验，不会触发 min/max 校验。
+
 
     const selected = ref([])
     const state = ref({
         name: '',
-        password: ''
+        password: '7k7kkkk'
     })
+    const formRef = ref<FormInstance>()
+
+    function formValidate(){
+        const form = formRef.value
+        form?.formValidate((valid, err) => {
+            console.log(valid, err);
+        })
+    }
+    // {
+    //     min: 6,
+    //     max: 10,
+    //     required: true,
+    //     message: '密码长度为6 - 10',
+    //     trigger: ['change', 'blur']
+    // }
+    // 不要把校验规则绑错了
 
     // const checked = ref(['1','3'])// 类型要一致
     // const items = ref([1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 11, 2, 1, 1, 1, 1, 1, 1, 11, 2, 1, 1, 1, 1, 1, 1, 1])// 假数据

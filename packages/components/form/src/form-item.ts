@@ -33,7 +33,7 @@ export type FormItemEmits = typeof formItemEmits
 export type FormItemProps = Partial<ExtractPropTypes<typeof formItemProps>>
 // 加了default，showMessage变成必选项了，partial一下
 
-export const trigger = ['change', 'blur'] as const
+export const trigger = ['change', 'blur', ''] as const
 export type Trigger = typeof trigger[number]
 
 export interface FormItemContext extends FormItemProps {

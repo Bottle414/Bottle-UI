@@ -20,6 +20,9 @@ importers:
       '@bottle-ui/utils':
         specifier: workspace:*
         version: link:packages/utils
+      async-validator:
+        specifier: ^4.2.5
+        version: 4.2.5
       sass:
         specifier: ^1.86.3
         version: 1.86.3
@@ -494,6 +497,9 @@ packages:
 
   alien-signals@1.0.13:
     resolution: {integrity: sha512-OGj9yyTnJEttvzhTUWuscOvtqxq5vrhF7vL9oS0xJ2mK0ItPYP1/y+vCFebfxoEyAz0++1AIwJ5CMr+Fk3nDmg==}
+
+  async-validator@4.2.5:
+    resolution: {integrity: sha512-7HhHjtERjqlNbZtqNqy2rckN/SpOOlmDliet+lP7k+eKZEjPk3DgyeU9lIXLdeLz0uBbbVp+9Qdow9wJWgwwfg==}
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -1003,6 +1009,8 @@ snapshots:
       vue: 3.5.13(typescript@5.7.3)
 
   alien-signals@1.0.13: {}
+
+  async-validator@4.2.5: {}
 
   balanced-match@1.0.2: {}
 

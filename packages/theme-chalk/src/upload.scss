@@ -1,0 +1,10 @@
+@use './mixins/mixins' as *;
+@use './common/var' as *;
+
+@include b(upload) {
+    display: inline-flex;
+
+    input[type="file"] {
+        display: none;
+    }
+}

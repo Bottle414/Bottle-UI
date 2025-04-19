@@ -110,6 +110,10 @@
         </BFormItem>
         <BButton @click="formValidate">Test</BButton>
     </BForm>
+
+    <BUpload>
+        
+    </BUpload>
 </template>
 
 <script lang="ts" setup>
@@ -127,6 +131,7 @@
     import { BFormItem, BForm } from '@bottle-ui/components/form'
     import { ref, watch } from 'vue'
     import type { FormInstance } from '@bottle-ui/components/form'
+    import BUpload from '@bottle-ui/components/upload'
 
     // 如果设置了 required，当值是空字符串 ""，它仍然算是“存在的”，所以 required 通过了，然后：
     // 如果值是空字符串，它会 跳过 min/max 校验，认为“你没写值，没必要校验长度”。

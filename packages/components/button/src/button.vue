@@ -7,6 +7,7 @@
         ns.is('round', round),
         ns.is('disabled', disabled || loading)
         ]"
+        v-bind="$attrs"
         :type="nativeType"
         :disabled="disabled || loading"
         @click="handleClick"
@@ -28,20 +29,13 @@
 <script lang='ts' setup>
     import useNamespace from '@bottle-ui/hooks/useNamespace'
     import { buttonEmits, buttonProps } from './button'
-    import { ref, computed } from 'vue'
     import BIcon from '@bottle-ui/components/icon'
     import { ReloadOutlined } from '@vicons/antd';
 
     const ns = useNamespace('button')
 
-    const props = defineProps(buttonProps)
+    defineProps(buttonProps)
     const emits = defineEmits(buttonEmits)
-
-    const style = computed(() => {// computed 支持响应式
-        return {
-           
-        }
-    })
 
     const handleClick = (e: MouseEvent) => {
         emits('click', e)// 使自己触发是为了不在被外面包裹的时候触发 不推荐使用自带的事件
@@ -55,6 +49,10 @@
     defineOptions({
         name: 'BButton',
         inheritAttrs: false// 不要被奇怪的属性绑定
+        /*
+            默认这些 $attrs 会自动加到最外层 DOM 元素上；
+            但是当你用的是 <script setup> 或 inheritAttrs: false 的时候，就必须手动写 v-bind="$attrs" 才会传下去。
+        */
     })
     
 </script>

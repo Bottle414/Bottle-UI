@@ -8,10 +8,3 @@
         display: none;
     }
 }
-
-@include b(upload-dragger) {
-
-    @include when(dragging) {
-        background: $color-grey;
-    }
-}

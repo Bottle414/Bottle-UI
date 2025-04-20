@@ -43,7 +43,7 @@ export interface RequestOptions {
     headers: Headers,
     data: Record<string, any>,
     onProgress: (event: UploadProgressEvent) => void,
-    onError: (error: any, ) => void,
+    onError: (error: any) => void,
     onSuccess: (response: any) => void,
 }
 

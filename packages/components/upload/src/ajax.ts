@@ -3,7 +3,8 @@ import { RequestOptions } from './upload-content';
 
 export function httpRequest(options: RequestOptions){
     const xhr = new XMLHttpRequest()
-    const action = options.action
+    const action = options.action, method = options.method
+    xhr.open(method, action)
 
     xhr.upload.addEventListener('progress', (e) => {// fetch不支持上传进度事件中断也更麻烦，虽然它更现代还基于promise，但这里还是Ajax适合一些
         // 只有在不需要监听上传进度、只发普通请求时，fetch 才更优雅
@@ -32,12 +33,18 @@ export function httpRequest(options: RequestOptions){
     formData.append(options.name, options.file)// 最后还需要加上文件
 
     xhr.onload = function(){// 上传完毕
-        options.onSuccess(xhr.response)
+        if (xhr.status < 300 && xhr.status >= 200){
+            options.onSuccess(xhr.response)
+        }else {
+            options.onError({
+                status: xhr.status
+            })
+        }
     }
 
-    xhr.addEventListener('error', function(err){
-        options.onError(xhr)
-    })
+    // xhr.addEventListener('error', function(err){
+    //     options.onError(xhr)
+    // })
 
     xhr.send(formData)
 

@@ -1,5 +1,6 @@
 import { ExtractPropTypes, PropType } from 'vue'
 import { NOOP } from '@bottle-ui/utils/function'
+import { Awaitable } from 'packages/utils/typescript'
 
 let id = 0
 export const getId = () => id++
@@ -9,7 +10,7 @@ export interface UploadFile {
     name: string
     uid?: number
     url?: string // new ObjectURL实现预览
-    progress?: number
+    percentage?: number
     raw?: File
     size?: number
     status: string
@@ -41,12 +42,12 @@ export const uploadBaseProps = {
     },
     method: {
         // 请求类型
-        type: String,
+        type: String as PropType<'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'>,
         default: 'POST'
     },
     headers: {
         // HTTP请求头
-        type: Object,
+        type: Headers,
         default: () => ({})
     },
     data: {
@@ -66,7 +67,7 @@ export type UploadProgressEvent = ProgressEvent & { percentage: number } // 上�
 
 export interface UploadHooks {
     beforeUpload: (file: UploadRawFile) => Promise<boolean> | boolean // 上传之前还没有那些特别的属性 返回true表示可以继续上传
-    beforeRemove: (file: UploadFile, uploadFiles: UploadFiles) => void // 移除的文件，新上传的文件
+    beforeRemove: (file: UploadFile, uploadFiles: UploadFiles) => Awaitable<boolean> // 移除的文件，新上传的文件
     onPreview: (file: UploadFile) => void
     onChange: (file: UploadFile) => void
     onRemove: (file: UploadFile, uploadFiles: UploadFiles) => void // 删除时
@@ -102,8 +103,8 @@ export const uploadProps = {
         default: NOOP
     },
     onRemove: {
-        type: Function as PropType<UploadHooks['onRemove']>
-        // 强依赖钩子，用户一定要提供删除方法，不然报错
+        type: Function as PropType<UploadHooks['onRemove']>,
+        default: NOOP
     },
     onProgress: {
         type: Function as PropType<UploadHooks['onProgress']>,

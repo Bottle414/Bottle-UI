@@ -111,9 +111,8 @@
         <BButton @click="formValidate">Test</BButton>
     </BForm>
 
-    <BUpload multiple :before-upload="handleBeforeUpload">
-        Hi
-        <BButton>Upload</BButton>
+    <BUpload multiple :before-upload="handleBeforeUpload" action="http://localhost:3000/upload" drag v-slot="{ dragging }">
+        <BButton size="large"  :style="{ opacity: dragging.dragging ? 0 : 1, transition: 'opacity 0.3s' }">Upload</BButton>
     </BUpload>
 </template>
 
@@ -149,6 +148,7 @@
 
     async function handleBeforeUpload(rawFile: UploadRawFile){
         console.log('beforeup', rawFile);
+        return true
     }
 
     function formValidate(){

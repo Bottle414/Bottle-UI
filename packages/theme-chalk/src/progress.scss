@@ -1,0 +1,56 @@
+@use './mixins/mixins' as *;
+@use './common/var' as *;
+
+@include b(progress) {
+    display: flex;
+    align-items: center;
+
+    @include e(background) {
+        position: relative;
+        border-radius: 10px;
+        background: $color-grey;
+        overflow: hidden;
+    }
+
+    @include e(bar) {
+        display: flex;
+        position: absolute;
+        border-radius: 10px;
+        transition: 1s;
+        top: 0;
+        left: 0;
+
+        @include when(success) {
+            background: $color-primary;
+        }
+    
+        @include when(warning) {
+            background: $color-warning;
+        }
+    
+        @include when(error) {
+            background: $color-danger;
+        }
+
+        @include when(indeterminate) {
+            width: 50%;
+            animation: indeterminate 1s infinite linear;
+            background: linear-gradient(90deg, rgba($color-primary, 0.3) 0%, $color-primary 50%, rgba($color-primary, 0.3) 100%);
+        }
+    }
+
+    @include e(text) {
+        padding: 0 10px;
+    }
+}
+
+@keyframes indeterminate {
+    0% {
+        left: -50%;
+        // transform: translateX(-100%);
+    }
+    100% {
+        left: 100%;
+        // transform: translateX(200%);
+    }
+}

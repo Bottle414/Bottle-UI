@@ -129,9 +129,12 @@
     <BUpload multiple :before-upload="handleBeforeUpload" action="http://localhost:3000/upload" v-slot="{ dragging }" showList listType="image">
         <BButton size="large"  :style="{ opacity: dragging.dragging ? 0 : 1, transition: 'opacity 0.3s' }">Upload</BButton>
     </BUpload>
+
+    <BProgress indeterminate></BProgress>
 </template>
 
 <script lang="ts" setup>
+    import BProgress from '@bottle-ui/components/progress'
     // import BIcon from '@bottle-ui/components/icon';
     // import BTree from '@bottle-ui/components/tree'
     // import BCheckbox from '@bottle-ui/components/checkbox'

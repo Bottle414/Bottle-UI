@@ -1,0 +1,42 @@
+@use './mixins/mixins' as *;
+@use './common/var' as *;
+
+@include b(switch) {
+    width: 40px;
+    position: relative;
+    background: $color-grey;
+    color: $color-black;
+
+    @include when(active) {
+        background: $color-primary;
+    }
+
+    @include when(disable) {
+        cursor: not-allowed;
+    }
+
+    @include e(core) {
+        height: 100%;
+        position: relative;
+        left: 50%;
+        background: $color-white;
+        border-radius: 50%;
+        transition: 1s;
+        transform: translateX(-130%);
+
+        @include when(active) {
+            // right: 5%;
+            transform: translateX(30%);
+        }
+    }
+
+    @include e(active-text) {
+        position: relative;
+        right: 30%;
+    }
+
+    @include e(inactive-text) {
+        position: relative;
+        left: 15%;
+    }
+}

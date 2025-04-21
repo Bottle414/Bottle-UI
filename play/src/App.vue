@@ -9,7 +9,7 @@
     <!-- <BButton color="#eef" size="12" :loading="true" @click="handler">
         Click here to send message
     </BButton> -->
-    <BCheckbox
+    <!-- <BCheckbox
         label="12"
         color="#bebe"
         v-model="checkvalue"
@@ -27,7 +27,7 @@
     </BSelect>
     <br />
 
-    <!-- <BTree
+    <BTree
         :data="data"
         :keyField="'key'"
         v-model:selectedKeys="selected"
@@ -43,7 +43,7 @@
         </template>
     </BVirtualList> -->
 
-    <BButton size="large" round @mousedown="handlerClick" disabled>Hi</BButton>
+    <!-- <BButton size="large" round @mousedown="handlerClick" disabled>Hi</BButton>
     <br />
     <BInput
         type="password"
@@ -59,9 +59,9 @@
         </template>
         <template #suffix>Suffix</template>
     </BInput>
-    <br />
+    <br /> -->
 
-    <BForm
+    <!-- <BForm
         ref="formRef"
         :model="state"
         :rules="{
@@ -85,10 +85,10 @@
                     message: '请输入用户名',
                     trigger: 'blur'
                 }
-            ]">
+            ]"> -->
             <!-- 数组形式校验规则, 两个触发时机 -->
             <!-- 告诉它校验name -->
-            <BInput
+            <!-- <BInput
                 v-model="state.name"
                 @blur="handleBlur"
                 @focus="handleFocus"
@@ -120,92 +120,96 @@
             <p>{{ data }}</p>
         </template>
     </BVirtualList>
-    <br>
-    <BCard bodyClass="h" style="width: 50%; transform: translateX(30px);" shadow="never">
+    <br> -->
+    <!-- <BCard bodyClass="h" style="width: 50%; transform: translateX(30px);" shadow="never">
         <template #header>
             HI
         </template>
         <BButton size="medium">H</BButton>
-    </BCard>
+    </BCard> --> 
+    {{ checked }}
+    <BSwitch v-model="checked" activeText="开" inactiveText="关" disabled>
+    </BSwitch>
 </template>
 
 <script lang="ts" setup>
-    // import BIcon from '@bottle-ui/components/icon';
+    import BIcon from '@bottle-ui/components/icon';
     // import BTree from '@bottle-ui/components/tree'
-    import BCheckbox from '@bottle-ui/components/checkbox'
-    import BButton from '@bottle-ui/components/button'
-    import BSelect from '@bottle-ui/components/select'
-    import BOption from '@bottle-ui/components/select'
-    import BTooltip from '@bottle-ui/components/tooltip'
-    import BVirtualList from '@bottle-ui/components/virtual-list'
-    // import type { TreeOption } from '@bottle-ui/components/tree'
-    // import BIcon from '@bottle-ui/components/icon'
-    import BInput from '@bottle-ui/components/input'
-    import { BFormItem, BForm } from '@bottle-ui/components/form'
+    // import BCheckbox from '@bottle-ui/components/checkbox'
+    // import BButton from '@bottle-ui/components/button'
+    // import BSelect from '@bottle-ui/components/select'
+    // import BOption from '@bottle-ui/components/select'
+    // import BTooltip from '@bottle-ui/components/tooltip'
+    // import BVirtualList from '@bottle-ui/components/virtual-list'
+    // // import type { TreeOption } from '@bottle-ui/components/tree'
+    // // import BIcon from '@bottle-ui/components/icon'
+    // import BInput from '@bottle-ui/components/input'
+    // import { BFormItem, BForm } from '@bottle-ui/components/form'
     import { ref, watch } from 'vue'
-    import type { FormInstance } from '@bottle-ui/components/form'
-    import BUpload from '@bottle-ui/components/upload'
-    import type { UploadRawFile } from '@bottle-ui/components/upload'
-    import BCard from '@bottle-ui/components/card'
-
+    // import type { FormInstance } from '@bottle-ui/components/form'
+    // import BUpload from '@bottle-ui/components/upload'
+    // import type { UploadRawFile } from '@bottle-ui/components/upload'
+    // import BCard from '@bottle-ui/components/card'
+    import BSwitch from '@bottle-ui/components/switch'
     // 如果设置了 required，当值是空字符串 ""，它仍然算是“存在的”，所以 required 通过了，然后：
     // 如果值是空字符串，它会 跳过 min/max 校验，认为“你没写值，没必要校验长度”。
     // 换句话说：空字符串只会触发 required 校验，不会触发 min/max 校验。
 
 
     const selected = ref([])
-    const state = ref({
-        name: '',
-        password: '7k7kkkk'
-    })
-    const formRef = ref<FormInstance>()
-    const fakeData = ref([1,2,3,4,5,6,7,8,9,8,7,4,2,1,4,6])
+    const checked = ref(false)
+    // const state = ref({
+    //     name: '',
+    //     password: '7k7kkkk'
+    // })
+    // const formRef = ref<FormInstance>()
+    // const fakeData = ref([1,2,3,4,5,6,7,8,9,8,7,4,2,1,4,6])
 
-    async function handleBeforeUpload(rawFile: UploadRawFile){
-        console.log('beforeup', rawFile);
-        return true
-    }
-
-    function formValidate(){
-        const form = formRef.value
-        form?.formValidate((valid, err) => {
-            console.log(valid, err);
-        })
-    }
-    // {
-    //     min: 6,
-    //     max: 10,
-    //     required: true,
-    //     message: '密码长度为6 - 10',
-    //     trigger: ['change', 'blur']
+    // async function handleBeforeUpload(rawFile: UploadRawFile){
+    //     console.log('beforeup', rawFile);
+    //     return true
     // }
-    // 不要把校验规则绑错了
 
-    // const checked = ref(['1','3'])// 类型要一致
-    // const items = ref([1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 11, 2, 1, 1, 1, 1, 1, 1, 11, 2, 1, 1, 1, 1, 1, 1, 1])// 假数据
+    // function formValidate(){
+    //     const form = formRef.value
+    //     form?.formValidate((valid, err) => {
+    //         console.log(valid, err);
+    //     })
+    // }
+    // // {
+    // //     min: 6,
+    // //     max: 10,
+    // //     required: true,
+    // //     message: '密码长度为6 - 10',
+    // //     trigger: ['change', 'blur']
+    // // }
+    // // 不要把校验规则绑错了
 
-    const checkvalue = ref(false)
-    let inputRef = ref('hi')
+    // // const checked = ref(['1','3'])// 类型要一致
+    // // const items = ref([1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 11, 2, 1, 1, 1, 1, 1, 1, 11, 2, 1, 1, 1, 1, 1, 1, 1])// 假数据
 
-    function handlerClick() {
-        console.log('hihihi')
-    }
+    // const checkvalue = ref(false)
+    // let inputRef = ref('hi')
 
-    function handleBlur() {
-        console.log('blur')
-    }
+    // function handlerClick() {
+    //     console.log('hihihi')
+    // }
 
-    function handleFocus() {
-        console.log('focus')
-    }
+    // function handleBlur() {
+    //     console.log('blur')
+    // }
 
-    watch(inputRef, () => {
-        console.log('inputRef: ' + inputRef.value)
-    })
+    // function handleFocus() {
+    //     console.log('focus')
+    // }
 
-    watch(selected, () => {
-        console.log('selectedout', selected.value)
-    })
+    // watch(inputRef, () => {
+    //     console.log('inputRef: ' + inputRef.value)
+    // })
+
+    // watch(selected, () => {
+    //     console.log('selectedout', selected.value)
+    // })
 
     // const asyncload = async (node: TreeOption) => {// 模拟异步加载
     //     // 模拟异步接口

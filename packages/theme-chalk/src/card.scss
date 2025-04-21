@@ -1,0 +1,35 @@
+@use './mixins/mixins' as *;
+@use './common/var' as *;
+
+@include b(card) {
+    background: $color-white;
+    color: $color-black;
+    border-radius: 5px;
+    border: 1px solid $color-grey;
+    box-sizing: border-box;
+
+    @include e(header) {
+        padding: 20px 10px;
+        border-bottom: 1px solid $color-grey;
+    }
+
+    @include e(body) {
+        padding: 20px 10px;
+    }
+
+    @include e(footer) {
+        padding: 20px 10px; /* 需要动态计算 */
+        border-bottom: 1px solid $color-grey;
+    }
+
+    @include when(hover) {
+        &:hover,
+        &:focus {
+            box-shadow: $shadow-around;
+        }
+    }
+
+    @include when(always) {
+        box-shadow: $shadow-around;
+    }
+}

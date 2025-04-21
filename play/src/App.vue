@@ -114,6 +114,19 @@
     <BUpload multiple :before-upload="handleBeforeUpload" action="http://localhost:3000/upload" drag v-slot="{ dragging }">
         <BButton size="large"  :style="{ opacity: dragging.dragging ? 0 : 1, transition: 'opacity 0.3s' }">Upload</BButton>
     </BUpload>
+
+    <BVirtualList :items="fakeData" :size="23">
+        <template #default="{ data }">
+            <p>{{ data }}</p>
+        </template>
+    </BVirtualList>
+    <br>
+    <BCard bodyClass="h" style="width: 50%; transform: translateX(30px);" shadow="never">
+        <template #header>
+            HI
+        </template>
+        <BButton size="medium">H</BButton>
+    </BCard>
 </template>
 
 <script lang="ts" setup>
@@ -124,7 +137,7 @@
     import BSelect from '@bottle-ui/components/select'
     import BOption from '@bottle-ui/components/select'
     import BTooltip from '@bottle-ui/components/tooltip'
-    // import BVirtualList from '@bottle-ui/components/virtual-list'
+    import BVirtualList from '@bottle-ui/components/virtual-list'
     // import type { TreeOption } from '@bottle-ui/components/tree'
     // import BIcon from '@bottle-ui/components/icon'
     import BInput from '@bottle-ui/components/input'
@@ -133,6 +146,7 @@
     import type { FormInstance } from '@bottle-ui/components/form'
     import BUpload from '@bottle-ui/components/upload'
     import type { UploadRawFile } from '@bottle-ui/components/upload'
+    import BCard from '@bottle-ui/components/card'
 
     // 如果设置了 required，当值是空字符串 ""，它仍然算是“存在的”，所以 required 通过了，然后：
     // 如果值是空字符串，它会 跳过 min/max 校验，认为“你没写值，没必要校验长度”。
@@ -145,6 +159,7 @@
         password: '7k7kkkk'
     })
     const formRef = ref<FormInstance>()
+    const fakeData = ref([1,2,3,4,5,6,7,8,9,8,7,4,2,1,4,6])
 
     async function handleBeforeUpload(rawFile: UploadRawFile){
         console.log('beforeup', rawFile);
@@ -264,4 +279,8 @@
     // ];
 </script>
 
-<style scoped></style>
+<style scoped>
+    .h {
+        background: red;
+    }
+</style>

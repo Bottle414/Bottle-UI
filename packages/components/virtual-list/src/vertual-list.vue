@@ -6,7 +6,7 @@
                 <div :class="ns.e('item')" ref="item">
                   <slot :data="data" :index="index" />
                 </div>
-              </template>
+            </template>
         </div>
     </div>
 </template>
@@ -43,7 +43,7 @@
     })
 
     const visiableData = computed(() => {
-        return props.items.slice(state.value.start - prev.value, state.value.end + next.value)// 切片
+        return props.items.slice(state.value.start, state.value.end)// 切片 可以预留 pre 和 next
     })
 
     watch(props.items, () => {
@@ -56,7 +56,7 @@
         const scrollTop = virtualBox.value?.scrollTop!
         state.value.start = Math.floor(scrollTop / itemHeight)
         state.value.end = state.value.start + props.remain
-        offset.value = state.value.start * itemHeight - itemHeight * prev.value
+        offset.value = state.value.start * itemHeight// - itemHeight * prev.value
     }
 
     defineSlots<{

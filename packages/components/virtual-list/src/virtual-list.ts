@@ -9,6 +9,7 @@ export const virtualListProps = {
       type: Number,
       default: 8
     },
+    dynamic: Boolean,// 是否启用动态加载
     items: {
       type: Array,
       default: () => []

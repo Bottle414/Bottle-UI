@@ -9,3 +9,8 @@ $color-success: #6bc3e5;
 $color-danger: #f70e0e;
 $color-warning: #fa991b;
 $color-info: #eef;
+$shadow-around: 3px 3px 4px rgba(200, 200, 200, 0.2),
+    4px 6px 8px rgba(100, 100, 100, 0.1), -3px -3px 4px rgba(200, 200, 200, 0.2),
+    -4px -6px 8px rgba(100, 100, 100, 0.1),
+    -3px 3px 4px rgba(200, 200, 200, 0.2), -4px 6px 8px rgba(100, 100, 100, 0.1),
+    3px -3px 4px rgba(200, 200, 200, 0.2), 4px -8px 8px rgba(100, 100, 100, 0.1);

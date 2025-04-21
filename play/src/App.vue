@@ -111,10 +111,6 @@
         <BButton @click="formValidate">Test</BButton>
     </BForm>
 
-    <BUpload multiple :before-upload="handleBeforeUpload" action="http://localhost:3000/upload" drag v-slot="{ dragging }">
-        <BButton size="large"  :style="{ opacity: dragging.dragging ? 0 : 1, transition: 'opacity 0.3s' }">Upload</BButton>
-    </BUpload>
-
     <BVirtualList :items="fakeData" :size="23">
         <template #default="{ data }">
             <p>{{ data }}</p>
@@ -127,16 +123,19 @@
         </template>
         <BButton size="medium">H</BButton>
     </BCard> --> 
-    {{ checked }}
-    <BSwitch v-model="checked" activeText="开" inactiveText="关" disabled>
+    <BSwitch v-model="checked" activeText="开" inactiveText="关" color="red">
     </BSwitch>
+
+    <BUpload multiple :before-upload="handleBeforeUpload" action="http://localhost:3000/upload" v-slot="{ dragging }" showList listType="image">
+        <BButton size="large"  :style="{ opacity: dragging.dragging ? 0 : 1, transition: 'opacity 0.3s' }">Upload</BButton>
+    </BUpload>
 </template>
 
 <script lang="ts" setup>
-    import BIcon from '@bottle-ui/components/icon';
+    // import BIcon from '@bottle-ui/components/icon';
     // import BTree from '@bottle-ui/components/tree'
     // import BCheckbox from '@bottle-ui/components/checkbox'
-    // import BButton from '@bottle-ui/components/button'
+    import BButton from '@bottle-ui/components/button'
     // import BSelect from '@bottle-ui/components/select'
     // import BOption from '@bottle-ui/components/select'
     // import BTooltip from '@bottle-ui/components/tooltip'
@@ -147,7 +146,7 @@
     // import { BFormItem, BForm } from '@bottle-ui/components/form'
     import { ref, watch } from 'vue'
     // import type { FormInstance } from '@bottle-ui/components/form'
-    // import BUpload from '@bottle-ui/components/upload'
+    import BUpload from '@bottle-ui/components/upload'
     // import type { UploadRawFile } from '@bottle-ui/components/upload'
     // import BCard from '@bottle-ui/components/card'
     import BSwitch from '@bottle-ui/components/switch'
@@ -165,10 +164,10 @@
     // const formRef = ref<FormInstance>()
     // const fakeData = ref([1,2,3,4,5,6,7,8,9,8,7,4,2,1,4,6])
 
-    // async function handleBeforeUpload(rawFile: UploadRawFile){
-    //     console.log('beforeup', rawFile);
-    //     return true
-    // }
+    async function handleBeforeUpload(rawFile: UploadRawFile){
+        console.log('beforeup', rawFile);
+        return true
+    }
 
     // function formValidate(){
     //     const form = formRef.value

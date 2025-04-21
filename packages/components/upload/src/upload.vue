@@ -3,7 +3,11 @@
         <BUploadContent v-slot="dragging" v-bind="uploadContentProps">
             <slot :dragging="dragging"></slot>
         </BUploadContent>
-        {{ uploadFiles }}
+        <BUploadList
+            v-if="showList"
+            :file-list="uploadFiles"
+            :list-type="listType"
+        ></BUploadList>
     </div>
 </template>
 
@@ -13,6 +17,7 @@
     import { UploadFile, UploadFiles, uploadProps, UploadRawFile } from './upload'
     import { UploadContentProps } from './upload-content'
     import BUploadContent from'./upload-content.vue'
+    import BUploadList from './upload-list.vue'
 
     const ns = useNamespace('upload')
     const props = defineProps(uploadProps)

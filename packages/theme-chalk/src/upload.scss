@@ -2,9 +2,36 @@
 @use './common/var' as *;
 
 @include b(upload) {
-    display: inline-flex;
+    display: flex;
+    flex-direction: column;
 
     input[type="file"] {
         display: none;
+    }
+}
+
+@include b(upload-list) {
+
+    @include e(item){
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        list-style: none;
+        border-radius: 5px;
+
+        &:hover {
+            background: $color-grey;
+        }
+    }
+
+    @include e(detail) {
+        display: flex;
+        align-items: baseline;
+    }
+
+    @include e(file-image) {
+        width: 100px;
+        border-radius: 5px;
+        padding: 4px 10px 0px 10px;
     }
 }

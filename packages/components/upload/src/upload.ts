@@ -4,6 +4,7 @@ import { Awaitable } from 'packages/utils/typescript'
 
 let id = 0
 export const getId = () => id++
+export type listType = 'image' | 'text'
 
 export interface UploadFile {
     // 对于上传的文件的要求
@@ -54,6 +55,10 @@ export const uploadBaseProps = {
         // 上传时的附带参数
         type: Object,
         default: () => ({})
+    },
+    listType: {
+        type: String as PropType<listType>,
+        default: 'text'
     },
     multiple: Boolean, // 是否支持多文件上传
     limit: Number, // 最大上传文件数

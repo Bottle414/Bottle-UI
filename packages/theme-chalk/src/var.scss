@@ -1,0 +1,8 @@
+@use './mixins/function.scss' as *;
+@use './mixins/var' as *;
+@use './common/var.scss' as *;
+
+/* 生成全局变量 */
+:root {
+    @include set-css-var-value('white', $color-white);
+}

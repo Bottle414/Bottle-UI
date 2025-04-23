@@ -1,5 +1,8 @@
 @use 'config' as *;/* 默认私有变量不会被引入 */
+@use './function.scss' as *;
 @forward 'config';/* 导出config */
+@forward './function.scss';
+/* 从此处导出所有公共的mixins */
 
 /* b-button */
 @mixin b($block) {/* mixin是一段复用的代码，名字叫b；通过@include调用mixin */

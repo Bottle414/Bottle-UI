@@ -3,7 +3,7 @@
 @use './mixins/button' as *;
 
 $button-colors: (
-    success: $color-success,
+    success: getCssVar(),
     warning: $color-warning,
     danger: $color-danger,
     info: $color-info

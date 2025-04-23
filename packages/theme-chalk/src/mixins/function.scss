@@ -1,0 +1,23 @@
+@use './config.scss' as *;
+
+/* 自动生成css变量名 */
+@function joinVarName($list) {
+    $name: '--' + $namespace;
+
+    @each $item in $list {/* 循环遍历传入的参数进行拼接 */
+        @if $item != '' {
+            $name: $name + '-' + $item;
+        }
+    }
+    @return $name;
+}
+
+/* 获取变量名字符串 参数可变 */
+@function getCSSVarName($args...) {
+    @return joinVarName($args);
+}
+
+/* 获取变量引用 */
+@function getCSSVar($args...) {
+    @return var(#{joinVarName($args)});
+}

@@ -39,6 +39,12 @@
         }
     }
 
+    @include e(circle) {
+        fill: "none";
+        stroke: $color-grey;
+        stroke-linecap: "round";
+    }
+
     @include e(text) {
         padding: 0 10px;
     }

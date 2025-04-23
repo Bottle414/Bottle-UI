@@ -1,0 +1,18 @@
+@use './function.scss' as *;
+@use '../common/var' as *;
+
+/* 生成CSS变量对应的值 */
+@mixin set-css-var-value($name, $value) {
+    #{joinVarName($name)}: #{$value};
+}
+
+/* 为组件生成一组CSS变量 组件名 对应样式 */
+@mixin set-component-css-var($name, $variables) {
+    @each $attribute, $value in $variables {/* 样式属性名 属性值 */
+        @if $attribute == 'default' {
+            #{getCSSVarName($name)}: #{$value};
+        } @else {
+            #{getCSSVarName($name, $attribute)}: #{$value};
+        }
+    }
+}

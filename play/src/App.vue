@@ -126,11 +126,12 @@
     <BSwitch v-model="checked" activeText="开" inactiveText="关" color="red">
     </BSwitch>
 
-    <BUpload multiple :before-upload="handleBeforeUpload" action="http://localhost:3000/upload" v-slot="{ dragging }" showList listType="image">
+    <!-- <BUpload multiple :before-upload="handleBeforeUpload" action="http://localhost:3000/upload" v-slot="{ dragging }" showList listType="image">
         <BButton size="large"  :style="{ opacity: dragging.dragging ? 0 : 1, transition: 'opacity 0.3s' }">Upload</BButton>
-    </BUpload>
+    </BUpload> -->
 
-    <BProgress indeterminate></BProgress>
+    <BProgress indeterminate type="cicle"></BProgress>
+    <BButton size="medium" :round="true">Button</BButton>
 </template>
 
 <script lang="ts" setup>

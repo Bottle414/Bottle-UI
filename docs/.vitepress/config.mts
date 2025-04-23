@@ -34,7 +34,7 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        '@Bottle-UI': resolve('E:/Bottle-UI/packages')
+        '@Bottle-UI': resolve('../../../Bottle-UI/packages')
       }
     }
   }

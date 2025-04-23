@@ -5,7 +5,7 @@ import path from 'path'
 export default defineConfig({
   resolve: {
     alias: {
-      '@Bottle-UI': path.resolve(__dirname, 'E:/Bottle-UI/packages'),
+      '@Bottle-UI': path.resolve(__dirname, './packages'),
     },
   },
 })

@@ -1,0 +1,11 @@
+{
+    "builds": [
+      {
+        "src": "@bottle-ui/docs/**",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "@bottle-ui/docs/.vitepress/dist"
+        }
+      }
+    ]
+  }  

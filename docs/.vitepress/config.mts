@@ -22,6 +22,7 @@ export default defineConfig({
           text: '组件示例',
           items: [
             { text: 'Button', link: '/components/button' },
+            { text: 'Checkbox', link: '/components/checkbox' },
             { text: 'Runtime API Examples', link: '/api-examples' }
           ]
         }

@@ -28,9 +28,15 @@
         overflow-x: auto;
     }
 
-    .table th,
+    .table th {
+        border: none;
+        background-color: #eef !important;
+    }
+
     .table td {
-        border: 1px solid #ddd;
+        border: none;
+        background-color: #fff;
+        border-bottom: 1px solid #ddd;
         padding: 12px 24px;
         text-align: left;
     }

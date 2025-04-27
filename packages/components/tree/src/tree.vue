@@ -1,6 +1,5 @@
 <template>
     <!-- TODO: 传入virtual绑定component， 为true绑定virtual-list不然就是div --->
-    {{ props.checkbox }}
     <BVirtualList v-if="virtual" :items="flattenTree">
         <template #default="{ data }">
             <BTreeNode

@@ -1,12 +1,11 @@
 <template>
     <div :class="ns.b()">
-        <div :class="[ns.e('content'), ns.is('selected', selected)]">
+        <div :class="[ns.e('content'), ns.is('selected', selected)]" :style="{paddingLeft: node.level * 30 + 'px', display: 'flex', alignItems: 'baseline'}">
             <ExpandIcon v-if="!node.isLeaf" :class="[ns.e('expand-icon'), { expanded }]"  @click.prevent="handlerExpand"></ExpandIcon><!-- 三角展开图标, 叶子不展示 -->
             <BCheckbox v-if="props.checkbox"
                 @change="handlerSelect"
                 :checked="selected"
                 :disabled="(node.disabled as boolean) || props.disabled"
-                :style="{paddingLeft: node.level * 20 + 'px'}"
                 :indeterminate="props.indeterminate"
                 :model-value="props.checked"
             ></BCheckbox><!-- 后续在这里设置选中 -->

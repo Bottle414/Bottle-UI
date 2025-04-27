@@ -27,15 +27,7 @@
     </BSelect>
     <br />
 
-    <BTree
-        :data="data"
-        :keyField="'key'"
-        v-model:selectedKeys="selected"
-        virtual
-        checkbox
-        :defaultCheckedKeys="checked"
-        :indeterminateKeys="['1','2']"
-    ></BTree> -->
+     -->
     <br />
     <!-- <BVirtualList :items="items">
         <template #default="{ data }">
@@ -132,12 +124,22 @@
 
     <BProgress indeterminate type="cicle"></BProgress>
     <BButton size="medium" :round="true">Button</BButton>
+    <BTree
+        :data="data"
+        :keyField="'key'"
+        v-model:selectedKeys="selected"
+        virtual
+        checkbox
+        :on-load="asyncload"
+        :defaultCheckedKeys="checked"
+        :indeterminateKeys="['1','2']"
+    ></BTree>
 </template>
 
 <script lang="ts" setup>
     import BProgress from '@bottle-ui/components/progress'
     // import BIcon from '@bottle-ui/components/icon';
-    // import BTree from '@bottle-ui/components/tree'
+    import BTree from '@bottle-ui/components/tree'
     // import BCheckbox from '@bottle-ui/components/checkbox'
     import BButton from '@bottle-ui/components/button'
     // import BSelect from '@bottle-ui/components/select'
@@ -160,7 +162,8 @@
 
 
     const selected = ref([])
-    const checked = ref(false)
+    const defaultCheckedKeys = ['1', '2']
+    // const checked = ref(false)
     // const state = ref({
     //     name: '',
     //     password: '7k7kkkk'
@@ -188,7 +191,7 @@
     // // }
     // // 不要把校验规则绑错了
 
-    // // const checked = ref(['1','3'])// 类型要一致
+    const checked = ref(['1','3'])// 类型要一致
     // // const items = ref([1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 11, 2, 1, 1, 1, 1, 1, 1, 11, 2, 1, 1, 1, 1, 1, 1, 1])// 假数据
 
     // const checkvalue = ref(false)
@@ -214,21 +217,21 @@
     //     console.log('selectedout', selected.value)
     // })
 
-    // const asyncload = async (node: TreeOption) => {// 模拟异步加载
-    //     // 模拟异步接口
-    //     await new Promise(resolve => setTimeout(resolve, 1000))
+    const asyncload = async (node: TreeOption) => {// 模拟异步加载
+        // 模拟异步接口
+        await new Promise(resolve => setTimeout(resolve, 1000))
 
-    //     // 返回新的子节点数据（注意是 TreeOption[] 结构）
-    //     return [
-    //         { key: '3', label: '异步子节点1', children: [], disabled: true },
-    //         {
-    //             key: '4', label: '异步子节点2', children: [{
-    //                 key: '5',
-    //                 label: 'Hi'
-    //             }], isLeaf: false
-    //         }
-    //     ]
-    // }
+        // 返回新的子节点数据（注意是 TreeOption[] 结构）
+        return [
+            { key: '3', label: '异步子节点1', children: [], disabled: true },
+            {
+                key: '4', label: '异步子节点2', children: [{
+                    key: '5',
+                    label: 'Hi'
+                }], isLeaf: false
+            }
+        ]
+    }
 
     // function handler() {
     //     console.log('kkkk');
@@ -238,52 +241,52 @@
     //     console.log('load');
     // }
 
-    // const data = [
-    //     {
-    //         label: "Node 1",
-    //         key: "1",
-    //         isLeaf: false,
-    //         children: [
-    //             {
-    //                 label: "Node 1.1",
-    //                 key: "1.1",
-    //                 // disabled: true,
-    //                 children: []
-    //             },
-    //             {
-    //                 label: "Node 1.2",
-    //                 key: "1.2",
-    //                 children: []
-    //             }
-    //         ]
-    //     },
-    //     {
-    //         label: "Node 2",
-    //         key: "2",
-    //         children: []
-    //     },
-    //     {
-    //         key: '3',
-    //         label: '异步子节点1',
-    //         children: [],
-    //         // disabled: true
-    //     },
-    //     {
-    //         key: '4',
-    //         label: '异步子节点2',
-    //         children: [{
-    //             key: '5',
-    //             label: 'Hi'
-    //         }],
-    //         isLeaf: false
-    //     },
-    //     {
-    //         key: '3',
-    //         label: '异步子节点1',
-    //         children: [],
-    //         // disabled: true
-    //     }
-    // ];
+    const data = [
+        {
+            label: "Node 1",
+            key: "1",
+            isLeaf: false,
+            children: [
+                {
+                    label: "Node 1.1",
+                    key: "1.1",
+                    // disabled: true,
+                    children: []
+                },
+                {
+                    label: "Node 1.2",
+                    key: "1.2",
+                    children: []
+                }
+            ]
+        },
+        {
+            label: "Node 2",
+            key: "2",
+            children: []
+        },
+        {
+            key: '3',
+            label: '异步子节点1',
+            children: [],
+            // disabled: true
+        },
+        {
+            key: '4',
+            label: '异步子节点2',
+            children: [{
+                key: '5',
+                label: 'Hi'
+            }],
+            isLeaf: false
+        },
+        {
+            key: '3',
+            label: '异步子节点1',
+            children: [],
+            // disabled: true
+        }
+    ];
 </script>
 
 <style scoped>

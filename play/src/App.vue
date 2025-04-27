@@ -134,6 +134,10 @@
         :defaultCheckedKeys="checked"
         :indeterminateKeys="['1','2']"
     ></BTree>
+
+    <BTooltip content="HHHHIIIIIIIIllllllllllooooo" style="margin: 500px;" placement="top" light>
+        Hover me!
+    </BTooltip>
 </template>
 
 <script lang="ts" setup>
@@ -144,7 +148,7 @@
     import BButton from '@bottle-ui/components/button'
     // import BSelect from '@bottle-ui/components/select'
     // import BOption from '@bottle-ui/components/select'
-    // import BTooltip from '@bottle-ui/components/tooltip'
+    import BTooltip from '@bottle-ui/components/tooltip'
     // import BVirtualList from '@bottle-ui/components/virtual-list'
     // // import type { TreeOption } from '@bottle-ui/components/tree'
     // // import BIcon from '@bottle-ui/components/icon'

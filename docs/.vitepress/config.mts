@@ -24,6 +24,7 @@ export default defineConfig({
             { text: 'Button', link: '/components/button' },
             { text: 'Checkbox', link: '/components/checkbox' },
             { text: 'Card', link: '/components/card' },
+            { text: 'Tooltip', link: '/components/tooltip' },
             { text: 'Switch', link: '/components/switch' },
             { text: 'Tree', link: '/components/tree' },
             { text: 'VirtualList', link: '/components/virtualList' },

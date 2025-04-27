@@ -1,0 +1,115 @@
+@use './mixins/mixins' as *;
+@use './common/var' as *;
+
+@include b(tooltip){
+    position: relative;
+    display: inline-block;
+
+    &:hover {
+        .b-tooltip__content {/* 显示三角 */
+            opacity: .8;
+            /* 按理来说，文字颜色应该基于背景动态计算 */
+        }
+    }
+
+    @include e(content){
+        padding: 2px 5px;/* 这些都需要动态计算 */
+        position: absolute;
+        color: #fff;
+        text-align: center;
+        border-radius: 5px;
+        background-color: #222;
+        opacity: 0;
+        transition: opacity .5s;
+        z-index: 1000;
+
+        &::after {
+            content: '';
+            position: absolute;
+            transition: inherit;/* 使箭头与工具文本同时出现和消失 */
+            pointer-events: none;
+            border: 5px solid transparent;
+        }
+
+        @include when(bottom) {
+            left: 50%;
+            transform: translateX(-50%);
+
+            &::after {
+                bottom: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                border-bottom-color: #222;/* 画到底部，得到箭头方向向上 */
+            }
+
+            @include when(light){
+                &::after {
+                    border-bottom-color: #eee;
+                }
+            }
+        }
+
+        @include when(top){
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+
+            &::after {
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                border-top-color: #333;/* 画到顶部，得到箭头方向向下 */
+            }
+
+            @include when(light){
+                &::after {
+                    border-top-color: #eee;
+                }
+            }
+        }
+
+        @include when(left){
+            top: 50%;
+            right: 100%;
+            transform: translateY(-50%);
+            
+            &::after {
+                left: 100%;
+                top: 50%;
+                transform: translateY(-50%);
+                border-left-color: #222;/* 画到顶部，得到箭头方向向下 */
+            }
+
+            @include when(light){
+                &::after {
+                    border-left-color: #eee;
+                }
+            }
+        }
+
+        @include when(right){
+            top: 50%;
+            left: 100%;
+            transform: translateY(-50%);
+            
+            &::after {
+                right: 100%;
+                top: 50%;
+                transform: translateY(-50%);
+                border-right-color: #222;/* 画到顶部，得到箭头方向向下 */
+            }
+
+            @include when(light){
+                &::after {
+                    border-right-color: #eee;
+                }
+            }
+        }
+
+        @include when(light){
+            background: #fff;
+            border: 1px solid #eee;
+            color: #333;
+        }
+    }
+}

@@ -1,5 +1,5 @@
 <template>
-    <label :class="[ns.b(), ns.is('active', modelValue), ns.is('disabled', disabled)]">
+    <label :class="[ns.b(), ns.is('active', modelValue), ns.is('disabled', disabled)]" :style="{ background: modelValue ? activeColor : inactiveColor}">
         <input 
             type="checkbox"
             style="display: none;"
@@ -34,47 +34,5 @@
 </script>
 
 <style scoped>
-    .b-switch {
-        display: inline-flex;
-        align-items: center;
-        position: relative;
-        height: 22px;
-        border-radius: 11px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        padding: 0 6px;
-    }
-    .b-switch__core {
-        width: 16px;
-        height: 16px;
-        background: #fff;
-        border-radius: 50%;
-        transition: transform 0.3s;
-        position: relative;
-        z-index: 1;
-    }
-    .is-checked .b-switch__core {
-        transform: translateX(20px);
-    }
-    .is-disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-    }
-
-    .b-switch__label {
-        font-size: 12px;
-        color: #fff;
-        user-select: none;
-        white-space: nowrap;
-        position: relative;
-        z-index: 0;
-        padding: 0 4px;
-    }
-
-    .b-switch__label--left {
-        margin-right: 6px;
-    }
-    .b-switch__label--right {
-        margin-left: 6px;
-    }
+    
 </style>

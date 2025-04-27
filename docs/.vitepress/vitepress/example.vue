@@ -32,6 +32,7 @@
     .example {
         position: relative;
         display: flex;
+        flex: 0 0 auto;
         flex-direction: column;
         border: 1px solid #ddd;
         border-radius: 5px;

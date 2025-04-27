@@ -24,6 +24,7 @@ export default defineConfig({
             { text: 'Button', link: '/components/button' },
             { text: 'Checkbox', link: '/components/checkbox' },
             { text: 'Card', link: '/components/card' },
+            { text: 'Switch', link: '/components/switch' },
             { text: 'Runtime API Examples', link: '/api-examples' }
           ]
         }

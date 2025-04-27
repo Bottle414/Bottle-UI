@@ -2,41 +2,51 @@
 @use './common/var' as *;
 
 @include b(switch) {
-    width: 40px;
+    min-width: 50px;
+    min-height: 22px;
     position: relative;
+    display: inline-flex;
     background: $color-grey;
     color: $color-black;
+    user-select: none;
+    white-space: nowrap;
+    border-radius: 11px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 0 6px;
+    align-items: center;
 
     @include when(active) {
         background: $color-primary;
     }
 
-    @include when(disable) {
+    @include when(disabled) {
         cursor: not-allowed;
     }
 
     @include e(core) {
-        height: 100%;
-        position: relative;
-        left: 50%;
+        height: 80%;
+        aspect-ratio: 1;
+        position: absolute;
+        left: 10%;
         background: $color-white;
         border-radius: 50%;
-        transition: 1s;
-        transform: translateX(-130%);
+        transition: left .3s, right .3s;
+        z-index: 1;
 
         @include when(active) {
-            // right: 5%;
-            transform: translateX(30%);
+            right: 0;
+            left: 60%;
+            /* 一有auto就失效 */
         }
     }
 
     @include e(active-text) {
-        position: relative;
-        right: 30%;
+        padding-left: 0;
+        padding-right: 25px;
     }
 
     @include e(inactive-text) {
-        position: relative;
-        left: 15%;
+        padding-left: 25px;
     }
 }

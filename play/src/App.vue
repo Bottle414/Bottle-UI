@@ -123,7 +123,7 @@
         </template>
         <BButton size="medium">H</BButton>
     </BCard> --> 
-    <BSwitch v-model="checked" activeText="开" inactiveText="关" color="red">
+    <BSwitch v-model="checked" activeText="开" inactiveText="关" active-color="red">
     </BSwitch>
 
     <!-- <BUpload multiple :before-upload="handleBeforeUpload" action="http://localhost:3000/upload" v-slot="{ dragging }" showList listType="image">

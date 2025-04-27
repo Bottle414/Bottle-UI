@@ -7,19 +7,20 @@
     border-radius: 5px;
     border: 1px solid $color-grey;
     box-sizing: border-box;
+    width: 100%;
 
     @include e(header) {
-        padding: 20px 10px;
+        padding: 10px 10px;
         border-bottom: 1px solid $color-grey;
     }
 
     @include e(body) {
-        padding: 20px 10px;
+        padding: 20px 5%;
     }
 
     @include e(footer) {
-        padding: 20px 10px; /* 需要动态计算 */
-        border-bottom: 1px solid $color-grey;
+        padding: 10px 10px; /* 需要动态计算 */
+        border-top: 1px solid $color-grey;
     }
 
     @include when(hover) {

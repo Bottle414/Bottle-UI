@@ -9,9 +9,11 @@
         </div>
     </div>
     <div class="pulldown" :class="{ 'pulldown-active' : pull}">
-        <slot name="text">
-            等待更新
-        </slot>
+        <pre>
+            <slot name="code">
+                还在施工中...
+            </slot>
+        </pre>
     </div>
 </template>
 
@@ -63,18 +65,15 @@
 
     .pulldown {
         width: 100%;
-        position: relative;
+        max-height: 0;
         /*  bottom: -20%;/* 相对于父级的位置 */
         /* left: 0; */
-        top: 0px;
         background: #eee;
-        transform: scaleY(0);
-        transform-origin: top;
-        transition: transform .3s;
+        transition: max-height 1s;
         overflow: hidden;
     }
 
     .pulldown-active {
-        transform: scaleY(1);
+        max-height: 800px;
     }
 </style>

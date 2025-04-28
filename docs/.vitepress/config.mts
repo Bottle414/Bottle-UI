@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 import { fileURLToPath } from 'url'
 import { dirname, resolve } from 'path'
 import vue from '@vitejs/plugin-vue'
+import examplePlugin from 'vitepress-plugin-example';
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -42,8 +43,14 @@ export default defineConfig({
       alias: {
         '@Bottle-UI': resolve(__dirname, '../../../Bottle-UI/packages')// 这样确保兼容
       }
+    },
+  },
+  markdown: {
+    config(md) {
+        md.use(examplePlugin);
     }
   }
+  
   // vite: {
   //   plugins: [vue()],
   //   resolve: {

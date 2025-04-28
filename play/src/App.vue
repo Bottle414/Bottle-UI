@@ -135,7 +135,7 @@
         :indeterminateKeys="['1','2']"
     ></BTree>
 
-    <BTooltip content="HHHHIIIIIIIIllllllllllooooo" style="margin: 500px;" placement="top" light>
+    <BTooltip content="HHHHIIIIIIIIllllllllllooooo" style="margin: 100px;" placement="top" light>
         Hover me!
     </BTooltip>
 </template>

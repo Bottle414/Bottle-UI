@@ -17,7 +17,6 @@
 
 <script lang='ts' setup>
     import { BButton } from '@bottle-ui/components'
-    
 </script>
 
 <style scoped>

@@ -14,6 +14,7 @@ $button-colors: (
     align-items: center;
     justify-content: center;
     text-align: center;
+    border-radius: 5px;
 
     @include button-variant($color-black, $color-primary, $color-primary-hover);
     cursor: pointer; /* 不再使用 var */
@@ -24,7 +25,7 @@ $button-colors: (
     }
 
     &:active {
-        border-color: $color-primary-hover;
+        background-color: $color-primary;
     }
 
     // 使用映射简化样式应用

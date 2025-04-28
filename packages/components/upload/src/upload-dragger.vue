@@ -1,10 +1,10 @@
 <template>
-    <div :class="[ns.b()]"
+    <div :class="[ns.b(), ns.is('dragging', dragging)]"
         @dragover.prevent="onDragover"
         @dragleave.prevent="onDragleave"
         @drop.prevent="onDrop"
     >
-        <slot :dragging="dragging"></slot>
+        <slot></slot>
     </div>
 </template>
 

@@ -1,14 +1,20 @@
 <template>
-    <div :class="[ns.b()]">
-        <BUploadContent v-slot="dragging" v-bind="uploadContentProps">
-            <slot :dragging="dragging"></slot>
+    <div :class="[ns.b(), ns.is('disabled', disabled)]">
+        <BUploadContent v-slot="dragging" v-bind="uploadContentProps" :disabled="disabled">
+            <slot :dragging="dragging">
+                <div :class="ns.e('default')">Upload</div>
+            </slot>
         </BUploadContent>
-        <BUploadList
-            v-if="showList"
-            :file-list="uploadFiles"
-            :list-type="listType"
-        ></BUploadList>
     </div>
+    <BUploadList
+        v-if="showList"
+        :file-list="uploadFiles"
+        :list-type="listType"
+        @remove="handleDelete"
+    >
+        <slot name="icon"></slot>
+    </BUploadList>
+    
 </template>
 
 <script lang="ts" setup>
@@ -32,9 +38,21 @@
         emit('onUpdate:file-list', newValue)
     })
 
+    function handleDelete(uid: number){
+        console.log('removed!');
+        // 调用弹窗
+        uploadFiles.value = uploadFiles.value.filter(file => file.uid != uid)
+    }
+
     const uploadContentProps = computed<UploadContentProps>(() => ({
         ...props,
         onStart: (rawFile) => {
+            if (props.disabled) return
+            if (props.limit && uploadFiles.value.length >= props.limit || !props.multiple && uploadFiles.value.length == 1){
+                console.log('limited!')
+                // 调用弹窗
+                return
+            }
             console.log('start');
             // 上传之前先格式化
             const uploadFile: UploadFile = {

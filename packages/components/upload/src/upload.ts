@@ -9,7 +9,7 @@ export type listType = 'image' | 'text'
 export interface UploadFile {
     // 对于上传的文件的要求
     name: string
-    uid?: number
+    uid: number
     url?: string // new ObjectURL实现预览
     percentage?: number
     raw?: File
@@ -64,7 +64,10 @@ export const uploadBaseProps = {
     limit: Number, // 最大上传文件数
     disabled: Boolean, // 禁用上传
     drag: Boolean, // 拖拽上传
-    showList: Boolean // 显示文件列表
+    showList: {
+        type: Boolean,
+        default: true
+    } // 显示文件列表
 } as const // 变成只读的
 
 export type UploadRawFile = File & { uid: number; isDirectory?: boolean } // 拓展原始类型，方便在hooks操作

@@ -9,11 +9,9 @@
         </div>
     </div>
     <div class="pulldown" :class="{ 'pulldown-active' : pull}">
-        <pre>
             <slot name="code">
                 还在施工中...
             </slot>
-        </pre>
     </div>
 </template>
 
@@ -69,7 +67,7 @@
         /*  bottom: -20%;/* 相对于父级的位置 */
         /* left: 0; */
         background: #eee;
-        transition: max-height 1s;
+        transition: max-height .5s;
         overflow: hidden;
     }
 

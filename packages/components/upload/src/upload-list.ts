@@ -17,6 +17,6 @@ export const uploadListProps = {
 export type UploadListProps = ExtractPropTypes<typeof uploadListProps>
 
 export const uploadListEmits = {
-    remove: (file: UploadFile) => file
+    remove: (uid: number) => uid
 }
 export type UploadListEmits = typeof uploadListEmits

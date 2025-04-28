@@ -28,6 +28,7 @@ export default defineConfig({
             { text: 'Tooltip', link: '/components/tooltip' },
             { text: 'Switch', link: '/components/switch' },
             { text: 'Tree', link: '/components/tree' },
+            { text: 'Upload', link: '/components/upload' },
             { text: 'VirtualList', link: '/components/virtualList' },
             { text: 'Runtime API Examples', link: '/api-examples' }
           ]

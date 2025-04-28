@@ -1,8 +1,8 @@
 <template>
-    <div :class="[ns.b()]" @click="handleClick">
+    <div :class="[ns.b(), ns.is('disabled', disabled)]" @click="handleClick">
         <template v-if="drag">
-            <UploadDragger v-slot="{ dragging }" @file="uploadFiles">
-                <slot :dragging="dragging"></slot>
+            <UploadDragger @file="uploadFiles">
+                <slot></slot>
             </UploadDragger>
         </template>
         <template v-else>
@@ -14,6 +14,7 @@
                 :accept="accept"
                 :multiple="multiple"
                 @change="handleChange"
+                :disabled="disabled"
             />
         </template>
     </div>

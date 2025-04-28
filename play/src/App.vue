@@ -115,15 +115,17 @@
         </template>
         <BButton size="medium">H</BButton>
     </BCard> --> 
-    <BSwitch v-model="checked" activeText="开" inactiveText="关" active-color="red">
+    <!-- <BSwitch v-model="checked" activeText="开" inactiveText="关" active-color="red">
     </BSwitch>
 
     <BUpload multiple :before-upload="handleBeforeUpload" action="http://localhost:3000/upload" v-slot="{ dragging }" showList listType="image">
         <BButton size="large"  :style="{ opacity: dragging.dragging ? 0 : 1, transition: 'opacity 0.3s' }">Upload</BButton>
-    </BUpload>
+    </BUpload> -->
 
-    <BProgress indeterminate type="cicle"></BProgress>
-    <BButton size="medium" :round="true">Button</BButton>
+    <BProgress indeterminate></BProgress>
+    <BProgress type="circle" indeterminate color="lightblue"></BProgress>
+    <BProgress type="dashboard" :percentage="0"></BProgress>
+    <!-- <BButton size="medium" :round="true">Button</BButton>
     <BTree
         :data="data"
         :keyField="'key'"
@@ -137,36 +139,36 @@
 
     <BTooltip content="HHHHIIIIIIIIllllllllllooooo" style="margin: 100px;" placement="top" light>
         Hover me!
-    </BTooltip>
+    </BTooltip> -->
 </template>
 
 <script lang="ts" setup>
     import BProgress from '@bottle-ui/components/progress'
     // import BIcon from '@bottle-ui/components/icon';
-    import BTree from '@bottle-ui/components/tree'
+    // import BTree from '@bottle-ui/components/tree'
     // import BCheckbox from '@bottle-ui/components/checkbox'
-    import BButton from '@bottle-ui/components/button'
+    // import BButton from '@bottle-ui/components/button'
     // import BSelect from '@bottle-ui/components/select'
     // import BOption from '@bottle-ui/components/select'
-    import BTooltip from '@bottle-ui/components/tooltip'
+    // import BTooltip from '@bottle-ui/components/tooltip'
     // import BVirtualList from '@bottle-ui/components/virtual-list'
     // // import type { TreeOption } from '@bottle-ui/components/tree'
     // // import BIcon from '@bottle-ui/components/icon'
     // import BInput from '@bottle-ui/components/input'
     // import { BFormItem, BForm } from '@bottle-ui/components/form'
-    import { ref, watch } from 'vue'
+    // import { ref, watch } from 'vue'
     // import type { FormInstance } from '@bottle-ui/components/form'
-    import BUpload from '@bottle-ui/components/upload'
+    // import BUpload from '@bottle-ui/components/upload'
     // import type { UploadRawFile } from '@bottle-ui/components/upload'
     // import BCard from '@bottle-ui/components/card'
-    import BSwitch from '@bottle-ui/components/switch'
+    // import BSwitch from '@bottle-ui/components/switch'
     // 如果设置了 required，当值是空字符串 ""，它仍然算是“存在的”，所以 required 通过了，然后：
     // 如果值是空字符串，它会 跳过 min/max 校验，认为“你没写值，没必要校验长度”。
     // 换句话说：空字符串只会触发 required 校验，不会触发 min/max 校验。
 
 
-    const selected = ref([])
-    const defaultCheckedKeys = ['1', '2']
+    // const selected = ref([])
+    // const defaultCheckedKeys = ['1', '2']
     // const checked = ref(false)
     // const state = ref({
     //     name: '',
@@ -175,10 +177,10 @@
     // const formRef = ref<FormInstance>()
     // const fakeData = ref([1,2,3,4,5,6,7,8,9,8,7,4,2,1,4,6])
 
-    async function handleBeforeUpload(rawFile: UploadRawFile){
-        console.log('beforeup', rawFile);
-        return true
-    }
+    // async function handleBeforeUpload(rawFile: UploadRawFile){
+    //     console.log('beforeup', rawFile);
+    //     return true
+    // }
 
     // function formValidate(){
     //     const form = formRef.value
@@ -186,16 +188,16 @@
     //         console.log(valid, err);
     //     })
     // }
-    // // {
-    // //     min: 6,
-    // //     max: 10,
-    // //     required: true,
-    // //     message: '密码长度为6 - 10',
-    // //     trigger: ['change', 'blur']
-    // // }
-    // // 不要把校验规则绑错了
+    // {
+    //     min: 6,
+    //     max: 10,
+    //     required: true,
+    //     message: '密码长度为6 - 10',
+    //     trigger: ['change', 'blur']
+    // }
+    // 不要把校验规则绑错了
 
-    const checked = ref(['1','3'])// 类型要一致
+    // const checked = ref(['1','3'])// 类型要一致
     // // const items = ref([1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 11, 2, 1, 1, 1, 1, 1, 1, 11, 2, 1, 1, 1, 1, 1, 1, 1])// 假数据
 
     // const checkvalue = ref(false)
@@ -221,21 +223,21 @@
     //     console.log('selectedout', selected.value)
     // })
 
-    const asyncload = async (node: TreeOption) => {// 模拟异步加载
-        // 模拟异步接口
-        await new Promise(resolve => setTimeout(resolve, 1000))
+    // const asyncload = async (node: TreeOption) => {// 模拟异步加载
+    //     // 模拟异步接口
+    //     await new Promise(resolve => setTimeout(resolve, 1000))
 
-        // 返回新的子节点数据（注意是 TreeOption[] 结构）
-        return [
-            { key: '3', label: '异步子节点1', children: [], disabled: true },
-            {
-                key: '4', label: '异步子节点2', children: [{
-                    key: '5',
-                    label: 'Hi'
-                }], isLeaf: false
-            }
-        ]
-    }
+    //     // 返回新的子节点数据（注意是 TreeOption[] 结构）
+    //     return [
+    //         { key: '3', label: '异步子节点1', children: [], disabled: true },
+    //         {
+    //             key: '4', label: '异步子节点2', children: [{
+    //                 key: '5',
+    //                 label: 'Hi'
+    //             }], isLeaf: false
+    //         }
+    //     ]
+    // }
 
     // function handler() {
     //     console.log('kkkk');
@@ -245,52 +247,52 @@
     //     console.log('load');
     // }
 
-    const data = [
-        {
-            label: "Node 1",
-            key: "1",
-            isLeaf: false,
-            children: [
-                {
-                    label: "Node 1.1",
-                    key: "1.1",
-                    // disabled: true,
-                    children: []
-                },
-                {
-                    label: "Node 1.2",
-                    key: "1.2",
-                    children: []
-                }
-            ]
-        },
-        {
-            label: "Node 2",
-            key: "2",
-            children: []
-        },
-        {
-            key: '3',
-            label: '异步子节点1',
-            children: [],
-            // disabled: true
-        },
-        {
-            key: '4',
-            label: '异步子节点2',
-            children: [{
-                key: '5',
-                label: 'Hi'
-            }],
-            isLeaf: false
-        },
-        {
-            key: '3',
-            label: '异步子节点1',
-            children: [],
-            // disabled: true
-        }
-    ];
+    // const data = [
+    //     {
+    //         label: "Node 1",
+    //         key: "1",
+    //         isLeaf: false,
+    //         children: [
+    //             {
+    //                 label: "Node 1.1",
+    //                 key: "1.1",
+    //                 // disabled: true,
+    //                 children: []
+    //             },
+    //             {
+    //                 label: "Node 1.2",
+    //                 key: "1.2",
+    //                 children: []
+    //             }
+    //         ]
+    //     },
+    //     {
+    //         label: "Node 2",
+    //         key: "2",
+    //         children: []
+    //     },
+    //     {
+    //         key: '3',
+    //         label: '异步子节点1',
+    //         children: [],
+    //         // disabled: true
+    //     },
+    //     {
+    //         key: '4',
+    //         label: '异步子节点2',
+    //         children: [{
+    //             key: '5',
+    //             label: 'Hi'
+    //         }],
+    //         isLeaf: false
+    //     },
+    //     {
+    //         key: '3',
+    //         label: '异步子节点1',
+    //         children: [],
+    //         // disabled: true
+    //     }
+    // ];
 </script>
 
 <style scoped>

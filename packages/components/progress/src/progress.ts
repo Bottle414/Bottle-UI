@@ -1,6 +1,6 @@
 import { ExtractPropTypes, PropType } from "vue"
 
-export type ProgressType = 'line' | 'cicle' | 'dashboard'
+export type ProgressType = 'line' | 'circle' | 'dashboard'
 export type ProgressStatus = 'success' | 'warning' | 'error'
 
 export const progressProps = {
@@ -16,6 +16,14 @@ export const progressProps = {
         type: Number,
         default: 200
     },
+    circleWidth: {
+        type: Number,
+        default: 10
+    },
+    radius: {
+        type: Number,
+        default: 100
+    },
     height: {
         type: Number,
         default: 10
@@ -25,7 +33,8 @@ export const progressProps = {
         default: 'success'
     },
     color: {
-        type: String
+        type: String,
+        default: '#bebe'
     },
     indeterminate: Boolean,// 动画
     showPercentage: Boolean// 显示进度

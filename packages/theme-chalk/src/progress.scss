@@ -2,17 +2,18 @@
 @use './common/var' as *;
 
 @include b(progress) {
-    display: flex;
+    position: relative;
+    display: inline-flex;
     align-items: center;
 
-    @include e(background) {
+    @include e(line-background) {
         position: relative;
         border-radius: 10px;
         background: $color-grey;
         overflow: hidden;
     }
 
-    @include e(bar) {
+    @include e(line) {
         display: flex;
         position: absolute;
         border-radius: 10px;
@@ -35,18 +36,66 @@
         @include when(indeterminate) {
             width: 50%;
             animation: indeterminate 1s infinite linear;
-            background: linear-gradient(90deg, rgba($color-primary, 0.3) 0%, $color-primary 50%, rgba($color-primary, 0.3) 100%);
         }
     }
 
-    @include e(circle) {
-        fill: "none";
+    @include e(circle-background) {
+        position: relative;
+        fill: none;
         stroke: $color-grey;
-        stroke-linecap: "round";
+        stroke-linecap: round;
+    }
+
+    @include e(circle) {
+        fill: none;
+        stroke-linecap: round;
+        transition: stroke-dashoffset .5s;
+        transform: rotate(-90deg);
+
+        @include when(indeterminate) {
+            stroke-dashoffset: 200%;
+            width: 50%;
+            animation: indeterCircle 1s infinite linear;
+        }
+    }
+
+    @include e(dashboard-background) {
+        position: relative;
+        fill: none;
+        transform: rotate(46deg);
+        stroke: $color-grey;
+        stroke-linecap: round;
+    }
+
+    @include e(dashboard) {
+        fill: none;
+        stroke-linecap: round;
+        transition: stroke-dashoffset .5s;
+        transform: rotate(46deg);
+
+        @include when(indeterminate) {
+            stroke-dashoffset: 200%;
+            width: 50%;
+            animation: indeterDashboard 1s infinite linear;
+        }
     }
 
     @include e(text) {
         padding: 0 10px;
+
+        @include when(circle) {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @include when(dashboard) {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     }
 }
 
@@ -58,5 +107,23 @@
     100% {
         left: 100%;
         // transform: translateX(200%);
+    }
+}
+
+@keyframes indeterCircle {
+    0% {
+        rotate: -90deg;
+    }
+    100% {
+        rotate: 270deg;
+    }
+}
+
+@keyframes indeterDashboard {
+    0% {
+        rotate: -90deg;
+    }
+    100% {
+        rotate: 270deg;
     }
 }

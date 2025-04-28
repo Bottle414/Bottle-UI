@@ -1,0 +1,51 @@
+@use './mixins/mixins' as *;
+@use './common/var' as *;
+
+@include b(collapse) {
+    @include e(board) {
+        position: relative;
+        width: 100%;
+        text-align: left;
+        padding: 1% 1%;
+        border: none;
+        border-top: 1px solid $color-grey;
+        background: $color-white;
+        outline: none;
+        transition: border .1s;
+
+        &:last-of-type{
+            border-bottom: 1px solid $color-grey;
+
+            @include when(open){
+                border-bottom-color: transparent;
+            }
+        }
+    }
+
+    @include e(panel){
+        height: 0;
+        padding: 0 1%;
+        overflow: hidden;
+        transition: height .3s;
+
+        @include when(open) {
+            height: 100px;
+            &:last-of-type{
+                border-bottom: 1px solid $color-grey;
+            }
+        }
+    }
+
+    @include e(icon){
+        position: absolute;
+        top: 0;
+        right: 1%;
+        color: $color-black;
+        font-size: 12px;
+        transition: rotate .15s;
+
+        @include when(open){
+            transform: rotate(45deg);
+        }
+    }
+}

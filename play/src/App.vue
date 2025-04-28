@@ -125,6 +125,21 @@
     <BProgress indeterminate></BProgress>
     <BProgress type="circle" indeterminate color="lightblue"></BProgress>
     <BProgress type="dashboard" :percentage="0"></BProgress>
+    <BCollapse>
+        <li>HI</li>
+        <li>HI</li>
+        <li>HI</li>
+        <li>HI</li>
+        <li>HI</li>
+        <template #title>KKK</template>
+        <template #icon>Icon</template>
+    </BCollapse>
+    <BCollapse>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt nostrum inventore, sint beatae in aut laudantium quibusdam commodi sed dolorum magni earum quis, maiores, culpa deserunt ab tenetur repellat perspiciatis adipisci rem aliquam corporis esse provident. Enim a voluptatem, sunt culpa beatae excepturi, nisi maxime est nam repellendus, dolorum totam.</p>
+    </BCollapse>
+    <BCollapse>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt nostrum inventore, sint beatae in aut laudantium quibusdam commodi sed dolorum magni earum quis, maiores, culpa deserunt ab tenetur repellat perspiciatis adipisci rem aliquam corporis esse provident. Enim a voluptatem, sunt culpa beatae excepturi, nisi maxime est nam repellendus, dolorum totam.</p>
+    </BCollapse>
     <!-- <BButton size="medium" :round="true">Button</BButton>
     <BTree
         :data="data"
@@ -144,6 +159,7 @@
 
 <script lang="ts" setup>
     import BProgress from '@bottle-ui/components/progress'
+    import BCollapse from '@bottle-ui/components/collapse'
     // import BIcon from '@bottle-ui/components/icon';
     // import BTree from '@bottle-ui/components/tree'
     // import BCheckbox from '@bottle-ui/components/checkbox'

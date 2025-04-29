@@ -33,10 +33,15 @@ export const buttonProps = {
         type: String as PropType<NativeType>,
         default: 'button'
     },
+    target: {// 进行滚动的目标元素
+        type: String,
+        default: 'window'
+    },
     round: Boolean,// 圆角，按百分比计算？
     circle: Boolean,// 圆形按钮
     disabled: Boolean,// 禁用
-    loading: Boolean// 加载状态
+    loading: Boolean,// 加载状态
+    toTop: Boolean,// 回到顶部
 } as const// 变成只读的
 
 export const buttonEmits = {// 一些事件

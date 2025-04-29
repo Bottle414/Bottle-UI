@@ -15,6 +15,7 @@ $button-colors: (
     justify-content: center;
     text-align: center;
     border-radius: 5px;
+    transition: opacity 0.3s;
 
     @include button-variant($color-black, $color-primary, $color-primary-hover);
     cursor: pointer; /* 不再使用 var */
@@ -35,33 +36,32 @@ $button-colors: (
         }
     }
 
-    @include m(small){
+    @include m(small) {
         padding: 5px 10px;
     }
 
-    @include m(medium){
+    @include m(medium) {
         padding: 10px 15px;
     }
 
-    @include m(large){
+    @include m(large) {
         padding: 15px 20px;
     }
 
-    @include when(round){
+    @include when(round) {
         border-radius: 10px;
     }
 
-    @include when(circle){
+    @include when(circle) {
         aspect-ratio: 1 / 1;
         border-radius: 100%;
     }
 
-    @include when(loading){
+    @include when(loading) {
         @include button-variant($color-black, $color-grey, $color-grey);
     }
 
-    @include when(disabled){
-
+    @include when(disabled) {
         @include button-variant($color-black, $color-grey, $color-black);
 
         &,
@@ -69,5 +69,22 @@ $button-colors: (
         &:focus {
             cursor: not-allowed;
         }
+    }
+
+    @include when(toTop) {
+        position: fixed;
+        top: 80%;
+        right: 10%;
+        user-select: none;
+        pointer-events: none;
+        opacity: 0;
+        z-index: 100;
+    }
+
+    @include when(visible) {
+        box-shadow: 1px 2px 2px rgba($color: #909090, $alpha: 0.1),
+            2px 2px 2px rgba($color: #909090, $alpha: 0.2);
+        pointer-events: initial;
+        opacity: 1;
     }
 }

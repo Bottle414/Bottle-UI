@@ -6,7 +6,7 @@ import Icon from '../examples/button/icon.vue'
 import Loading from '../examples/button/loading.vue'
 import Size from '../examples/button/size.vue'
 import Attributes from '../examples/button/attributes.vue'
-import BIcon from '@Bottle-UI/components/icon'
+import Totop from '../examples/button/totop.vue'
 
 </script>
 
@@ -31,6 +31,10 @@ import BIcon from '@Bottle-UI/components/icon'
 ## 改变大小
 通过设置size属性来改变按钮大小
 <Size/>
+
+## 回到顶部
+通过 toTop 属性为按钮设置回到顶部功能, 通过绑定 target 属性可以滚动到具有指定 id 的元素顶部
+<Totop/>
 
 # Button API
 ## Button Attributes

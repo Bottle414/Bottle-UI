@@ -155,6 +155,8 @@
     <BTooltip content="HHHHIIIIIIIIllllllllllooooo" style="margin: 100px;" placement="top" light>
         Hover me!
     </BTooltip> -->
+    <BButton to-top>toTop</BButton>
+    <div style="padding-top: 1000px;"></div>
 </template>
 
 <script lang="ts" setup>
@@ -163,7 +165,7 @@
     // import BIcon from '@bottle-ui/components/icon';
     // import BTree from '@bottle-ui/components/tree'
     // import BCheckbox from '@bottle-ui/components/checkbox'
-    // import BButton from '@bottle-ui/components/button'
+    import BButton from '@bottle-ui/components/button'
     // import BSelect from '@bottle-ui/components/select'
     // import BOption from '@bottle-ui/components/select'
     // import BTooltip from '@bottle-ui/components/tooltip'

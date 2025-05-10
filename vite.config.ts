@@ -17,5 +17,10 @@ export default defineConfig({
       fileName: (format) => `bottle-ui.${format}.js`
     },
     outDir: 'packages/dist', 
+    rollupOptions: {
+      output: {
+        exports: 'named', // 👈 加上这个，确保 default 被导出！
+      }
+    }
   }
 })

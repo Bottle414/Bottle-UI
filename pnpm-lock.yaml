@@ -8,16 +8,16 @@ importers:
 
   .:
     dependencies:
-      '@bottle-ui/components':
+      '@bottle414/components':
         specifier: workspace:*
         version: link:packages/components
-      '@bottle-ui/hooks':
+      '@bottle414/hooks':
         specifier: workspace:*
         version: link:packages/hooks
-      '@bottle-ui/theme-chalk':
+      '@bottle414/theme-chalk':
         specifier: workspace:*
         version: link:packages/theme-chalk
-      '@bottle-ui/utils':
+      '@bottle414/utils':
         specifier: workspace:*
         version: link:packages/utils
       '@changesets/cli':

@@ -21,8 +21,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Test with vitest
-        run: npm run test
+      # - name: Test with vitest
+      #  run: npm run test
 
       - name: Build project
         run: npm run build

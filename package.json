@@ -5,7 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm -C play dev"
+    "dev": "pnpm -C play dev",
+    "build": "vite build"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
     "@bottle-ui/hooks": "workspace:*",
     "@bottle-ui/theme-chalk": "workspace:*",
     "@bottle-ui/utils": "workspace:*",
+    "@changesets/cli": "^2.29.3",
     "async-validator": "^4.2.5",
     "sass": "^1.86.3",
     "typescript": "^5.8.3",
@@ -26,5 +28,8 @@
     "packages/theme-chalk",
     "packages/utils",
     "packages/hooks"
-  ]
+  ],
+  "devDependencies": {
+    "vue-tsc": "^2.2.4"
+  }
 }

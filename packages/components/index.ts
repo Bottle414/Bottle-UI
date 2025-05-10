@@ -1,3 +1,4 @@
+// 提供按需导入方法
 export * from './button'
 // export * from './calendar'
 export * from './card'
@@ -14,3 +15,19 @@ export * from './tree'
 export * from './virtual-list'
 
 // 此处声明全局注册函数
+import BButton from './button'
+import BCard from './card'
+import BCheckbox from './checkbox'
+import { BForm, BFormItem } from './form'
+import BIcon from './icon'
+import BInput from './input'
+import BProgress from './progress'
+import BSelect from './select'
+import BSwitch from './switch'
+import BUpload from './upload'
+import BTooltip from './tooltip'
+import BTree from './tree'
+import BVirtualList from './virtual-list'
+
+const allComponents = { BButton, BCard, BCheckbox, BForm, BFormItem, BIcon, BProgress, BSelect, BInput, BSwitch, BUpload, BTooltip, BTree, BVirtualList }
+export default allComponents

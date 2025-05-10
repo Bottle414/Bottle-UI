@@ -1,13 +1,18 @@
 {
-  "name": "@bottle-ui/components",
+  "name": "@bottle414/components",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.7.1"
+  "packageManager": "pnpm@10.7.1",
+  "dependencies": {
+    "@bottle414/utils": "workspace:*",
+    "@bottle414/hooks": "workspace:*",
+    "@bottle414/theme-chalk": "workspace:*"
+  }
 }

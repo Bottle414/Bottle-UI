@@ -18,8 +18,28 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install dependencies
-        run: npm install
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8 # 使用 pnpm 版本 8
 
-      - name: Build docs
-        run: npm run docs:build
+      - name: Install dependencies
+        run: pnpm install
+    
+      # - name: Test with vitest
+      #  run: npm run test
+
+      - name: Build project
+        run: pnpm run build
+
+      - name: Update version
+        run: npx changeset version
+
+      - name: Login to npm
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      - name: Publish new npm package
+        run: npx changeset publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+

@@ -1,8 +1,8 @@
 {
-    "name": "@bottle-ui/theme-chalk",
+    "name": "@bottle414/theme-chalk",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "index.ts",
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1"
     },

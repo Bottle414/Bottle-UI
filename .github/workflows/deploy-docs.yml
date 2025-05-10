@@ -18,13 +18,14 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install pnpm and dependences
+      - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 10.7.1 # pnpm，但是它只在当前步骤可用，后续步骤没继承它的环境,所以要添加PATH
-          run_install: true
-      
+          version: 8 # 使用 pnpm 版本 8
 
+      - name: Install dependencies
+        run: pnpm install
+    
       # - name: Test with vitest
       #  run: npm run test
 

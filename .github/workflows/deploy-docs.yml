@@ -19,13 +19,13 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
 
       # - name: Test with vitest
       #  run: npm run test
 
       - name: Build project
-        run: pnpm run build
+        run: npm run build
 
       - name: Update version
         run: npx changeset version

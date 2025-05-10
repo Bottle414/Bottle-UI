@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '@Bottle-UI': path.resolve(__dirname, './packages'),
+      '@bottle-ui': path.resolve(__dirname, './packages'),
     },
   },
   build: {

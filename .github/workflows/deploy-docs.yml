@@ -21,11 +21,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install pnpm
+        run: npm install pnpm
+
       # - name: Test with vitest
       #  run: npm run test
 
       - name: Build project
-        run: npm run build
+        run: pnpm run build
 
       - name: Update version
         run: npx changeset version

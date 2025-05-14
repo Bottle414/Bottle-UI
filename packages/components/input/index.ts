@@ -6,3 +6,9 @@ export const BInput = withInstall(Input)
 export default BInput
 
 export * from './src/input' // 导出所有类型
+
+declare module 'vue' {
+    export interface GlobalComponents {
+        BInput: typeof Input
+    }
+}

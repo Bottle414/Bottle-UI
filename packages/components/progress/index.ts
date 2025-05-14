@@ -5,3 +5,9 @@ export const BProgress = withInstall(Progress)
 export default BProgress
 
 export * from './src/progress'
+
+declare module 'vue' {
+    export interface GlobalComponents {
+        BProgress: typeof BProgress
+    }
+}

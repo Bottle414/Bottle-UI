@@ -5,3 +5,9 @@ export const BCheckbox = withInstall(Checkbox)
 export default BCheckbox
 
 export * from './src/checkbox'
+
+declare module 'vue' {
+    export interface GlobalComponents {
+        BCheckbox: typeof Checkbox
+    }
+}

@@ -5,3 +5,9 @@ export const BSelect = withInstall(Select)
 export default BSelect
 
 export * from './src/select'
+
+declare module 'vue' {
+    export interface GlobalComponents {
+        BSelect: typeof Select
+    }
+}

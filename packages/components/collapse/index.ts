@@ -5,3 +5,9 @@ export const BCollapse = withInstall(Collapse)
 export default BCollapse
 
 export * from './src/collapse'
+
+declare module 'vue' {
+    export interface GlobalComponents {
+        BCollapse: typeof Collapse
+    }
+}

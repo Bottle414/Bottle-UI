@@ -6,3 +6,9 @@ export const BVirtualList = withInstall(VirtualList)
 export default BVirtualList
 
 export * from './src/virtual-list'
+
+declare module 'vue' {
+    export interface GlobalComponents {
+        BVirtualList: typeof VirtualList
+    }
+}

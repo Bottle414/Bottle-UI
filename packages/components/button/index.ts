@@ -6,3 +6,9 @@ export const BButton = withInstall(Button)
 export default BButton
 
 export * from './src/button'// 导出所有类型
+
+declare module 'vue' {
+    export interface GlobalComponents {
+        BButton: typeof Button
+    }
+}

@@ -6,3 +6,9 @@ export const BTooltip = withInstall(Tooltip)
 export default BTooltip
 
 export * from './src/tooltip'// 导出所有类型
+
+declare module 'vue' {
+    export interface GlobalComponents {
+        BTooltip: typeof Tooltip
+    }
+}

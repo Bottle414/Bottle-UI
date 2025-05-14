@@ -6,3 +6,9 @@ export const BSwitch = withInstall(Switch)
 export default BSwitch
 
 export * from './src/switch'// 导出所有类型
+
+declare module 'vue' {
+    export interface GlobalComponents {
+        BSwitch: typeof Switch
+    }
+}

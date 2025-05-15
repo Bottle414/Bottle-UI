@@ -11,7 +11,6 @@
 </template>
 
 <script lang='ts' setup>
-    import { BUpload, BIcon } from '@bottle-ui/components'
 </script>
 
 <style scoped>

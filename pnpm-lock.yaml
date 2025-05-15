@@ -26,6 +26,9 @@ importers:
       async-validator:
         specifier: ^4.2.5
         version: 4.2.5
+      pnpm:
+        specifier: ^10.11.0
+        version: 10.11.0
       sass:
         specifier: ^1.86.3
         version: 1.87.0
@@ -43,7 +46,7 @@ importers:
         specifier: ^0.13.0
         version: 0.13.0
       '@vitejs/plugin-vue':
-        specifier: ^5.2.1
+        specifier: ^5.2.3
         version: 5.2.3(vite@6.3.2(@types/node@22.14.1)(sass@1.87.0))(vue@3.5.13(typescript@5.8.3))
       '@vue/tsconfig':
         specifier: ^0.7.0
@@ -57,6 +60,9 @@ importers:
 
   docs:
     dependencies:
+      '@bottle414/bottle-ui':
+        specifier: ^2.0.0
+        version: 2.0.0
       vitepress-plugin-example:
         specifier: ^1.1.0
         version: 1.1.0
@@ -222,6 +228,9 @@ packages:
   '@babel/types@7.27.0':
     resolution: {integrity: sha512-H45s8fVLYjbhFH62dIJ3WtmJ6RSPt/3DRO0ZcT2SUiYiQyz3BLVb9ADEnLl91m74aQPS3AzzeajZHYOalWe3bg==}
     engines: {node: '>=6.9.0'}
+
+  '@bottle414/bottle-ui@2.0.0':
+    resolution: {integrity: sha512-6/VCV0Q3KbOlNvcq/IZdtKc0ScKeAeY0bym29ZftMhfDQy0ojldS8yzCMZIKL7bpMp+Y/uOohQ1QS4p1cIt4BQ==}
 
   '@changesets/apply-release-plan@7.0.12':
     resolution: {integrity: sha512-EaET7As5CeuhTzvXTQCRZeBUcisoYPDDcXvgTE/2jmmypKp0RC7LxKj/yzqeh/1qFTZI7oDGFcL1PHRuQuketQ==}
@@ -1811,6 +1820,11 @@ packages:
   pkg-types@2.1.0:
     resolution: {integrity: sha512-wmJwA+8ihJixSoHKxZJRBQG1oY8Yr9pGLzRmSsNms0iNWyHHAlZCa7mmKiFR10YPZuz/2k169JiS/inOjBCZ2A==}
 
+  pnpm@10.11.0:
+    resolution: {integrity: sha512-ZUBYP0HMX2KOs9l3Ps7oAvT575kjzEW2mJD7R5kdSwkpZGlOw6T3OKQgyRijMwYsi5JdMS9C5PDCY+tgNVH5dw==}
+    engines: {node: '>=18.12'}
+    hasBin: true
+
   postcss@8.5.3:
     resolution: {integrity: sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==}
     engines: {node: ^10 || ^12 || >=14}
@@ -2425,6 +2439,8 @@ snapshots:
     dependencies:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
+
+  '@bottle414/bottle-ui@2.0.0': {}
 
   '@changesets/apply-release-plan@7.0.12':
     dependencies:
@@ -4047,6 +4063,8 @@ snapshots:
       confbox: 0.2.2
       exsolve: 1.0.5
       pathe: 2.0.3
+
+  pnpm@10.11.0: {}
 
   postcss@8.5.3:
     dependencies:

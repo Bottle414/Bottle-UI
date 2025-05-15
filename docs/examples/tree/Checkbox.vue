@@ -19,7 +19,6 @@
 </template>
 
 <script lang='ts' setup>
-    import { BTree } from '@bottle-ui/components'
     import { ref } from 'vue'
     const selected1 = ref([])
     const selected2 = ref([])

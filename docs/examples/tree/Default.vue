@@ -11,7 +11,6 @@
 </template>
 
 <script lang='ts' setup>
-    import { BTree } from '@bottle-ui/components'
     const data = [
         {
             label: "Node 1",

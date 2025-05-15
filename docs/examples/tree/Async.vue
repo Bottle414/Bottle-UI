@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-    import { BTree, TreeOption } from '@bottle-ui/components'
+    import { TreeOption } from '@bottle414/bottle-ui/components/tree'
     const data = [
         {
             label: 'Node 1',

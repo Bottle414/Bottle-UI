@@ -10,7 +10,6 @@
 </template>
 
 <script lang='ts' setup>
-    import { BCard } from '@bottle-ui/components'
 </script>
 
 <style scoped>

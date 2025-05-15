@@ -7,7 +7,6 @@
 </template>
 
 <script lang='ts' setup>
-    import { BCheckbox } from '@bottle-ui/components'
     import { ref } from 'vue'
     let modelValue = ref(true)
     const label = '标签'

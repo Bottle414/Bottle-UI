@@ -10,8 +10,6 @@
 </template>
 
 <script lang='ts' setup>
-    import { BButton, BIcon } from '@bottle-ui/components'
-    
 </script>
 
 <style scoped>

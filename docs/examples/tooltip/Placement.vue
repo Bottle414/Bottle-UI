@@ -8,7 +8,6 @@
 </template>
 
 <script lang='ts' setup>
-    import { BTooltip } from '@bottle-ui/components'
 </script>
 
 <style scoped>

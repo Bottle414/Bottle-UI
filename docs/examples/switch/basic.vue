@@ -6,7 +6,6 @@
 </template>
 
 <script lang='ts' setup>
-    import { BSwitch } from '@bottle-ui/components'
     import { ref } from 'vue'
     let modelValue = ref(true)
 </script>

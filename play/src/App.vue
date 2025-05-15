@@ -160,12 +160,14 @@
 </template>
 
 <script lang="ts" setup>
-    import BProgress from '@bottle-ui/components/progress'
-    import BCollapse from '@bottle-ui/components/collapse'
+    import {BButton}  from '@bottle-ui/components';
+    // import { BButton } from '@bottle-ui/components';
+    // import BProgress from '@bottle-ui/components/progress'
+    // import BCollapse from '@bottle-ui/components/collapse'
     // import BIcon from '@bottle-ui/components/icon';
     // import BTree from '@bottle-ui/components/tree'
     // import BCheckbox from '@bottle-ui/components/checkbox'
-    import BButton from '@bottle-ui/components/button'
+    // import BButton from '@bottle-ui/components/button'
     // import BSelect from '@bottle-ui/components/select'
     // import BOption from '@bottle-ui/components/select'
     // import BTooltip from '@bottle-ui/components/tooltip'

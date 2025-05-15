@@ -7,10 +7,7 @@
 </template>
 
 <script lang='ts' setup>
-import { BCheckbox } from '@bottle-ui/components';
-
 </script>
 
 <style scoped>
-
 </style>

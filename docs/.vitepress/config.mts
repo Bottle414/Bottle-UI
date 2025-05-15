@@ -16,7 +16,6 @@ export default defineConfig({
       { text: '快速开始', link: '/guide/getting-started.md' },
       { text: '组件实例', link: '/components' }
     ],
-
     sidebar: {
       '/components':[
         {
@@ -38,13 +37,6 @@ export default defineConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
     ]
-  },
-  vite: {
-    resolve: {
-      alias: {
-        '@Bottle-UI': resolve(__dirname, '../../../Bottle-UI/packages')// 这样确保兼容
-      }
-    },
   },
   markdown: {
     config(md) {

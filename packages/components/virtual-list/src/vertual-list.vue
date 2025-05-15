@@ -12,7 +12,7 @@
 </template>
 
 <script lang='ts' setup>
-    import { ref, computed, watch, useTemplateRef, nextTick } from 'vue'
+    import { ref, computed, watch, useTemplateRef, nextTick, onMounted } from 'vue'
     import useNamespace from '@bottle-ui/hooks/useNamespace'
     import { virtualListProps } from './virtual-list'
 
@@ -26,13 +26,26 @@
         end: props.remain
     })// 初始渲染数据
 
-    const itemHeight = (props.size || item.value!.style.height) as number// 传了size就是size，不然就计算
+    const itemHeight = ref<number>(props.size || 1)// 传了size就是size，不然就计算
     const offset = ref(0)// 偏移量
 
-    nextTick(() => {// 组件加载完毕才能获得DOM
-        virtualBox.value!.style.height = itemHeight * props.remain + 'px'
-        scrollBar.value!.style.height = props.items.length * itemHeight + 'px'
+    onMounted(() => {
+        nextTick(() => {
+            if (!virtualBox.value || !scrollBar.value || !item.value) return
+
+            // 如果没传 size，就用 item 的真实高度
+            if (!props.size) {
+            const height = parseFloat(getComputedStyle(item.value).height)
+            if (height > 0) {
+                itemHeight.value = height
+            }
+            }
+
+            virtualBox.value.style.height = itemHeight.value * props.remain + 'px'
+            scrollBar.value.style.height = props.items.length * itemHeight.value + 'px'
+        })
     })
+
 
     const prev = computed(() => {
         return Math.min(state.value.start, props.remain)
@@ -48,15 +61,16 @@
 
     watch(props.items, () => {
         if (scrollBar.value){
-            scrollBar.value!.style.height = props.items.length * itemHeight + 'px'
+            scrollBar.value.style.height = props.items.length * itemHeight.value + 'px'
         }
     }, { immediate: true })// 总长度更新
 
     function handlerScroll(){// 计算位移
-        const scrollTop = virtualBox.value?.scrollTop!
-        state.value.start = Math.floor(scrollTop / itemHeight)
+        if (!virtualBox.value) return
+        const scrollTop = virtualBox.value?.scrollTop
+        state.value.start = Math.floor(scrollTop / itemHeight.value)
         state.value.end = state.value.start + props.remain
-        offset.value = state.value.start * itemHeight// - itemHeight * prev.value
+        offset.value = state.value.start * itemHeight.value// - itemHeight * prev.value
     }
 
     defineSlots<{

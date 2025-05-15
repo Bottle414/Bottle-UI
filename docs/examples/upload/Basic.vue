@@ -9,7 +9,6 @@
 </template>
 
 <script lang='ts' setup>
-    import { BUpload, BButton } from '@bottle-ui/components'
 </script>
 
 <style scoped>

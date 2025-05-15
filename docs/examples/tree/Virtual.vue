@@ -13,7 +13,6 @@
 </template>
 
 <script lang='ts' setup>
-    import { BTree } from '@bottle-ui/components'
     import { ref } from 'vue';
     const selected = ref([])
     const checked = ['1', '3', '8']

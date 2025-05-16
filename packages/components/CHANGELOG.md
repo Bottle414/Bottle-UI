@@ -1,5 +1,15 @@
 # @bottle414/components
 
+## 2.0.2
+
+### Patch Changes
+
+-   fix: use one .d.ts file instead of multiple
+-   Updated dependencies
+    -   @bottle414/hooks@2.0.2
+    -   @bottle414/theme-chalk@2.0.2
+    -   @bottle414/utils@2.0.2
+
 ## 2.0.1
 
 ### Patch Changes

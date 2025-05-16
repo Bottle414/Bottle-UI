@@ -25,9 +25,8 @@
     "paths": {
       "@bottle-ui/*": ["packages/*"]
     },
-    "outDir": "dist/types"// 输出目录
+    "outDir": "packages/dist/types"// 输出目录
   },
-  "include": ["packages"],
   "exclude": [  // 排除掉哪些类库
     "node_modules",
     "**/__tests__", // **代表任意目录

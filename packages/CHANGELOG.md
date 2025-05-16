@@ -1,5 +1,11 @@
 # @bottle414/bottle-ui
 
+## 3.0.2
+
+### Patch Changes
+
+-   fix: use one .d.ts file instead of multiple
+
 ## 3.0.1
 
 ### Patch Changes

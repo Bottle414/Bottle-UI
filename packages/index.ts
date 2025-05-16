@@ -2,10 +2,10 @@
 import './theme-chalk/src/index.scss'// 触发vite打包css文件
 
 import Components from './components'
-import { App } from 'vue'
+import { App, Component } from 'vue'
 
 const install = (app: App) => {
-    Object.entries(Components).forEach(([key, component]) => {
+    Object.entries<Component>(Components).forEach(([key, component]) => {
         app.component(key, component)
     })
 }

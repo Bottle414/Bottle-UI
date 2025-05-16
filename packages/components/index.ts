@@ -12,6 +12,7 @@ export * from './switch'
 export * from './upload'
 export * from './tooltip'
 export * from './tree'
+export * from './collapse'
 export * from './virtual-list'
 
 // 此处声明全局注册函数
@@ -28,6 +29,7 @@ import BUpload from './upload'
 import BTooltip from './tooltip'
 import BTree from './tree'
 import BVirtualList from './virtual-list'
+import BCollapse from './collapse'
 
-const allComponents = { BButton, BCard, BCheckbox, BForm, BFormItem, BIcon, BProgress, BSelect, BInput, BSwitch, BUpload, BTooltip, BTree, BVirtualList }
+const allComponents = { BButton, BCard, BCheckbox, BForm, BFormItem, BIcon, BProgress, BSelect, BInput, BSwitch, BUpload, BTooltip, BTree, BVirtualList, BCollapse }
 export default allComponents

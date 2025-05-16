@@ -29,6 +29,8 @@ export default defineConfig({
             { text: 'Tree', link: '/components/tree' },
             { text: 'Upload', link: '/components/upload' },
             { text: 'Input', link: '/components/Input' },
+            { text: 'Collapse', link: '/components/Collapse' },
+            { text: 'Form', link: '/components/Form' },
             { text: 'Progress', link: '/components/Progress' },
             { text: 'VirtualList', link: '/components/virtualList' },
             { text: 'Runtime API Examples', link: '/api-examples' }

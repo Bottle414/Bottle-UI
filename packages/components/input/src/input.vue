@@ -23,10 +23,11 @@
             />
         </label>
         <!-- 如果输入了多余的属性，直接绑定输入框 -->
-        <span v-if="slots.suffix" :class="ns.e('suffix')">
-            <slot name="suffix"></slot>
-            <BIcon v-if="showVisible" @click="handlePasswordVisible">E</BIcon>
-            <BIcon v-if="showClear" @click="handlePasswordClear">X</BIcon>
+        <span :class="ns.e('suffix')">
+            <slot name="suffix">
+                <BIcon v-if="showVisible" @click="handlePasswordVisible">E</BIcon>
+                <BIcon v-if="showClear" @click="handlePasswordClear">X</BIcon>
+            </slot>
         </span>
     </div>
 </template>

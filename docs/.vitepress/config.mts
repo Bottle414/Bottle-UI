@@ -28,6 +28,8 @@ export default defineConfig({
             { text: 'Switch', link: '/components/switch' },
             { text: 'Tree', link: '/components/tree' },
             { text: 'Upload', link: '/components/upload' },
+            { text: 'Input', link: '/components/Input' },
+            { text: 'Progress', link: '/components/Progress' },
             { text: 'VirtualList', link: '/components/virtualList' },
             { text: 'Runtime API Examples', link: '/api-examples' }
           ]

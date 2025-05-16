@@ -1,6 +1,8 @@
 <template>
     <Example>
         <BInput
+            type="password"
+            clearable
             v-model="inputValue"
             placeholder="please input..."
         >

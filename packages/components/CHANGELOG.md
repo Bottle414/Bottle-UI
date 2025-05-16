@@ -1,5 +1,11 @@
 # @bottle414/components
 
+## 1.1.4
+
+### Patch Changes
+
+-   fix: input slots
+
 ## 1.1.3
 
 ### Patch Changes

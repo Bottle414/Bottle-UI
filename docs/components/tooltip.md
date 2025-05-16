@@ -11,15 +11,15 @@ import Slots from '../examples/tooltip/Slots.vue'
 
 ## 基础用法
 可以通过设置placement属性来决定文字提示的方向, content属性设置文字效果
-<Placement/>
+<demo vue="../examples/tooltip/Placement.vue"/>
 
 ## 为元素加上文字提示
 使用插槽包裹元素即可为元素添加文字提示
-<Custom/>
+<demo vue="../examples/tooltip/Custom.vue"/>
 
 ## 不同的主题
 文字提示默认是黑底白字，可以通过light属性设置白底黑字
-<Theme/>
+<demo vue="../examples/tooltip/Theme.vue"/>
 
 # Tooltip API
 ## Tooltip Attributes

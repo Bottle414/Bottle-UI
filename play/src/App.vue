@@ -35,7 +35,7 @@
         </template>
     </BVirtualList> -->
 
-    <!-- <BButton size="large" round @mousedown="handlerClick" disabled>Hi</BButton>
+    <BButton size="large" round @mousedown="handlerClick" disabled>Hi</BButton>
     <br />
     <BInput
         type="password"
@@ -51,9 +51,9 @@
         </template>
         <template #suffix>Suffix</template>
     </BInput>
-    <br /> -->
+    <br />
 
-    <!-- <BForm
+    <BForm
         ref="formRef"
         :model="state"
         :rules="{
@@ -80,7 +80,7 @@
             ]"> -->
             <!-- 数组形式校验规则, 两个触发时机 -->
             <!-- 告诉它校验name -->
-            <!-- <BInput
+            <BInput
                 v-model="state.name"
                 @blur="handleBlur"
                 @focus="handleFocus"
@@ -171,12 +171,12 @@
     // import BSelect from '@bottle-ui/components/select'
     // import BOption from '@bottle-ui/components/select'
     // import BTooltip from '@bottle-ui/components/tooltip'
-    // import BVirtualList from '@bottle-ui/components/virtual-list'
+    import BVirtualList from '@bottle-ui/components/virtual-list'
     // // import type { TreeOption } from '@bottle-ui/components/tree'
     // // import BIcon from '@bottle-ui/components/icon'
-    // import BInput from '@bottle-ui/components/input'
+    import BInput from '@bottle-ui/components/input'
     // import { BFormItem, BForm } from '@bottle-ui/components/form'
-    // import { ref, watch } from 'vue'
+    import { ref, watch } from 'vue'
     // import type { FormInstance } from '@bottle-ui/components/form'
     // import BUpload from '@bottle-ui/components/upload'
     // import type { UploadRawFile } from '@bottle-ui/components/upload'
@@ -187,15 +187,15 @@
     // 换句话说：空字符串只会触发 required 校验，不会触发 min/max 校验。
 
 
-    // const selected = ref([])
-    // const defaultCheckedKeys = ['1', '2']
-    // const checked = ref(false)
-    // const state = ref({
-    //     name: '',
-    //     password: '7k7kkkk'
-    // })
+    const selected = ref([])
+    const defaultCheckedKeys = ['1', '2']
+    const checked = ref(false)
+    const state = ref({
+        name: '',
+        password: '7k7kkkk'
+    })
     // const formRef = ref<FormInstance>()
-    // const fakeData = ref([1,2,3,4,5,6,7,8,9,8,7,4,2,1,4,6])
+    const fakeData = ref([1,2,3,4,5,6,7,8,9,8,7,4,2,1,4,6])
 
     // async function handleBeforeUpload(rawFile: UploadRawFile){
     //     console.log('beforeup', rawFile);
@@ -221,19 +221,19 @@
     // // const items = ref([1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 11, 2, 1, 1, 1, 1, 1, 1, 11, 2, 1, 1, 1, 1, 1, 1, 1])// 假数据
 
     // const checkvalue = ref(false)
-    // let inputRef = ref('hi')
+    let inputRef = ref('hi')
 
-    // function handlerClick() {
-    //     console.log('hihihi')
-    // }
+    function handlerClick() {
+        console.log('hihihi')
+    }
 
-    // function handleBlur() {
-    //     console.log('blur')
-    // }
+    function handleBlur() {
+        console.log('blur')
+    }
 
-    // function handleFocus() {
-    //     console.log('focus')
-    // }
+    function handleFocus() {
+        console.log('focus')
+    }
 
     // watch(inputRef, () => {
     //     console.log('inputRef: ' + inputRef.value)

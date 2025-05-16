@@ -8,11 +8,3 @@
         <BButton style="width: 100px; height: 40px;" round>Custom</BButton>
     </Example>
 </template>
-
-<script lang='ts' setup>
-    
-</script>
-
-<style scoped>
-    
-</style>

@@ -14,10 +14,3 @@
         <BButton type='info' circle>Info</BButton>
     </Example>
 </template>
-
-<script lang='ts' setup>
-</script>
-
-<style scoped>
-
-</style>

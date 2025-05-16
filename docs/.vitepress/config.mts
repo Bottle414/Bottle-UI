@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 import { fileURLToPath } from 'url'
 import { dirname, resolve } from 'path'
 import vue from '@vitejs/plugin-vue'
-import examplePlugin from 'vitepress-plugin-example';
+import { vitepressDemoPlugin } from 'vitepress-demo-plugin'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -40,7 +40,7 @@ export default defineConfig({
   },
   markdown: {
     config(md) {
-        md.use(examplePlugin);
+        md.use(vitepressDemoPlugin)
     }
   }
 })

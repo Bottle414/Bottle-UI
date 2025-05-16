@@ -9,7 +9,7 @@ import Slots from '../examples/virtual-list/Slots.vue'
 
 ## 基础用法
 包含最普通的列表项
-<Basic/>
+<demo vue="../examples/virtual-list/Basic.vue"/>
 
 # VirtualList API
 ## VirtualList Attributes

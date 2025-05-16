@@ -11,15 +11,15 @@ import Slots from '../examples/card/Slots.vue'
 
 ## 基础用法
 Card 组件由header、body和footer组成。header 和 footer是可选的，其内容取决于一个具名的 slot。
-<Basic/>
+<demo vue="../examples/card/Basic.vue"/>
 
 ## 简单卡片
 只含内容区域
-<Simple/>
+<demo vue="../examples/card/Simple.vue"/>
 
 ## 阴影效果
-通过 shadow 属性设置卡片阴影出现的时机。 该属性的值可以是：always、hover 或 never。
-<Shadow/>
+通过 shadow 属性设置卡片阴影出现的时机。 该属性的值可以是: always、hover 或 never。
+<demo vue="../examples/card/Shadow.vue"/>
 
 # Card API
 ## Card Attributes
@@ -27,6 +27,3 @@ Card 组件由header、body和footer组成。header 和 footer是可选的，其
 
 ## Card Slots
 <Slots/>
-
-<style module>
-</style>

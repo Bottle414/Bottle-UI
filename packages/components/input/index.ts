@@ -3,12 +3,12 @@ import Input from './src/input.vue'
 import { withInstall } from '@bottle-ui/utils/withInstall'
 
 export const BInput = withInstall(Input)
-export default BInput
-
 export * from './src/input' // 导出所有类型
+
+export default BInput
 
 declare module 'vue' {
     export interface GlobalComponents {
-        BInput: typeof Input
+        BInput: typeof BInput
     }
 }

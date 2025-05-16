@@ -18,7 +18,7 @@
     "vitepress-demo-plugin": "^1.4.2"
   },
   "dependencies": {
-    "@bottle414/bottle-ui": "^2.1.6",
+    "@bottle414/bottle-ui": "^2.2.0",
     "vue": "^3.5.13"
   }
 }

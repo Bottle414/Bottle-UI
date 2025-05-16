@@ -1,6 +1,3 @@
-export * from './components'
-export * from './hooks'
-export * from './utils'
 // export * from './theme-chalk/src/index.scss' 无法被ts识别
 import './theme-chalk/src/index.scss'// 触发vite打包css文件
 

@@ -16,7 +16,7 @@ export type FormInstance = {
 
 declare module 'vue' {
     export interface GlobalComponents {
-        BFormItem: typeof FormItem
-        BForm: typeof Form
+        BFormItem: typeof BFormItem
+        BForm: typeof BForm
     }
 }

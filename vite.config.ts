@@ -5,7 +5,13 @@ import path from 'path'
 import dts from 'vite-plugin-dts'
 
 export default defineConfig({
-  plugins: [vue()],
+    plugins: [vue(), dts({
+        entryRoot: 'packages',
+        outDir: 'packages/dist/types',
+        include: ['packages/components'],
+        staticImport: true,
+        rollupTypes: true
+    })],
   resolve: {
     alias: {
       '@bottle-ui': path.resolve(__dirname, './packages'),

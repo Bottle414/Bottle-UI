@@ -3,12 +3,12 @@ import Icon from './src/icon.vue'
 import { withInstall } from '@bottle-ui/utils/withInstall'
 
 export const BIcon = withInstall(Icon)
-export default BIcon
-
 export * from './src/icon'// 导出所有类型
+
+export default BIcon
 
 declare module 'vue' {
     export interface GlobalComponents {
-        BIcon: typeof Icon
+        BIcon: typeof BIcon
     }
 }

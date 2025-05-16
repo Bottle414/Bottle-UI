@@ -1,14 +1,14 @@
 // 进行整合组件，最终实现导出
 import Button from './src/button.vue'
 import { withInstall } from '@bottle-ui/utils/withInstall'
+// 重新回到原始导出方式
+export * from './src/button'
 
 export const BButton = withInstall(Button)
 export default BButton
 
-export * from './src/button'// 导出所有类型
-
 declare module 'vue' {
     export interface GlobalComponents {
-        BButton: typeof Button
+        BButton: typeof BButton
     }
 }

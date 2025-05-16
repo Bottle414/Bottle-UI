@@ -1,5 +1,41 @@
 # @bottle414/components
 
+## 2.0.1
+
+### Patch Changes
+
+-   make .d.ts one file
+-   Updated dependencies
+    -   @bottle414/theme-chalk@2.0.1
+    -   @bottle414/hooks@2.0.1
+    -   @bottle414/utils@2.0.1
+
+## 2.0.0
+
+### Major Changes
+
+-   ts prompt
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @bottle414/theme-chalk@2.0.0
+    -   @bottle414/hooks@2.0.0
+    -   @bottle414/utils@2.0.0
+
+## 1.2.0
+
+### Minor Changes
+
+-   add collapse component
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @bottle414/hooks@1.2.0
+    -   @bottle414/theme-chalk@1.2.0
+    -   @bottle414/utils@1.2.0
+
 ## 1.1.4
 
 ### Patch Changes

@@ -1,5 +1,23 @@
 # @bottle414/bottle-ui
 
+## 3.0.1
+
+### Patch Changes
+
+-   make .d.ts one file
+
+## 3.0.0
+
+### Major Changes
+
+-   ts prompt
+
+## 2.2.0
+
+### Minor Changes
+
+-   add collapse component
+
 ## 2.1.5
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@bottle414/bottle-ui",
-  "version": "2.1.6",
+  "version": "3.0.1",
   "description": "A self-made component library for Vue3.",
   "keywords": [
     "component library",
@@ -10,10 +10,12 @@
   ],
   "main": "dist/bottle-ui.umd.js",
   "module": "dist/bottle-ui.es.js",
+  "types": "dist/types/bottle-ui.es.d.ts",
   "exports": {
     ".": {
       "import": "./dist/bottle-ui.es.js",
-      "require": "./dist/bottle-ui.umd.js"
+      "require": "./dist/bottle-ui.umd.js",
+      "types": "./dist/types/bottle-ui.es.d.ts"
     }
   },
   "files": [

@@ -1,5 +1,23 @@
 # @bottle414/utils
 
+## 2.0.1
+
+### Patch Changes
+
+-   make .d.ts one file
+
+## 2.0.0
+
+### Major Changes
+
+-   ts prompt
+
+## 1.2.0
+
+### Minor Changes
+
+-   add collapse component
+
 ## 1.1.3
 
 ### Patch Changes

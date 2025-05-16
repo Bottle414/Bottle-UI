@@ -3,12 +3,12 @@ import Upload from './src/upload.vue'
 import { withInstall } from '@bottle-ui/utils/withInstall'
 
 export const BUpload = withInstall(Upload)
-export default BUpload
-
 export * from './src/upload'// 导出所有类型
+
+export default BUpload
 
 declare module 'vue' {
     export interface GlobalComponents {
-        BUpload: typeof Upload
+        BUpload: typeof BUpload
     }
 }

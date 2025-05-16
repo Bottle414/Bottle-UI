@@ -1,6 +1,7 @@
 packages:
   - play
   - packages/**
-  # - !**/test/**
+
+# - !**/test/**
 onlyBuiltDependencies:
   - esbuild

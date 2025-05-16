@@ -1,12 +1,11 @@
 <script setup>
-import { ref } from 'vue'
-import Basic from '../examples/checkbox/basic.vue'
-import Status from '../examples/checkbox/status.vue'
-import Color from '../examples/checkbox/color.vue'
-import Size from '../examples/checkbox/size.vue'
-import Attributes from '../examples/checkbox/attributes.vue'
-import Events from '../examples/checkbox/events.vue'
-import Slots from '../examples/checkbox/slots.vue'
+import Basic from '../examples/checkbox/Basic.vue'
+import Status from '../examples/checkbox/Status.vue'
+import Color from '../examples/checkbox/Color.vue'
+import Size from '../examples/checkbox/Size.vue'
+import Attributes from '../examples/checkbox/Attributes.vue'
+import Events from '../examples/checkbox/Events.vue'
+import Slots from '../examples/checkbox/Slots.vue'
 
 </script>
 

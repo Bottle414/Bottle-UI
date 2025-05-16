@@ -1,10 +1,9 @@
 <script setup>
-import { ref } from 'vue'
-import Basic from '../examples/card/basic.vue'
-import Simple from '../examples/card/simple.vue'
-import Shadow from '../examples/card/shadow.vue'
-import Attributes from '../examples/card/attributes.vue'
-import Slots from '../examples/card/slots.vue'
+import Basic from '../examples/card/Basic.vue'
+import Simple from '../examples/card/Simple.vue'
+import Shadow from '../examples/card/Shadow.vue'
+import Attributes from '../examples/card/Attributes.vue'
+import Slots from '../examples/card/Slots.vue'
 
 </script>
 

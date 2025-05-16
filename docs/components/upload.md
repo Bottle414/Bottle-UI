@@ -1,14 +1,13 @@
 <script setup>
-import { ref } from 'vue'
-import Basic from '../examples/upload/basic.vue'
-import Drag from '../examples/upload/drag.vue'
-import Limit from '../examples/upload/limit.vue'
-import Custom from '../examples/upload/custom.vue'
-import Multiple from '../examples/upload/multiple.vue'
-import Preview from '../examples/upload/preview.vue'
-import Disabled from '../examples/upload/disabled.vue'
-import Attributes from '../examples/upload/attributes.vue'
-import Slots from '../examples/upload/slots.vue'
+import Basic from '../examples/upload/Basic.vue'
+import Drag from '../examples/upload/Drag.vue'
+import Limit from '../examples/upload/Limit.vue'
+import Custom from '../examples/upload/Custom.vue'
+import Multiple from '../examples/upload/Multiple.vue'
+import Preview from '../examples/upload/Preview.vue'
+import Disabled from '../examples/upload/Disabled.vue'
+import Attributes from '../examples/upload/Attributes.vue'
+import Slots from '../examples/upload/Slots.vue'
 
 </script>
 

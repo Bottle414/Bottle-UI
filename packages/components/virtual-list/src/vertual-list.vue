@@ -31,18 +31,17 @@
 
     onMounted(() => {
         nextTick(() => {
-            if (!virtualBox.value || !scrollBar.value || !item.value) return
-
             // 如果没传 size，就用 item 的真实高度
-            if (!props.size) {
-            const height = parseFloat(getComputedStyle(item.value).height)
-            if (height > 0) {
-                itemHeight.value = height
+            if (!props.size && item.value) {
+                const height = parseFloat(getComputedStyle(item.value).height)
+                if (height > 0) {
+                    itemHeight.value = height
+                }
             }
+            if (virtualBox.value && scrollBar.value && item.value){
+                virtualBox.value.style.height = itemHeight.value * props.remain + 'px'
+                scrollBar.value.style.height = props.items.length * itemHeight.value + 'px'
             }
-
-            virtualBox.value.style.height = itemHeight.value * props.remain + 'px'
-            scrollBar.value.style.height = props.items.length * itemHeight.value + 'px'
         })
     })
 

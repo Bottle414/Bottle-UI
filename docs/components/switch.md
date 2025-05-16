@@ -1,10 +1,9 @@
 <script setup>
-import { ref } from 'vue'
-import Basic from '../examples/switch/basic.vue'
-import Color from '../examples/switch/color.vue'
-import Disabled from '../examples/switch/disabled.vue'
-import Text from '../examples/switch/text.vue'
-import Attributes from '../examples/switch/attributes.vue'
+import Basic from '../examples/switch/Basic.vue'
+import Color from '../examples/switch/Color.vue'
+import Disabled from '../examples/switch/Disabled.vue'
+import Text from '../examples/switch/Text.vue'
+import Attributes from '../examples/switch/Attributes.vue'
 
 </script>
 

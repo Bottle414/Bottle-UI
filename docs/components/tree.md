@@ -1,14 +1,13 @@
 <script setup>
-import { ref } from 'vue'
-import Basic from '../examples/tree/basic.vue'
-import Custom from '../examples/tree/custom.vue'
-import Async from '../examples/tree/async.vue'
-import Checkbox from '../examples/tree/checkbox.vue'
-import Disabled from '../examples/tree/disabled.vue'
-import Default from '../examples/tree/default.vue'
-import Virtual from '../examples/tree/virtual.vue'
-import Attributes from '../examples/tree/attributes.vue'
-import Slots from '../examples/tree/slots.vue'
+import Basic from '../examples/tree/Basic.vue'
+import Custom from '../examples/tree/Custom.vue'
+import Async from '../examples/tree/Async.vue'
+import Checkbox from '../examples/tree/Checkbox.vue'
+import Disabled from '../examples/tree/Disabled.vue'
+import Default from '../examples/tree/Default.vue'
+import Virtual from '../examples/tree/Virtual.vue'
+import Attributes from '../examples/tree/Attributes.vue'
+import Slots from '../examples/tree/Slots.vue'
 
 </script>
 

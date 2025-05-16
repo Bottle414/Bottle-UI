@@ -1,10 +1,9 @@
 <script setup>
-import { ref } from 'vue'
-import Placement from '../examples/tooltip/placement.vue'
-import Custom from '../examples/tooltip/custom.vue'
-import Theme from '../examples/tooltip/theme.vue'
-import Attributes from '../examples/tooltip/attributes.vue'
-import Slots from '../examples/tooltip/slots.vue'
+import Placement from '../examples/tooltip/Placement.vue'
+import Custom from '../examples/tooltip/Custom.vue'
+import Theme from '../examples/tooltip/Theme.vue'
+import Attributes from '../examples/tooltip/Attributes.vue'
+import Slots from '../examples/tooltip/Slots.vue'
 
 </script>
 

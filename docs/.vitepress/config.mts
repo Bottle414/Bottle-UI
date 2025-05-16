@@ -43,15 +43,4 @@ export default defineConfig({
         md.use(examplePlugin);
     }
   }
-  
-  // vite: {
-  //   plugins: [vue()],
-  //   resolve: {
-  //     alias: {
-  //       '@bottle-ui/button': resolve('E:/Bottle-UI/packages/components/button'),
-  //       '@bottle-ui/input': resolve('E:/Bottle-UI/packages/components/button'),
-  //       // 添加更多组件别名
-  //     }
-  //   }
-  // }
 })

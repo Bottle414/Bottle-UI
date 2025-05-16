@@ -1,12 +1,11 @@
 <script setup>
-import { ref } from 'vue'
-import Basic from '../examples/button/basic.vue'
-import Disabled from '../examples/button/disabled.vue'
-import Icon from '../examples/button/icon.vue'
-import Loading from '../examples/button/loading.vue'
-import Size from '../examples/button/size.vue'
-import Attributes from '../examples/button/attributes.vue'
-import Totop from '../examples/button/totop.vue'
+import Basic from '../examples/button/Basic.vue'
+import Disabled from '../examples/button/Disabled.vue'
+import Icon from '../examples/button/Icon.vue'
+import Loading from '../examples/button/Loading.vue'
+import Size from '../examples/button/Size.vue'
+import Attributes from '../examples/button/Attributes.vue'
+import Totop from '../examples/button/Totop.vue'
 
 </script>
 

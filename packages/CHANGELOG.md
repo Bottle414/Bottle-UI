@@ -1,5 +1,12 @@
 # @bottle414/bottle-ui
 
+## 2.1.3
+
+### Patch Changes
+
+-   refactor: virtual-list
+-   772fabe: add declare for Volar
+
 ## 2.1.2
 
 ### Patch Changes

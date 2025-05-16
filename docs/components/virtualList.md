@@ -1,8 +1,7 @@
 <script setup>
-import { ref } from 'vue'
-import Basic from '../examples/virtual-list/basic.vue'
-import Attributes from '../examples/virtual-list/attributes.vue'
-import Slots from '../examples/virtual-list/slots.vue'
+import Basic from '../examples/virtual-list/Basic.vue'
+import Attributes from '../examples/virtual-list/Attributes.vue'
+import Slots from '../examples/virtual-list/Slots.vue'
 
 </script>
 

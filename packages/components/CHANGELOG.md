@@ -1,5 +1,16 @@
 # @bottle414/components
 
+## 1.1.3
+
+### Patch Changes
+
+-   refactor: virtual-list
+-   772fabe: add declare for Volar
+-   Updated dependencies [772fabe]
+    -   @bottle414/hooks@1.1.3
+    -   @bottle414/theme-chalk@1.1.3
+    -   @bottle414/utils@1.1.3
+
 ## 1.1.2
 
 ### Patch Changes

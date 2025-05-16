@@ -1,5 +1,11 @@
 # @bottle414/utils
 
+## 1.1.3
+
+### Patch Changes
+
+-   772fabe: add declare for Volar
+
 ## 1.1.2
 
 ### Patch Changes

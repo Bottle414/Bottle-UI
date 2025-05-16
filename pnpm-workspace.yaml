@@ -1,6 +1,5 @@
 packages:
   - play
-  - docs
   - packages/**
   # - !**/test/**
 onlyBuiltDependencies:

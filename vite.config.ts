@@ -5,10 +5,7 @@ import path from 'path'
 import dts from 'vite-plugin-dts'
 
 export default defineConfig({
-  plugins: [vue(), dts({
-    include: ['packages'],// 类型提示生成到哪里
-    tsconfigPath: './tsconfig.json'
-  })],
+  plugins: [vue()],
   resolve: {
     alias: {
       '@bottle-ui': path.resolve(__dirname, './packages'),

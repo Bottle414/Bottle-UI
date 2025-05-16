@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "module": "ESNext", // 打包模块类型
-    "emitDeclarationOnly": true,// 只生成.d.ts不要js，需要搭配下面这句话
-    "declaration": true, // 默认不要.d.ts这种类型文件 现在我需要它生成类型提示
+    // "emitDeclarationOnly": true,// 只生成.d.ts不要js，需要搭配下面这句话
+    "declaration": false, // 默认不要.d.ts这种类型文件 现在我需要生成类型提示, 直接在vue文件里declare 全局就行
     "noImplicitAny": false, // 支持类型默认any
     "removeComments": true, // 删除注释
     "moduleResolution": "node", // 按照node模块来解析

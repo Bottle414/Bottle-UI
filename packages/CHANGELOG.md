@@ -1,5 +1,17 @@
 # @bottle414/bottle-ui
 
+## 2.1.5
+
+### Patch Changes
+
+-   remove ts file
+
+## 2.1.4
+
+### Patch Changes
+
+-   remove type declare
+
 ## 2.1.3
 
 ### Patch Changes

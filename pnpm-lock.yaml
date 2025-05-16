@@ -61,7 +61,7 @@ importers:
   docs:
     dependencies:
       '@bottle414/bottle-ui':
-        specifier: workspace:^
+        specifier: ^2.1.3
         version: link:../packages
       vitepress-plugin-example:
         specifier: ^1.1.0

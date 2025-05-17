@@ -11,10 +11,11 @@ export default defineConfig({
   title: "Bottle-UI",
   description: "一个自制 Vue3 组件库",
   themeConfig: {
+    logo: '/public/logo.jpg',
     nav: [
       { text: '首页', link: '/' },
       { text: '快速开始', link: '/guide/getting-started.md' },
-      { text: '组件实例', link: '/components' }
+      { text: '组件实例', link: '/components/button' }
     ],
     sidebar: {
       '/components':[
@@ -32,14 +33,14 @@ export default defineConfig({
             { text: 'Collapse', link: '/components/Collapse' },
             { text: 'Form', link: '/components/Form' },
             { text: 'Progress', link: '/components/Progress' },
-            { text: 'VirtualList', link: '/components/virtualList' },
-            { text: 'Runtime API Examples', link: '/api-examples' }
+            { text: 'VirtualList', link: '/components/virtualList' }
           ]
         }
       ]
     },
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/Bottle414/Bottle-UI.git', ariaLabel: 'github'  },
+      { icon: 'bilibili', link: 'https://space.bilibili.com/503461496?spm_id_from=333.1007.0.0', ariaLabel: 'author bilibili' },
     ]
   },
   markdown: {

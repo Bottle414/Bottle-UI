@@ -1,5 +1,11 @@
 # @bottle414/hooks
 
+## 2.1.0
+
+### Minor Changes
+
+-   rollup ts declare, fix input slots
+
 ## 2.0.2
 
 ### Patch Changes

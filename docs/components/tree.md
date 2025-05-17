@@ -38,7 +38,7 @@ import Slots from '../examples/tree/Slots.vue'
 
 ## 虚拟滚动
 使用 virtual 属性提供虚拟滚动
-<demo vue="../examples/tree/virtual.vue"/>
+<demo vue="../examples/tree/Virtual.vue"/>
 
 # Tree API
 ## Tree Attributes

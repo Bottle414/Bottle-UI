@@ -1,10 +1,11 @@
 <template>
     <Example>
-        <BVirtualList :items="fakeData" :size="23">
+        <BVirtualList :items="fakeData" :size="22" id="collapse">
             <template #default="{ data }">
                 <p>{{ data }}</p>
             </template>
         </BVirtualList>
+        <!-- 不知道为什么高度突然塌陷了，virtual-list生前还是好好的 -->
     </Example>
 </template>
 
@@ -13,4 +14,7 @@
 </script>
 
 <style scoped>
+    #collapse {
+        height: 200px;
+    }
 </style>

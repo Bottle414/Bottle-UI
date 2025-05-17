@@ -1,5 +1,11 @@
 # @bottle414/bottle-ui
 
+## 3.1.0
+
+### Minor Changes
+
+-   rollup ts declare, fix input slots
+
 ## 3.0.2
 
 ### Patch Changes

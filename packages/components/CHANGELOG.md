@@ -1,5 +1,18 @@
 # @bottle414/components
 
+## 2.1.0
+
+### Minor Changes
+
+-   rollup ts declare, fix input slots
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @bottle414/hooks@2.1.0
+    -   @bottle414/theme-chalk@2.1.0
+    -   @bottle414/utils@2.1.0
+
 ## 2.0.2
 
 ### Patch Changes

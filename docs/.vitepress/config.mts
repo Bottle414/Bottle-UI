@@ -29,10 +29,10 @@ export default defineConfig({
             { text: 'Switch', link: '/components/switch' },
             { text: 'Tree', link: '/components/tree' },
             { text: 'Upload', link: '/components/upload' },
-            { text: 'Input', link: '/components/Input' },
-            { text: 'Collapse', link: '/components/Collapse' },
-            { text: 'Form', link: '/components/Form' },
-            { text: 'Progress', link: '/components/Progress' },
+            { text: 'Input', link: '/components/input' },
+            { text: 'Collapse', link: '/components/collapse' },
+            { text: 'Form', link: '/components/form' },
+            { text: 'Progress', link: '/components/progress' },
             { text: 'VirtualList', link: '/components/virtualList' }
           ]
         }

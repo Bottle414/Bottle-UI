@@ -1,3 +1,9 @@
+/**
+ * Author: bottle414
+ * License: MIT
+ * Date: 2025-05-19
+ */
+
 <template>
     <div :class="ns.b()">
         <div :class="[ns.e('content'), ns.is('selected', selected)]" :style="{paddingLeft: node.level * 30 + 'px', display: 'flex', alignItems: 'baseline'}">

@@ -1,3 +1,9 @@
+/**
+ * Author: bottle414
+ * License: MIT
+ * Date: 2025-05-19
+ */
+
 import { h, defineComponent } from 'vue'
 // 手搓的三角形，暂定
 export default defineComponent({

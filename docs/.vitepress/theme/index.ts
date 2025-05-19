@@ -1,3 +1,9 @@
+/**
+ * Author: bottle414
+ * License: MIT
+ * Date: 2025-05-19
+ */
+
 // https://vitepress.dev/guide/custom-theme
 import { h } from 'vue'
 import type { Theme } from 'vitepress'

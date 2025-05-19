@@ -1,3 +1,9 @@
+/**
+ * Author: bottle414
+ * License: MIT
+ * Date: 2025-05-19
+ */
+
 <template>
     <Example>
         <BButton to-top color="#33a6c7" size="medium">toTopWindow</BButton>

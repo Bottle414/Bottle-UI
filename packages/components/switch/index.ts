@@ -1,3 +1,9 @@
+/**
+ * Author: bottle414
+ * License: MIT
+ * Date: 2025-05-19
+ */
+
 // 进行整合组件，最终实现导出
 import Switch from './src/switch.vue'
 import { withInstall } from '@bottle-ui/utils/withInstall'

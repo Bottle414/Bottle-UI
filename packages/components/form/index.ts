@@ -1,3 +1,9 @@
+/**
+ * Author: bottle414
+ * License: MIT
+ * Date: 2025-05-19
+ */
+
 import { Values } from 'async-validator'
 import FormItem from './src/form-item.vue'
 import Form from './src/form.vue'

@@ -1,3 +1,9 @@
+/**
+ * Author: bottle414
+ * License: MIT
+ * Date: 2025-05-19
+ */
+
 <template>
     <div :class="ns.b()" ref="virtual-box" :onScroll="handlerScroll"><!-- 虚拟窗口 -->
         <div :class="ns.e('scroll-bar')" ref="scroll-bar"></div><!-- 滚动条 -->

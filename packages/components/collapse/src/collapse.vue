@@ -1,3 +1,9 @@
+/**
+ * Author: bottle414
+ * License: MIT
+ * Date: 2025-05-19
+ */
+
 <template>
     <button :class="[ns.e('board'), ns.is('open', open)]" @click="handleCollapse">
         <slot name="title">

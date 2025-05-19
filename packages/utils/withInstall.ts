@@ -1,3 +1,9 @@
+/**
+ * Author: bottle414
+ * License: MIT
+ * Date: 2025-05-19
+ */
+
 import { App, Component } from "vue";
 
 // 新定义一个有 install 方法的类型——带有install的单文件组件

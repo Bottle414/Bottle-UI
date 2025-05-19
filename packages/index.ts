@@ -1,3 +1,9 @@
+/**
+ * Author: bottle414
+ * License: MIT
+ * Date: 2025-05-19
+ */
+
 // export * from './theme-chalk/src/index.scss' 无法被ts识别
 import './theme-chalk/src/index.scss'// 触发vite打包css文件
 

@@ -1,3 +1,9 @@
+/**
+ * Author: bottle414
+ * License: MIT
+ * Date: 2025-05-19
+ */
+
 <template>
     <Example>
         <BSwitch v-model="modelValue" active-color='yellow' inactive-color="#eee"></BSwitch>

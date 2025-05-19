@@ -1,3 +1,9 @@
+/**
+ * Author: bottle414
+ * License: MIT
+ * Date: 2025-05-19
+ */
+
 // input所需要的一些属性与类型
 import { ExtractPropTypes, PropType } from 'vue'
 import { isString } from '@vue/shared'

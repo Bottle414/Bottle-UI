@@ -1,3 +1,9 @@
+/**
+ * Author: bottle414
+ * License: MIT
+ * Date: 2025-05-19
+ */
+
 import { ExtractPropTypes, PropType, InjectionKey } from "vue"
 import type { RuleItem } from "async-validator"
 

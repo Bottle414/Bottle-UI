@@ -1,3 +1,9 @@
+/**
+ * Author: bottle414
+ * License: MIT
+ * Date: 2025-05-19
+ */
+
 // button所需要的一些属性与类型
 import { ExtractPropTypes, PropType } from 'vue'// 两个自带的泛型共聚
 

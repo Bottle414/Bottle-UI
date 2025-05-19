@@ -1,3 +1,9 @@
+/**
+ * Author: bottle414
+ * License: MIT
+ * Date: 2025-05-19
+ */
+
 import { ExtractPropTypes, PropType } from 'vue'
 import { NOOP } from '@bottle-ui/utils/function'
 import { Awaitable } from 'packages/utils/typescript'

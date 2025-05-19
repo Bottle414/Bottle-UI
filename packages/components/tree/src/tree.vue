@@ -1,3 +1,9 @@
+/**
+ * Author: bottle414
+ * License: MIT
+ * Date: 2025-05-19
+ */
+
 <template>
     <!-- TODO: 传入virtual绑定component， 为true绑定virtual-list不然就是div --->
     <BVirtualList v-if="virtual" :items="flattenTree">

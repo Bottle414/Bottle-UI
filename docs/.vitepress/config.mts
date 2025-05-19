@@ -40,7 +40,7 @@ export default defineConfig({
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/Bottle414/Bottle-UI.git', ariaLabel: 'github'  },
-      { icon: 'bilibili', link: 'https://space.bilibili.com/503461496?spm_id_from=333.1007.0.0', ariaLabel: 'author bilibili' },
+      { icon: 'bilibili', link: 'https://www.bilibili.com/video/BV1TdJ3zVEin/?spm_id_from=333.1387.homepage.video_card.click&vd_source=7190a99cb1b105a55f87b34cf43e9d4f', ariaLabel: 'bilibili' },
     ]
   },
   markdown: {

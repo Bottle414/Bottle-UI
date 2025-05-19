@@ -15,7 +15,7 @@ import '../node_modules/@bottle414/bottle-ui/dist/shared.css'
 
 # 导入volar组件提示
 ```js
-import '../node_modules/@bottle414/bottle-ui/dist/index.d.ts'
+import '../node_modules/@bottle414/bottle-ui/dist/types/bottle-ui.es.d.ts'
 ```
 <br>
 

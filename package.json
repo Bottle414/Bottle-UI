@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "pnpm -C play dev",
     "build": "vite build",
-    "test": "vitest --ui",
+    "test": "vitest",
     "coverage": "vitest run --coverage"
   },
   "keywords": [],

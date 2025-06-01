@@ -5,6 +5,7 @@
  */
 
 // vite.config.ts
+/// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
@@ -23,6 +24,15 @@ export default defineConfig({
     alias: {
       '@bottle-ui': path.resolve(__dirname, './packages'),
     },
+  },
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    include: ['test/**/*.test.ts'],
+    coverage: {
+      reporter: ['text', 'html'],
+      include: ['packages/components/**/*.vue']
+    }
   },
   build: {
     lib: {
@@ -44,3 +54,18 @@ export default defineConfig({
     }
   }
 })
+
+/*
+  当你使用 vitest --coverage（或类似命令）时，Vitest 使用 c8（基于 V8 引擎）生成代码覆盖率报告，它会在默认的 coverage/ 目录下生成以下内容：
+  文件/文件夹	说明
+  index.html	打开这个文件即可查看图形化的覆盖率报告（推荐 ✅）
+  files/ 或 html/	是 HTML 视图报告的资源（每个文件的覆盖详情页面）
+  .json, .js, .lcov	是机器可读的覆盖率原始数据，可以用于 CI/CD 或上传到像 Coveralls、Codecov 这种平台
+  .ts/.vue 等源码的对应 .js 转换版本	是为了支持 JS 引擎收集覆盖信息时准确映射到源代码的文件
+
+  reporter: ['text'] 就只输出到终端
+  reporter: ['html'] 就只生成 HTML 页面
+
+  vitest run test/button.test.ts --coverage
+  这样只生成你关心组件的覆盖率。
+*/

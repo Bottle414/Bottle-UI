@@ -15,6 +15,7 @@
       "ESNext",
       "DOM"
     ],
+    "types": ["vitest/globals"],
     "allowSyntheticDefaultImports": true, // 允许没有导出的模块中导入
     "experimentalDecorators": true, // 装饰器语法
     "forceConsistentCasingInFileNames": true, // 强制区分大小写

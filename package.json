@@ -6,7 +6,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "pnpm -C play dev",
-    "build": "vite build"
+    "build": "vite build",
+    "test": "vitest --ui",
+    "coverage": "vitest run --coverage"
   },
   "keywords": [],
   "author": "",
@@ -33,11 +35,16 @@
     "packages"
   ],
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/vue": "^8.1.0",
     "@vicons/antd": "^0.13.0",
     "@vitejs/plugin-vue": "^5.2.3",
+    "@vitest/coverage-v8": "3.1.4",
+    "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.7.0",
     "typescript": "~5.7.2",
     "vite": "^6.3.2",
+    "vitest": "^3.1.4",
     "vue-tsc": "^2.2.4"
   }
 }

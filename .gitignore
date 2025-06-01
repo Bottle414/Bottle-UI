@@ -27,3 +27,7 @@ dist-ssr
 *.sw?
 
 author.js
+
+# test
+*test*
+coverage

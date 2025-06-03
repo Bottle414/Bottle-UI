@@ -84,3 +84,14 @@ Or import them directly inside a component:
 ```
 
 And you're ready to go! 🎉🦝
+
+## TODO
+- [ ] Complete custom style support
+
+- [ ] Complete test files
+
+- [ ] Better Accessible support
+
+- [ ] Better compatibility support
+
+- [ ] Optimize vritual list

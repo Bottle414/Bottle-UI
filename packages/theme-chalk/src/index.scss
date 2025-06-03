@@ -11,3 +11,5 @@
 @use './progress.scss' as *;
 @use './tooltip.scss' as *;
 @use './collapse.scss' as *;
+
+@use './var.scss' as *;// 导出css变量

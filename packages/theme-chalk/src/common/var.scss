@@ -1,6 +1,10 @@
 @use 'sass:color';
+@use 'sass:map';
 
-$color-primary: #BEBE;
+@use '../mixins/function.scss' as *;
+@use '../mixins/var' as *;
+
+$color-primary: #bebe;
 $color-primary-hover: color.scale($color-primary, $lightness: -20%);
 $color-white: #fff;
 $color-grey: #eee;
@@ -14,3 +18,35 @@ $shadow-around: 3px 3px 4px rgba(200, 200, 200, 0.2),
     -4px -6px 8px rgba(100, 100, 100, 0.1),
     -3px 3px 4px rgba(200, 200, 200, 0.2), -4px 6px 8px rgba(100, 100, 100, 0.1),
     3px -3px 4px rgba(200, 200, 200, 0.2), 4px -8px 8px rgba(100, 100, 100, 0.1);
+
+/* 生成全局变量 */
+$css-vars: (
+    'primary': $color-primary,
+    'primary-hover': $color-primary-hover,
+    'white': $color-white,
+    'grey': $color-grey,
+    'black': $color-black,
+    'success': $color-success,
+    'danger': $color-danger,
+    'warning': $color-warning,
+    'info': $color-info,
+    'shadow-around': $shadow-around
+);
+
+:root {
+    @each $name, $value in $css-vars {
+        @include set-css-var-value($name, $value);
+    }
+}
+
+/* 支持自定义组件主题 */
+$card: () !default;
+$card: map.merge(
+  (
+    'border-color': $color-grey,
+    'border-radius': 5px,
+    'color': $color-black,
+    'bg-color': $color-white,/* TODO: 目前写死，以后用函数生成 */
+  ),
+  $card
+);

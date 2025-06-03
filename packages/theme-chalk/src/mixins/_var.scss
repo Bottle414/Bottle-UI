@@ -1,5 +1,4 @@
 @use './function.scss' as *;
-@use '../common/var' as *;
 
 /* 生成CSS变量对应的值 */
 @mixin set-css-var-value($name, $value) {

@@ -12,4 +12,4 @@
 @use './tooltip.scss' as *;
 @use './collapse.scss' as *;
 
-@use './var.scss' as *;// 导出css变量
+@use './common/var.scss' as *;// 导出css变量

@@ -1,11 +1,16 @@
 @use './mixins/mixins' as *;
 @use './common/var' as *;
+@use './mixins/var' as *;
 
 @include b(card) {
-    background: $color-white;
-    color: $color-black;
-    border-radius: 5px;
-    border: 1px solid $color-grey;
+    @include set-component-css-var('card', $card);
+}
+
+@include b(card) {
+    background: getCssVar('card', 'bg-color');
+    color: getCssVar('card', 'color');
+    border-radius: getCssVar('card', 'border-radius');
+    border: 1px solid getCssVar('card', 'border-color');
     box-sizing: border-box;
     width: 100%;
 

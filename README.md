@@ -95,3 +95,7 @@ And you're ready to go! 🎉🦝
 - [ ] Better compatibility support
 
 - [ ] Optimize vritual list
+
+- [x] Configure submission pipeline
+
+- [ ] Consider: Compatibility with web components

@@ -10,8 +10,9 @@
 
 <script lang='ts' setup>
     const data = [
-        ['size', '每一项的大小', 'number', '30'],
-        ['remain', '每次展示的项数', 'number', '8'],
+        ['size', '每一项的预估大小', 'number', '30'],
+        ['height', '窗口高度', 'number', '200'],
+        ['bufferScale', '缓冲区比例', 'number', '.2'],
         ['items', '每一项的值', 'Array', '[]']
     ]
 </script>

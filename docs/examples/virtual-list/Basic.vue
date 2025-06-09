@@ -5,14 +5,14 @@
  */
 
 <template>
-    <Example>
-        <BVirtualList :items="fakeData" :size="22" id="collapse">
-            <template #default="{ data }">
-                <p>{{ data }}</p>
-            </template>
-        </BVirtualList>
-        <!-- 不知道为什么高度突然塌陷了，virtual-list生前还是好好的 -->
-    </Example>
+    <BVirtualList v-slot="item" :items="fakeData">
+        <div>
+            <p>
+                <span style="color:red">{{item.item}}</span>
+                {{item}}
+            </p>
+        </div>
+    </BVirtualList>
 </template>
 
 <script lang='ts' setup>
@@ -20,7 +20,4 @@
 </script>
 
 <style scoped>
-    #collapse {
-        height: 200px;
-    }
 </style>

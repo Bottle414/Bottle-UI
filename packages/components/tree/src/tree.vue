@@ -7,20 +7,20 @@
 <template>
     <!-- TODO: 传入virtual绑定component， 为true绑定virtual-list不然就是div --->
     <BVirtualList v-if="virtual" :items="flattenTree">
-        <template #default="{ data }">
+        <template #default="{ item }">
             <BTreeNode
-                :node="data"
-                :key="data.key"
-                :expanded="isExpand(data)"
-                :loading="isLoading(data)"
-                :selected="isSelect(data)"
+                :node="item"
+                :key="item.key"
+                :expanded="isExpand(item)"
+                :loading="isLoading(item)"
+                :selected="isSelect(item)"
                 :checkbox="props.checkbox"
-                :checked="isChecked(data)"
-                :disabled="isDisabled(data)"
-                :indeterminate="isIndeterminate(data)"
-                @toggle-expand="toggleExpand(data)"
-                @handle-select="handleSelect(data)"
-                @handle-check="handleCheck(data)"
+                :checked="isChecked(item)"
+                :disabled="isDisabled(item)"
+                :indeterminate="isIndeterminate(item)"
+                @toggle-expand="toggleExpand(item)"
+                @handle-select="handleSelect(item)"
+                @handle-check="handleCheck(item)"
             ></BTreeNode>
         </template>
     </BVirtualList>
@@ -56,6 +56,10 @@
     const virtual = props.virtual
     const ns = virtual ? useNamespace('virtual-tree') : useNamespace('tree')
     const emit = defineEmits(treeEmits)
+
+    defineSlots<{
+        default(props: { item: TreeNode }): TreeNode
+    }>()
 
     // 默认展开的集合
     const expandedKeysSet = ref(new Set(props.defaultExpandedKeys))

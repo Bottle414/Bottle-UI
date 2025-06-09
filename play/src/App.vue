@@ -24,14 +24,96 @@
             </p>
         </div>
     </BVirtualList>
+    <BTree virtual :data="data"></BTree>
 </template>
 
 <script lang='ts' setup>
-    import { BUpload, BButton, BCard, BVirtualList } from '@bottle-ui/components'
+    import { BUpload, BButton, BCard, BVirtualList, BTree } from '@bottle-ui/components'
     function handleBeforeUpload(){
         console.log('upload')
         return true
     }
+
+    const data = [
+        {
+            label: "Node 1",
+            key: "1",
+            isLeaf: false,
+            children: [
+                {
+                    label: "Node 1.1",
+                    key: "1.1",
+                    // disabled: true,
+                    children: []
+                },
+                {
+                    label: "Node 1.2",
+                    key: "1.2",
+                    children: [
+                        {
+                            label: "Node 1.1.1",
+                            key: "1.1.1",
+                            children: []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            label: "Node 2",
+            key: "2",
+            children: []
+        },
+        {
+            label: "Node 1",
+            key: "3",
+            isLeaf: false,
+            children: [
+                {
+                    label: "Node 1.1",
+                    key: "3.1",
+                    // disabled: true,
+                    children: []
+                },
+                {
+                    label: "Node 1.2",
+                    key: "4.2",
+                    children: [
+                        {
+                            label: "Node 1.1.1",
+                            key: "1.4.1",
+                            children: []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            label: "Node 2",
+            key: "5",
+            children: []
+        },
+        {
+            label: "Node 2",
+            key: "5",
+            children: []
+        },
+        {
+            label: "Node 2",
+            key: "8",
+            children: []
+        },
+        {
+            label: "Node 2",
+            key: "7",
+            children: []
+        },
+        {
+            label: "Node 2",
+            key: "6",
+            children: []
+        }
+    ]
 </script>
 
 <style scoped>

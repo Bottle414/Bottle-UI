@@ -9,28 +9,30 @@
             </div>
         </div>
         
-    </div>{{ start }}-{{ end }}
+    </div>
 </template>
 
 <script lang='ts' setup>
-    import { ref, useTemplateRef, computed, onMounted, onUpdated } from 'vue'
+    import { ref, useTemplateRef, computed, onMounted, onUpdated, toRefs } from 'vue'
     import useNamespace from '@bottle-ui/hooks/useNamespace'
     import { virtualListProps, Position } from './virtual-list'
 
     const ns = useNamespace('virtual-list')
-    const { items, size, height, bufferScale } = defineProps(virtualListProps)
+    const props = defineProps(virtualListProps)
+const { items, size, height, bufferScale } = toRefs(props)
+
     const windowRef = useTemplateRef<HTMLElement>('window')
     const itemsRef = useTemplateRef<HTMLElement[]>('items')
     const positions = ref<Position[]>([])// 每一项的高度和位置
     
     const scrollTop = ref(0)
-    const pre = computed(() => Math.min(start.value, bufferScale * visibleCount.value))// 前置渲染数据
-    const suff = computed(() => Math.min(items.length - end.value, bufferScale * visibleCount.value))
+    const pre = computed(() => Math.min(start.value, bufferScale.value * visibleCount.value))// 前置渲染数据
+    const suff = computed(() => Math.min(items.value.length - end.value, bufferScale.value * visibleCount.value))
     const listHeight = computed(() => positions.value[positions.value.length - 1]?.bottom)// 列表总高度 固定：items.length * size，动态：最后一项的底部
-    const visibleCount = computed(() => Math.ceil(height / size))// 可见元素个数
+    const visibleCount = computed(() => Math.ceil(height.value / size.value))// 可见元素个数
     const start = computed(() => binarySearch(scrollTop.value))// 固定：Math.floor(Math.max(0, scrollTop.value / size))，不固定：使用缓存
     const end = computed(() => start.value + visibleCount.value)
-    const visibleData = computed(() => items.slice(start.value - pre.value, end.value + suff.value))// 可见数据
+    const visibleData = computed(() => items.value.slice(start.value - pre.value, end.value + suff.value))// 可见数据
     const offset = computed(() => start.value > 0  ? positions.value[start.value - 1]?.bottom : 0)// 偏移量 固定：scrollTop.value - (scrollTop.value % size) 不固定：缓存
 
     function handleScroll(){
@@ -64,10 +66,10 @@
 
     onMounted(() => {
         // 初始化每个列表项预估高度
-        positions.value = items.map((item, index) => ({
-                top: index * size,
-                bottom: (index + 1) * size,
-                height: size
+        positions.value = items.value.map((item, index) => ({
+                top: index * size.value,
+                bottom: (index + 1) * size.value,
+                height: size.value
             })
         )
     })

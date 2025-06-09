@@ -6,16 +6,25 @@
 
 import { ExtractPropTypes, PropType } from "vue"
 
+export interface Position {
+  top: number,
+  bottom: number,
+  height: number
+}
+
 export const virtualListProps = {
     size: {
       type: Number,
       default: 30
     },
-    remain: {
+    bufferScale: {
       type: Number,
-      default: 8
+      default: .2
     },
-    dynamic: Boolean,// 是否启用动态加载
+    height: {
+      type: Number,
+      default: 200
+    },
     items: {
       type: Array,
       default: () => []

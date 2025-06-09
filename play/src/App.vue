@@ -15,10 +15,19 @@
             How about the buton
         </BButton>
     </BCard>
+
+    <BVirtualList v-slot="item" :items="[1,2,3,9,5,6,7,2,3,6,4,3,53,2,5,6,7,1,3]">
+        <div>
+            <p>
+                <span style="color:red">{{item.item}}</span>
+                {{item}}
+            </p>
+        </div>
+    </BVirtualList>
 </template>
 
 <script lang='ts' setup>
-    import { BUpload, BButton, BCard } from '@bottle-ui/components'
+    import { BUpload, BButton, BCard, BVirtualList } from '@bottle-ui/components'
     function handleBeforeUpload(){
         console.log('upload')
         return true

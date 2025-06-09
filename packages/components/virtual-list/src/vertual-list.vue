@@ -1,86 +1,98 @@
-/**
- * Author: bottle414
- * License: MIT
- * Date: 2025-05-19
- */
-
 <template>
-    <div :class="ns.b()" ref="virtual-box" :onScroll="handlerScroll"><!-- 虚拟窗口 -->
-        <div :class="ns.e('scroll-bar')" ref="scroll-bar"></div><!-- 滚动条 -->
-        <div :class="ns.e('scroll-list')" :style="{ transform: `translateY(${offset + 'px'})`}">
-            <template v-for="(data, index) in visiableData" :key="index">
-                <div :class="ns.e('item')" ref="item">
-                  <slot :data="data" :index="index" />
-                </div>
-            </template>
+    <div :class="ns.b()" ref="window" @scroll="handleScroll">
+        <div :class="ns.e('scroll')" ref="scroll" :style="{ height: listHeight + 'px' }"></div>
+        <div :class="ns.e('list')" :style="{ transform: `translateY(${ offset }px)` }">
+            <div :class="ns.e('item')" ref="items" v-for="(item, index) in visibleData" :key="index" :style="{ height: size + 'px', lineHeight: size + 'px'}">
+                <slot :item="item">
+                    {{ item }}
+                </slot>
+            </div>
         </div>
-    </div>
+        
+    </div>{{ start }}-{{ end }}
 </template>
 
 <script lang='ts' setup>
-    import { ref, computed, watch, useTemplateRef, nextTick, onMounted } from 'vue'
+    import { ref, useTemplateRef, computed, onMounted, onUpdated } from 'vue'
     import useNamespace from '@bottle-ui/hooks/useNamespace'
-    import { virtualListProps } from './virtual-list'
+    import { virtualListProps, Position } from './virtual-list'
 
     const ns = useNamespace('virtual-list')
-    const props = defineProps(virtualListProps)
-    const virtualBox = useTemplateRef<HTMLElement>('virtual-box')// 最外面的盒子
-    const scrollBar = useTemplateRef<HTMLElement>('scroll-bar')// 滚动条
-    const item = useTemplateRef<HTMLElement>('item')
-    const state = ref({
-        start: 0,
-        end: props.remain
-    })// 初始渲染数据
+    const { items, size, height, bufferScale } = defineProps(virtualListProps)
+    const windowRef = useTemplateRef<HTMLElement>('window')
+    const itemsRef = useTemplateRef<HTMLElement[]>('items')
+    const positions = ref<Position[]>([])// 每一项的高度和位置
+    
+    const scrollTop = ref(0)
+    const pre = computed(() => Math.min(start.value, bufferScale * visibleCount.value))// 前置渲染数据
+    const suff = computed(() => Math.min(items.length - end.value, bufferScale * visibleCount.value))
+    const listHeight = computed(() => positions.value[positions.value.length - 1]?.bottom)// 列表总高度 固定：items.length * size，动态：最后一项的底部
+    const visibleCount = computed(() => Math.ceil(height / size))// 可见元素个数
+    const start = computed(() => binarySearch(scrollTop.value))// 固定：Math.floor(Math.max(0, scrollTop.value / size))，不固定：使用缓存
+    const end = computed(() => start.value + visibleCount.value)
+    const visibleData = computed(() => items.slice(start.value - pre.value, end.value + suff.value))// 可见数据
+    const offset = computed(() => start.value > 0  ? positions.value[start.value - 1]?.bottom : 0)// 偏移量 固定：scrollTop.value - (scrollTop.value % size) 不固定：缓存
 
-    const itemHeight = ref<number>(props.size || 1)// 传了size就是size，不然就计算
-    const offset = ref(0)// 偏移量
+    function handleScroll(){
+        if (!windowRef.value) return
+        scrollTop.value = windowRef.value.scrollTop// 更新顶部距离
+    }
+
+    function binarySearch( val: number){
+        let low = 0;
+        let high = positions.value.length - 1;
+        let tempIndex: number | null = null; // 用于存储找到的第一个大于或等于 val 的索引
+
+        while (low <= high) {
+            let mid = Math.floor((low + high) / 2);
+            let midValue = positions.value[mid].bottom;
+
+            if (midValue === val) {
+                return mid + 1;
+            } else if (midValue < val) {
+                low = mid + 1;
+            } else {
+                // 找到一个大于 val 的项
+                if (tempIndex === null || tempIndex > mid) {
+                    tempIndex = mid;
+                }
+                high = mid - 1;
+            }
+        }
+        return tempIndex === null ? 0 : tempIndex; // 如果没找到，默认返回 0
+    }
 
     onMounted(() => {
-        nextTick(() => {
-            // 如果没传 size，就用 item 的真实高度
-            if (!props.size && item.value) {
-                const height = parseFloat(getComputedStyle(item.value).height)
-                if (height > 0) {
-                    itemHeight.value = height
+        // 初始化每个列表项预估高度
+        positions.value = items.map((item, index) => ({
+                top: index * size,
+                bottom: (index + 1) * size,
+                height: size
+            })
+        )
+    })
+
+    onUpdated(() => {
+        // 更新列表高度
+        if (!itemsRef.value) return
+        itemsRef.value.forEach(item => {
+            const rect = item.getBoundingClientRect()
+            const rectHeight = rect.height
+            const index = +item.id.slice(1)
+            const oldHeight = positions.value[index].height
+            const diff = oldHeight - rectHeight
+
+            if (diff){// 存在差值
+                positions.value[index].bottom -= diff
+                positions.value[index].height = rectHeight
+
+                for (let i = index + 1; i < positions.value.length; i++){
+                    positions.value[i].top = positions.value[i - 1].bottom
+                    positions.value[i].bottom = positions.value[i].bottom - diff
                 }
-            }
-            if (virtualBox.value && scrollBar.value && item.value){
-                virtualBox.value.style.height = itemHeight.value * props.remain + 'px'
-                scrollBar.value.style.height = props.items.length * itemHeight.value + 'px'
             }
         })
     })
-
-
-    const prev = computed(() => {
-        return Math.min(state.value.start, props.remain)
-    })
-
-    const next = computed(() => {
-        return Math.min(props.remain, props.items.length - state.value.end)
-    })
-
-    const visiableData = computed(() => {
-        return props.items.slice(state.value.start, state.value.end)// 切片 可以预留 pre 和 next
-    })
-
-    watch(props.items, () => {
-        if (scrollBar.value){
-            scrollBar.value.style.height = props.items.length * itemHeight.value + 'px'
-        }
-    }, { immediate: true })// 总长度更新
-
-    function handlerScroll(){// 计算位移
-        if (!virtualBox.value) return
-        const scrollTop = virtualBox.value?.scrollTop
-        state.value.start = Math.floor(scrollTop / itemHeight.value)
-        state.value.end = state.value.start + props.remain
-        offset.value = state.value.start * itemHeight.value// - itemHeight * prev.value
-    }
-
-    defineSlots<{
-        default(props: any): any
-    }>()
 
     defineOptions({
         name: 'BVirtualList'
@@ -88,5 +100,4 @@
 </script>
 
 <style scoped>
-  
 </style>

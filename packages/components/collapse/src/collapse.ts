@@ -4,7 +4,7 @@
  * Date: 2025-05-19
  */
 
-import { ExtractPropTypes, PropType } from "vue"
+import { ExtractPropTypes } from "vue"
 
 const collapseProps = {
     accordion: Boolean

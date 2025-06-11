@@ -15,7 +15,7 @@ describe('BSwitch Props & Events Test', () => {
             }
         })
         expect(wrapper.classes()).toContain('is-active')
-        expect(wrapper.attributes('style')).toContain('background: #ff0000;')
+        expect(wrapper.attributes('style')).toContain('background: rgb(255, 0, 0);')
     })
 
     test('should apply inactive background when modelValue is false', () => {

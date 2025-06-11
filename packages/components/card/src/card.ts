@@ -5,6 +5,7 @@
  */
 
 import { ExtractPropTypes, PropType } from "vue"
+import type { StyleValue } from "vue"
 
 export type ShadowType = 'always' | 'hover' | 'never'
 
@@ -14,7 +15,7 @@ export const cardProps = {
         default: 'hover'
     },
     bodyStyle: {
-        type: [Object, Array, String] as PropType<Object | Array<any> | String>,
+        type: String as PropType<StyleValue>,
         default: ''
     },
     bodyClass: {

@@ -9,7 +9,7 @@
         <div v-if="$slots.header" :class="ns.e('header')">
             <slot name="header"></slot>
         </div>
-        <div :class="[ns.e('body'), bodyClass]" :bodyStyle="bodyStyle">
+        <div :class="[ns.e('body'), bodyClass]" :style="bodyStyle">
             <slot></slot>
         </div>
         <div v-if="$slots.footer" :class="ns.e('footer')">

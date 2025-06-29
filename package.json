@@ -12,6 +12,7 @@
     "prepare": "husky",
     "lint": "lint-staged"
   },
+  "type": "module",
   "lint-staged": {
     "**/*.{js,ts.jsx,tsx}": [
       "eslint --fix",
@@ -21,6 +22,11 @@
       "prettier --write"
     ]
   },
+  "browserslist": [
+    "> 0.5%",
+    "last 10 versions",
+    "not dead"
+  ],  
   "keywords": [],
   "author": "",
   "license": "ISC",

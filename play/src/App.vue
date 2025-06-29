@@ -25,10 +25,11 @@
         </div>
     </BVirtualList>
     <BTree virtual :data="data"></BTree>
+    <BCheckbox>Why</BCheckbox>
 </template>
 
 <script lang='ts' setup>
-    import { BUpload, BButton, BCard, BVirtualList, BTree } from '@bottle-ui/components'
+    import { BUpload, BButton, BCard, BVirtualList, BTree, BCheckbox } from '@bottle-ui/components'
     function handleBeforeUpload(){
         console.log('upload')
         return true
